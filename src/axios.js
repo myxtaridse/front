@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const instance = Axios.create({
-  baseURL: "http://localhost:4444/",
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 // мидлвор - проверка авторизован ли пользователь или нет

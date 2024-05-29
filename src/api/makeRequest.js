@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_ENDPOINT = "http://localhost:4444";
+const API_ENDPOINT = process.env.REACT_APP_API_URL;
 
 // обертка над axios
 export const makeRequest = (config) => {

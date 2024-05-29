@@ -13,7 +13,9 @@ import axios from "axios";
 const App = () => {
   React.useEffect(() => {
     const req = async () => {
-      const res = await axios.get("http://localhost:4444/posts");
+      const res = await axios.get(
+        "https://web-production-a7c1.up.railway.app/posts"
+      );
       console.log(res);
     };
     req();
