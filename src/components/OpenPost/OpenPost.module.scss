@@ -1,0 +1,159 @@
+.popup {
+  border-radius: 10px;
+  z-index: 1000;
+
+  background-color: #fff;
+  width: 600px;
+  height: max-content;
+
+  img {
+    border-radius: 10px 10px 0 0;
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__detalies {
+    display: flex;
+    align-items: center;
+    margin: 20px 0 10px 20px;
+    column-gap: 30px;
+    &__like,
+    &__send {
+      width: 35px;
+      opacity: 0.8;
+      cursor: pointer;
+      svg {
+        fill: rgba(94, 94, 232, 1);
+      }
+      &:hover {
+        opacity: 1;
+      }
+    }
+    &__active {
+      width: 35px;
+      cursor: pointer;
+      svg path {
+        fill: rgb(227, 32, 32);
+      }
+    }
+  }
+
+  &__likesNum {
+    margin: 0 0 10px 20px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  &__comments {
+    max-height: 180px;
+    overflow-y: scroll;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+
+    &::-webkit-scrollbar {
+      width: 0.4rem;
+      border-radius: 4px;
+      background-color: hsl(221, 68%, 90%);
+    } /*влияет на стиль полосы прокрутки элемента*/
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: rgb(92, 92, 232);
+    } /*перетаскиваемый дескриптор прокрутки*/
+
+    &__btn {
+      margin: 0 auto 10px;
+      opacity: 0.6;
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__commentsAdd {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    row-gap: 10px;
+    textarea {
+      overflow-y: hidden;
+      padding: 10px;
+      min-height: 50px;
+      width: 100%;
+      resize: none;
+      border: 1px solid #c8c8e9;
+    }
+    button {
+      width: 100px;
+      height: 30px;
+      background-color: #5e5ee8;
+      border-radius: 10px;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  video {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+  }
+
+  @media (max-width: 1550px) {
+    width: 500px;
+
+    img {
+      height: 300px;
+    }
+
+    &__detalies {
+      margin: 20px 0 10px 20px;
+      column-gap: 30px;
+      &__like,
+      &__send,
+      &__active {
+        width: 30px;
+      }
+    }
+
+    &__likesNum {
+      margin: 0 0 10px 20px;
+      font-size: 15px;
+    }
+
+    &__comments {
+      max-height: 120px;
+      overflow-y: scroll;
+      padding: 15px;
+      row-gap: 10px;
+
+      &__btn {
+        font-size: 14px;
+        margin: 0 auto 10px;
+      }
+    }
+
+    &__commentsAdd {
+      padding: 20px;
+
+      row-gap: 10px;
+      textarea {
+        padding: 10px;
+        min-height: 50px;
+        width: 100%;
+      }
+      button {
+        width: 100px;
+        height: 30px;
+      }
+    }
+    video {
+      width: 100%;
+      height: 300px;
+    }
+  }
+}

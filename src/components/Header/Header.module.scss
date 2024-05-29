@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap");
+.header {
+  padding: 30px 0;
+  box-shadow: 2px 2px 5px rgba(128, 128, 128, 0.429);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 500px;
+  background-color: #e6eff5;
+
+  &__left {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    font-family: "Jura", sans-serif;
+
+    p {
+      font-size: 34px;
+      color: #4343c8;
+      font-weight: 700;
+    }
+  }
+
+  &__medium {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+    cursor: pointer;
+
+    img {
+      border-radius: 50%;
+      border: none;
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+    }
+
+    h3 {
+      color: #4343c8;
+    }
+  }
+
+  @media (max-width: 1550px) {
+    padding: 25px 0;
+    column-gap: 400px;
+    &__left {
+      img {
+        width: 40px;
+      }
+      p {
+        font-size: 28px;
+      }
+    }
+    &__medium {
+      width: 200px;
+      column-gap: 20px;
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+
+      h3 {
+        font-size: 18px;
+      }
+    }
+  }
+  @media (max-width: 1250px) {
+    column-gap: 250px;
+    &__left {
+      img {
+        width: 30px;
+      }
+      p {
+        font-size: 24px;
+      }
+    }
+    &__medium {
+      img {
+        border-radius: 50%;
+        border: none;
+        width: 40px;
+        height: 40px;
+      }
+
+      h3 {
+        color: #4343c8;
+        font-size: 16px;
+      }
+    }
+  }
+  @media (max-width: 900px) {
+    column-gap: 150px;
+  }
+  @media (max-width: 750px) {
+    column-gap: 150px;
+    padding: 30px 50px;
+    &__left {
+      img {
+        width: 25px;
+      }
+      p {
+        font-size: 20px;
+      }
+    }
+    &__medium {
+      width: 150px;
+      flex-direction: row-reverse;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+
+      h3 {
+        font-size: 14px;
+      }
+    }
+  }
+}

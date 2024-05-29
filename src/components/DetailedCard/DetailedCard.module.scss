@@ -1,0 +1,197 @@
+.card {
+  margin-bottom: 20px;
+  width: 500px;
+  background-color: #fff;
+
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.34);
+
+  &__header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+
+    &__user {
+      width: 40px;
+      height: 40px;
+      background-color: grey;
+      border-radius: 50%;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+
+  &__description {
+    text-align: right;
+    font-size: 12px;
+    margin: 10px 10px -5px 20px;
+  }
+
+  &__detalies {
+    display: flex;
+    align-items: center;
+    margin: 20px 0 10px 20px;
+    column-gap: 30px;
+    &__like,
+    &__send {
+      width: 35px;
+      opacity: 0.8;
+      cursor: pointer;
+      svg {
+        fill: rgba(94, 94, 232, 1);
+      }
+      &:hover {
+        opacity: 1;
+      }
+    }
+    &__active {
+      width: 35px;
+      cursor: pointer;
+      svg path {
+        fill: rgb(227, 32, 32);
+      }
+    }
+  }
+
+  &__likesNum {
+    margin: 0 0 10px 20px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  &__comments {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+
+    &__btn {
+      margin: 0 auto 10px;
+      opacity: 0.6;
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__commentsAdd {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    row-gap: 10px;
+    textarea {
+      min-height: 50px;
+      width: 100%;
+      resize: none;
+      border: 1px solid #c8c8e9;
+    }
+    button {
+      width: 100px;
+      height: 30px;
+      background-color: #5e5ee8;
+      border-radius: 10px;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  &__createDate {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    color: grey;
+    margin: 5px;
+    font-size: 10px;
+  }
+
+  @media (max-width: 1550px) {
+    margin-bottom: 20px;
+    width: 420px;
+
+    &__header {
+      padding: 20px;
+      column-gap: 15px;
+
+      &__user {
+        width: 40px;
+        height: 40px;
+      }
+
+      img {
+        width: 25px;
+        height: 25px;
+      }
+
+      h3 {
+        font-size: 18px;
+      }
+    }
+
+    &__image {
+      img {
+        height: 250px;
+      }
+    }
+
+    &__detalies {
+      margin: 20px 0 10px 20px;
+      column-gap: 30px;
+      &__like,
+      &__send,
+      &__active {
+        width: 28px;
+      }
+    }
+
+    &__likesNum {
+      margin: 0 0 10px 20px;
+      font-size: 14px;
+    }
+
+    &__comments {
+      padding: 0 20px;
+      row-gap: 15px;
+
+      &__btn {
+        font-size: 14px;
+        margin: 0 auto 5px;
+      }
+    }
+
+    &__commentsAdd {
+      padding: 20px;
+
+      row-gap: 10px;
+      textarea {
+        min-height: 50px;
+        width: 100%;
+      }
+      button {
+        width: 100px;
+        height: 30px;
+      }
+    }
+  }
+}

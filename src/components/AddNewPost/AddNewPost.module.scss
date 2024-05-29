@@ -1,0 +1,66 @@
+.edit {
+  border-radius: 10px;
+  z-index: 1000;
+  background-color: rgba(183, 179, 236, 0.748);
+  height: max-content;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 40px;
+
+  img {
+    width: 350px;
+    border-radius: 10px;
+  }
+
+  button {
+    width: 400px;
+    height: 70px;
+    border-radius: 10px;
+    background-color: rgb(92, 92, 232);
+    color: white;
+    border: none;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 20px auto;
+  }
+  input {
+    width: 400px;
+    height: 60px;
+    border-radius: 10px;
+    border: none;
+    padding-left: 20px;
+    font-size: 20px;
+  }
+
+  @media (max-width: 1550px) {
+    height: max-content;
+    padding: 40px;
+
+    row-gap: 30px;
+
+    img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    button {
+      width: 380px;
+      height: 60px;
+
+      font-size: 18px;
+
+      margin: 10px auto;
+    }
+    input {
+      width: 380px;
+      height: 55px;
+
+      padding-left: 20px;
+      font-size: 18px;
+    }
+  }
+}

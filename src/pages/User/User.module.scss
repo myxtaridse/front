@@ -1,0 +1,47 @@
+.user {
+  padding: 50px 0 0;
+  position: relative;
+
+  &__body {
+    width: 900px;
+    margin: 100px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    gap: 40px 30px;
+    &__item {
+      height: 240px;
+    }
+  }
+
+  &__popup {
+    overflow: hidden;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 33%;
+    width: max-content;
+    height: max-content;
+  }
+  &__notPosts {
+    text-align: center;
+    margin: 150px auto;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  @media (max-width: 1550px) {
+    &__body {
+      width: max-content;
+      margin: 100px auto;
+      grid-template-columns: repeat(3, 250px);
+      gap: 30px 20px;
+      &__item {
+        height: 200px;
+      }
+    }
+    &__notPosts {
+      margin: 150px auto;
+      font-size: 24px;
+    }
+  }
+}
