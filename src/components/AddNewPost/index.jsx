@@ -90,7 +90,7 @@ const AddNewPost = ({ isOpenNewPost, setIsOpenNewPost, statePosts }) => {
         {imageUrl && (
           <div>
             <img
-              src={`http://localhost:4444${imageUrl}`}
+              src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
               width={240}
               alt="post"
             />
