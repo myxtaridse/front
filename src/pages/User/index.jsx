@@ -40,8 +40,6 @@ const User = ({ setIsIdRequest }) => {
     dispatch(fetchPosts());
   }, [isChangePost, dispatch, id]);
 
-  console.log(postsAll);
-
   // if (status === "success") {
   //   console.log("yes");
   // } else {
@@ -88,7 +86,6 @@ const User = ({ setIsIdRequest }) => {
   const putValues = (id) => {
     setIsOpenPost(true);
     setIsPutValue(id);
-    console.log(id);
   };
 
   const postOne = postsAll[isPutValue];

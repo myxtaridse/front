@@ -3,33 +3,29 @@ import styles from "./AddNewPost.module.scss";
 
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Axios from "../../axios";
-import {
-  setImageUrl,
-  // setTags,
-  // setText,
-  // setTitle,
-} from "../../redux/slices/createPostSlice";
 
 const AddNewPost = ({ isOpenNewPost, setIsOpenNewPost, statePosts }) => {
   const closeModal = () => {
     setIsOpenNewPost(false);
   };
 
-  const [setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
   const [tags] = React.useState("");
   const [comments] = React.useState([]);
   const [likes] = React.useState([]);
   const [title, setTitle] = React.useState("");
+  const [imageUrl, setImageUrl] = React.useState("");
 
-  const { imageUrl } = useSelector((state) => state.createPostSlice);
+  //const { imageUrl } = useSelector((state) => state.createPostSlice);
 
   const status = useSelector((state) => state.authSlice.status);
   const isAuth = Boolean(status === "success");
 
   const fileRef = React.useRef();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChangeFile = async (event) => {
     try {
@@ -39,9 +35,9 @@ const AddNewPost = ({ isOpenNewPost, setIsOpenNewPost, statePosts }) => {
       formData.append("image", file);
       // отправка на сервак
       const { data } = await Axios.post("/upload", formData);
-      dispatch(setImageUrl(data.url));
+      setImageUrl(data.url);
     } catch (err) {
-      console.log("error", imageUrl);
+      console.log("error");
     }
   };
 
@@ -63,7 +59,7 @@ const AddNewPost = ({ isOpenNewPost, setIsOpenNewPost, statePosts }) => {
   const onSubmit = async () => {
     try {
       setIsLoading(true);
-      const fields = { title, tags, imageUrl, comments, likes };
+      const fields = { title, tags, imageUrl };
       const { data } =
         // ? await Axios.patch(`/posts/${id}`, fields)
         await Axios.post("/posts", fields);
@@ -87,15 +83,15 @@ const AddNewPost = ({ isOpenNewPost, setIsOpenNewPost, statePosts }) => {
       ariaHideApp={false}
     >
       <div className={styles.edit}>
-        {imageUrl && (
-          <div>
-            <img
-              src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
-              width={240}
-              alt="post"
-            />
-          </div>
-        )}
+        <div>
+          <img
+            // src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
+            src={imageUrl ? `http://localhost:4444${imageUrl}` : ""}
+            width={240}
+            alt="post"
+          />
+        </div>
+
         {/* <img
             width={100}
             src={isImagePost ? isImagePost : statePosts.avatarUrl}

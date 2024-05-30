@@ -15,7 +15,6 @@ const Main = () => {
   const [isLikedByYou, setIsLikedByYou] = React.useState(false);
 
   const posts = useSelector((state) => state.postsSlice.post.items);
-  console.log(posts);
 
   React.useEffect(() => {
     dispatch(fetchPosts());

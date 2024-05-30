@@ -32,8 +32,6 @@ const OpenPost = ({
     setIsOpen(false);
   };
 
-  console.log(post);
-
   const sortedImage = post?.imageUrl?.split("").splice(0, 8)?.join("");
 
   const onSendComment = () => {

@@ -14,7 +14,7 @@ const App = () => {
   React.useEffect(() => {
     const req = async () => {
       const res = await axios.get(
-        "https://web-production-a7c1.up.railway.app/posts"
+        "https://black-production-be41.up.railway.app/posts"
       );
       console.log(res);
     };

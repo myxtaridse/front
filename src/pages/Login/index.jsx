@@ -14,7 +14,6 @@ const Login = () => {
   const status = useSelector((state) => state.authSlice?.status);
   const isAuth = Boolean(status === "success");
   const state = useSelector((state) => state);
-  console.log(state);
 
   const {
     register,
