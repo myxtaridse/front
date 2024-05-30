@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 import { fetchUserUpdate } from "../../redux/slices/authSlice";
+import { fetchMeUpdate } from "../../redux/slices/userSlice";
 
 const EditMyPage = ({ isOpenModal, setIsOpenModal, statePosts }) => {
   const closeModal = () => {
@@ -139,7 +140,7 @@ const EditMyPage = ({ isOpenModal, setIsOpenModal, statePosts }) => {
 
     const id = prevMyData?._id;
     console.log(id, userEdit);
-    dispatch(fetchUserUpdate({ id, userEdit }));
+    dispatch(fetchMeUpdate({ id, userEdit }));
     // try {
     //   const { data } = await Axios.patch(`/user/${prevMyData._id}`, userEdit);
     //   console.log(userEdit, data);

@@ -9,6 +9,15 @@ export const fetchAuthMe = createAsyncThunk(
   }
 );
 
+export const fetchMeUpdate = createAsyncThunk(
+  "auth/fetchMeUpdateStatus",
+  async ({ userEdit }) => {
+    const { data } = await Axios.patch(`/user/me`, userEdit);
+    console.log(data);
+    return data;
+  }
+);
+
 const initialState = {
   dataMyAcc: null,
   status: "loading",
