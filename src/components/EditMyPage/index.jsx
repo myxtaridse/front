@@ -165,7 +165,8 @@ const EditMyPage = ({ isOpenModal, setIsOpenModal, statePosts }) => {
                 <img
                   src={
                     avatarUrl
-                      ? `http://localhost:4444${avatarUrl}`
+                      ? // ? `http://localhost:4444${avatarUrl}`
+                        `${process.env.REACT_APP_API_URL}${avatarUrl}`
                       : prevMyData.avatarUrl
                   }
                   width={70}

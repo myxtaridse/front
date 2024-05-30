@@ -197,7 +197,8 @@ const OpenPost = ({
         <img
           src={
             sortedImage === "/uploads"
-              ? `http://localhost:4444${post.imageUrl}`
+              ? // ? `http://localhost:4444${post.imageUrl}`
+                `${process.env.REACT_APP_API_URL}${post.imageUrl}`
               : post.imageUrl
           }
           alt="post"

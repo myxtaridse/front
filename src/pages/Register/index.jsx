@@ -15,7 +15,7 @@ const Register = () => {
   const status = useSelector((state) => state.authSlice?.status);
   const isAuth = Boolean(status === "success");
   const state = useSelector((state) => state);
-  
+
   const fileRef = React.useRef();
 
   const {
@@ -118,7 +118,10 @@ const Register = () => {
         <div className={styles.login__avatar}>
           {
             <div>
-              <img src={`http://localhost:4444${avatarUrl}`} alt="avatar" />
+              <img
+                src={`${process.env.REACT_APP_API_URL}${avatarUrl}`}
+                alt="avatar"
+              />
             </div>
           }
 

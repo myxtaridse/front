@@ -36,7 +36,8 @@ const Header = () => {
           <img
             src={
               sortedImage === "/uploads"
-                ? `http://localhost:4444${dataUser?.avatarUrl}`
+                ? // ? `http://localhost:4444${dataUser?.avatarUrl}`
+                  `${process.env.REACT_APP_API_URL}${dataUser?.avatarUrl}`
                 : dataUser?.avatarUrl || avatarDemo
             }
             alt="avatar"

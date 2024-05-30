@@ -85,8 +85,8 @@ const AddNewPost = ({ isOpenNewPost, setIsOpenNewPost, statePosts }) => {
       <div className={styles.edit}>
         <div>
           <img
-            // src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
-            src={imageUrl ? `http://localhost:4444${imageUrl}` : ""}
+            src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
+            //src={imageUrl ? `http://localhost:4444${imageUrl}` : ""}
             width={240}
             alt="post"
           />

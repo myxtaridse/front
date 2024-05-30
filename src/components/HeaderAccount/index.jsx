@@ -100,7 +100,8 @@ const HeaderAccount = ({
       <img
         src={
           sortedImage === "/uploads"
-            ? `http://localhost:4444${avatarUrl}`
+            ? // ? `http://localhost:4444${avatarUrl}`
+              `${process.env.REACT_APP_API_URL}${avatarUrl}`
             : avatarUrl || avatarDemo
         }
         alt="avatar"

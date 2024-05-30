@@ -194,7 +194,8 @@ const DetailedCard = ({
             width={40}
             src={
               sortedAvatar === "/uploads"
-                ? `http://localhost:4444${user?.avatarUrl}`
+                ? // ? `http://localhost:4444${user?.avatarUrl}`
+                  `${process.env.REACT_APP_API_URL}${user?.avatarUrl}`
                 : user?.avatarUrl || avatarDemo
             }
             alt="avatarUser"
@@ -207,7 +208,8 @@ const DetailedCard = ({
         <img
           src={
             sortedImage === "/uploads"
-              ? `http://localhost:4444${imageUrl}`
+              ? // ? `http://localhost:4444${imageUrl}`
+                `${process.env.REACT_APP_API_URL}${imageUrl}`
               : imageUrl
           }
           alt="card-post"
