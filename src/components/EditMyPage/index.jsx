@@ -24,12 +24,12 @@ const EditMyPage = ({
 
   const prevMyData = useSelector((state) => state.userSlice.dataMyAcc);
 
-  const [nickname, setNickname] = React.useState(prevMyData.nickname);
-  const [firstName, setFirstName] = React.useState(prevMyData.firstName);
-  const [lastName, setLastName] = React.useState(prevMyData.lastName);
-  const [avatarUrl, setAvatarUrl] = React.useState(prevMyData.avatarUrl);
-  const [description, setDescription] = React.useState(prevMyData.description);
-  const [url, setUrl] = React.useState(prevMyData.url);
+  const [nickname, setNickname] = React.useState(prevMyData?.nickname);
+  const [firstName, setFirstName] = React.useState(prevMyData?.firstName);
+  const [lastName, setLastName] = React.useState(prevMyData?.lastName);
+  const [avatarUrl, setAvatarUrl] = React.useState(prevMyData?.avatarUrl);
+  const [description, setDescription] = React.useState(prevMyData?.description);
+  const [url, setUrl] = React.useState(prevMyData?.url);
 
   // const [isChangeAvatar, setChangeAvatar] = React.useState();
   // const [isChangeNickname, setChangeNickname] = React.useState();
@@ -211,14 +211,14 @@ const EditMyPage = ({
               <p>Никнейм:</p>
               <input
                 onChange={(e) => setNickname(e.target.value)}
-                placeholder={prevMyData.nickname}
+                placeholder={prevMyData?.nickname}
               />
             </div>
             <div>
               <p>Имя:</p>
               <input
                 onChange={(e) => setFirstName(e.target.value)}
-                placeholder={prevMyData.firstName}
+                placeholder={prevMyData?.firstName}
               />
             </div>
             <div>

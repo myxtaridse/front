@@ -21,8 +21,8 @@ const OpenPost = ({
   const myData = useSelector((state) => state.userSlice.dataMyAcc);
   const dispatch = useDispatch();
 
-  const nickname = myData.nickname;
-  const myId = myData._id;
+  const nickname = myData?.nickname;
+  const myId = myData?._id;
 
   const comments = post?.comments;
   const viewComments = [...comments];
@@ -41,14 +41,14 @@ const OpenPost = ({
     const reqComment = async () => {
       try {
         const commentsPushed = [...post.comments];
-        commentsPushed.push({ nickname, text });
+        commentsPushed?.push({ nickname, text });
         console.log(commentsPushed);
         setIsLoading(true);
         const { data } = await Axios.patch(`/posts/${post._id}`, {
           comments: [...commentsPushed],
         });
         setIsChangePost(!isChangePost);
-        console.log(post.comments, data);
+        console.log(post?.comments, data);
         return data;
       } catch (err) {
         console.warn(err);

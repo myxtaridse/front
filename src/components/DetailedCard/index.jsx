@@ -27,7 +27,7 @@ const DetailedCard = ({
   const [text, setText] = useState("");
   const textRef = React.useRef();
 
-  const nickname = useSelector((state) => state.userSlice.dataMyAcc.nickname);
+  const nickname = useSelector((state) => state.userSlice.dataMyAcc?.nickname);
   const myId = useSelector((state) => state.userSlice.dataMyAcc._id);
 
   const success = useSelector((state) => state.userSlice.status);
@@ -214,7 +214,7 @@ const DetailedCard = ({
             alt="avatarUser"
           />
 
-          <h3>{user?.nickname.toLowerCase()}</h3>
+          <h3>{user?.nickname?.toLowerCase()}</h3>
         </div>
       </Link>
       <div className={styles.card__image}>

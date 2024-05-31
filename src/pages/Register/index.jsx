@@ -179,13 +179,13 @@ const Register = () => {
               </div>
               <input
                 // onChange={(e) => setIsFirstName(e.target.value)}
-                {...register("firstName", { required: "Укажите имя" })}
+                {...register("firstName", { optional: "Укажите имя" })}
                 placeholder="Ваше имя"
                 type="text"
               />
               <input
                 // onChange={(e) => setIsLastName(e.target.value)}
-                {...register("lastName", { required: "Укажите фамилию" })}
+                {...register("lastName", { optional: "Укажите фамилию" })}
                 placeholder="Ваша фамилия"
                 type="text"
               />
@@ -199,13 +199,13 @@ const Register = () => {
 
               <input
                 // onChange={(e) => setIsDescription(e.target.value)}
-                {...register("description", { required: "Укажите описание" })}
+                {...register("description", { optional: "Укажите описание" })}
                 placeholder="Обо мне"
                 type="text"
               />
               <input
                 // onChange={(e) => setIsUrl(e.target.value)}
-                {...register("url", { required: "Укажите ссылки" })}
+                {...register("url", { optional: "Укажите ссылки" })}
                 placeholder="Ссылки на другие соц сети"
                 type="text"
               />
