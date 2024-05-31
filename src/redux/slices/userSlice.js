@@ -13,7 +13,7 @@ export const fetchMeUpdate = createAsyncThunk(
   "auth/fetchMeUpdateStatus",
   async ({ userEdit }) => {
     const { data } = await Axios.patch(`/user/me`, userEdit);
-    console.log(data);
+    console.log(data, userEdit);
     return data;
   }
 );

@@ -111,6 +111,8 @@ const HeaderAccount = ({
     };
   }, []);
 
+  console.log(avatarUrl);
+
   return (
     <div ref={clickRef} className={styles.header}>
       <img

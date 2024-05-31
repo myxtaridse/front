@@ -12,7 +12,7 @@ import { fetchMeUpdate } from "../../redux/slices/userSlice";
 const EditMyPage = ({ isOpenModal, setIsOpenModal, statePosts }) => {
   const closeModal = () => {
     setIsOpenModal(false);
-    window.location.reload();
+    //window.location.reload();
   };
 
   const prevMyData = useSelector((state) => state.userSlice.dataMyAcc);
@@ -143,7 +143,7 @@ const EditMyPage = ({ isOpenModal, setIsOpenModal, statePosts }) => {
     const id = prevMyData?._id;
     console.log(id, userEdit);
     dispatch(fetchMeUpdate({ userEdit }));
-
+    console.log(userEdit);
     closeModal();
   };
   const sortedAvatar = avatarUrl?.split("").splice(0, 8)?.join("");
