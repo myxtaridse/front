@@ -11,25 +11,25 @@ import Register from "./pages/Register";
 import axios from "axios";
 
 const App = () => {
-  React.useEffect(() => {
-    const req = async () => {
-      const res = await axios.get(
-        "https://black-production-be41.up.railway.app/posts"
-      );
-      console.log(res);
-    };
-    req();
-  }, []);
+  // React.useEffect(() => {
+  //   const req = async () => {
+  //     const res = await axios.get(
+  //       "https://black-production-be41.up.railway.app/posts"
+  //     );
+  //     console.log(res);
+  //   };
+  //   req();
+  // }, []);
 
   const [isIdRequest, setIsIdRequest] = React.useState(true);
   const navigate = useNavigate();
   const [dataUser, setDataUser] = React.useState();
 
-  React.useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      navigate("/auth");
-    }
-  }, [navigate]);
+  // React.useEffect(() => {
+  //   if (!localStorage.getItem("token")) {
+  //     navigate("/auth");
+  //   }
+  // }, [navigate]);
 
   return (
     <Routes>
@@ -45,7 +45,11 @@ const App = () => {
           <Route
             path="/:id"
             element={
-              <User dataUser={dataUser} setIsIdRequest={setIsIdRequest} />
+              localStorage.getItem("token") ? (
+                <User dataUser={dataUser} setIsIdRequest={setIsIdRequest} />
+              ) : (
+                <Login />
+              )
             }
           />
         </>
