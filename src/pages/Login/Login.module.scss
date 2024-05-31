@@ -1,121 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Ledger&display=swap");
+
 .login {
-  margin: 150px auto;
-  width: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 40px;
+  background-color: #bcc2ffe4;
+  width: 100%;
+  height: 100%;
+  padding: 70px 0;
 
-  form {
+  &__container {
+    box-shadow: 3px 3px 5px grey;
+    background-color: #fff;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    row-gap: 30px;
-  }
+    justify-content: space-between;
+    width: 1250px;
+    height: 700px;
+    margin: 60px auto;
 
-  @media (max-width: 1550px) {
-    margin: 80px auto;
-  }
+    column-gap: 50px;
 
-  &__title {
-    font-size: 42px;
-    color: rgb(92, 92, 232);
-    @media (max-width: 1550px) {
-      font-size: 36px;
+    &__right {
+      width: 50%;
+      height: 100%;
+      object-fit: cover;
     }
-  }
 
-  input {
-    width: 380px;
-    height: 60px;
-    padding-left: 20px;
-    font-size: 22px;
-    border-radius: 10px;
-    @media (max-width: 1550px) {
-      width: 300px;
-      height: 50px;
-      padding-left: 15px;
-      font-size: 20px;
-    }
-  }
-  button {
-    background-color: rgb(92, 92, 232);
-    border: none;
-    border-radius: 10px;
-    font-size: 28px;
-    padding: 20px 80px;
-    color: white;
-    @media (max-width: 1550px) {
-      font-size: 22px;
-      padding: 12px 60px;
-    }
-  }
-  &__password {
-    position: relative;
-    div {
-      position: absolute;
-      top: 20px;
-      right: 25px;
-      width: 25px;
-      cursor: pointer;
-      @media (max-width: 1550px) {
-        top: 18px;
-        right: 25px;
-        width: 22px;
+    &__formSub {
+      width: 50%;
+      padding: 40px;
+      margin-left: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 40px;
+
+      &__logo {
+        font-family: "Jura", sans-serif;
+        color: rgb(92, 92, 232);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 6px;
+        &__img {
+          width: 28px;
+          height: 28px;
+        }
+        &__text {
+          font-family: "Jura", sans-serif;
+          font-size: 18px;
+          font-weight: 700;
+        }
       }
-    }
-  }
-  p {
-    font-size: 18px;
-    @media (max-width: 1550px) {
-      font-size: 16px;
-    }
-  }
 
-  @media (max-width: 1250px) {
-    &__title {
-      font-size: 30px;
-    }
-    p {
-      font-size: 14px;
-    }
-    &__password {
-      div {
-        top: 17px;
-        right: 25px;
-        width: 20px;
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 40px;
       }
-    }
-  }
-  @media (max-width: 750px) {
-    width: 500px;
-    row-gap: 30px;
-    &__title {
-      font-size: 28px;
-    }
-    p {
-      font-size: 14px;
-    }
-    input {
-      width: 270px;
-      height: 45px;
-      padding-left: 15px;
-      font-size: 18px;
-    }
-    button {
-      background-color: rgb(92, 92, 232);
-      border: none;
-      border-radius: 10px;
-      font-size: 20px;
-      width: 270px;
-      height: 45px;
-      color: white;
-    }
-    &__password {
-      div {
-        top: 15px;
-        right: 20px;
-        width: 20px;
+
+      &__title {
+        font-size: 38px;
+        font-family: "Ledger", serif;
+        font-weight: 500;
+      }
+
+      input {
+        font-family: "Ledger", serif;
+        width: 280px;
+        height: 45px;
+        padding-left: 20px;
+        font-size: 16px;
+      }
+      button {
+        background-color: rgb(92, 92, 232);
+        border: none;
+        border-radius: 10px;
+        font-size: 20px;
+        padding: 10px 40px;
+        color: white;
+        font-family: "Jura", sans-serif;
+      }
+      &__password {
+        position: relative;
+        div {
+          position: absolute;
+          top: 12px;
+          right: 20px;
+          width: 25px;
+          cursor: pointer;
+        }
+      }
+      &__link {
+        font-size: 16px;
+        font-family: "Ledger", serif;
       }
     }
   }

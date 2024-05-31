@@ -25,11 +25,11 @@ const App = () => {
   const navigate = useNavigate();
   const [dataUser, setDataUser] = React.useState();
 
-  // React.useEffect(() => {
-  //   if (!localStorage.getItem("token")) {
-  //     navigate("/auth");
-  //   }
-  // }, [navigate]);
+  React.useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/auth");
+    }
+  }, []);
 
   return (
     <Routes>
@@ -38,30 +38,22 @@ const App = () => {
         element={<MainLayout dataUser={dataUser} isIdRequest={isIdRequest} />}
       >
         <>
-          <Route
-            path="/"
-            element={localStorage.getItem("token") ? <Main /> : <Login />}
-          />
+          <Route path="/" element={<Main />} />
           <Route
             path="/:id"
             element={
-              localStorage.getItem("token") ? (
-                <User dataUser={dataUser} setIsIdRequest={setIsIdRequest} />
-              ) : (
-                <Login />
-              )
+              <User dataUser={dataUser} setIsIdRequest={setIsIdRequest} />
             }
           />
         </>
-
-        <>
-          <Route path="/auth" element={<Login setDataUser={setDataUser} />} />
-          <Route
-            path="/register"
-            element={<Register setDataUser={setDataUser} />}
-          />
-        </>
       </Route>
+      <>
+        <Route path="/auth" element={<Login setDataUser={setDataUser} />} />
+        <Route
+          path="/register"
+          element={<Register setDataUser={setDataUser} />}
+        />
+      </>
     </Routes>
   );
 };

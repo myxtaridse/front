@@ -6,7 +6,7 @@ const MainLayout = ({ dataUser }) => {
   return (
     <div className="wrapper">
       <Header dataUser={dataUser} />
-      <div className="content">
+      <div>
         <Outlet />
       </div>
     </div>
