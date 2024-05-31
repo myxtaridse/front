@@ -18,8 +18,9 @@ const EditMyPage = ({
 }) => {
   const closeModal = () => {
     setIsOpenModal(false);
-    setIsChangePost(!isChangePost);
+    window.location.reload();
   };
+  console.log(isChangePost);
 
   const prevMyData = useSelector((state) => state.userSlice.dataMyAcc);
 
@@ -149,7 +150,7 @@ const EditMyPage = ({
     const id = prevMyData?._id;
     console.log(id, userEdit);
     dispatch(fetchMeUpdate({ userEdit }));
-    console.log(userEdit);
+
     closeModal();
   };
   const sortedAvatar = avatarUrl?.split("").splice(0, 8)?.join("");

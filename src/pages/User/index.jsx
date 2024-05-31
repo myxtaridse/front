@@ -98,7 +98,7 @@ const User = ({ setIsIdRequest }) => {
     console.log(id);
   };
 
-  console.log(isSubPopup);
+  console.log(isChangePost);
 
   const postOne = postsAll[isPutValue];
 
