@@ -11,6 +11,7 @@ import { fetchMeUpdate } from "../../redux/slices/userSlice";
 const EditMyPage = ({ isOpenModal, setIsOpenModal, statePosts }) => {
   const closeModal = () => {
     setIsOpenModal(false);
+    window.location.reload();
   };
 
   const prevMyData = useSelector((state) => state.userSlice.dataMyAcc);
@@ -140,15 +141,9 @@ const EditMyPage = ({ isOpenModal, setIsOpenModal, statePosts }) => {
 
     const id = prevMyData?._id;
     console.log(id, userEdit);
-    dispatch(fetchMeUpdate({ id, userEdit }));
-    // try {
-    //   const { data } = await Axios.patch(`/user/${prevMyData._id}`, userEdit);
-    //   console.log(userEdit, data);
-    //   return data;
-    // } catch (err) {
-    //   console.log(err);
-    // }
-    navigate(`/${prevMyData?._id}`);
+    dispatch(fetchMeUpdate({ userEdit }));
+
+    closeModal();
   };
 
   return (
@@ -157,6 +152,15 @@ const EditMyPage = ({ isOpenModal, setIsOpenModal, statePosts }) => {
       isOpen={isOpenModal}
       onRequestClose={closeModal}
       ariaHideApp={false}
+      style={{
+        overlay: {
+          backgroundColor: "rgba(255, 255, 255, 0.75)",
+        },
+        content: {
+          border: "none",
+          outline: "none",
+        },
+      }}
     >
       <div className={styles.edit}>
         <div className={styles.edit__about}>

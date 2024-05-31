@@ -30,6 +30,7 @@
   }
 
   @media (max-width: 1550px) {
+    padding: 0;
     &__body {
       width: max-content;
       margin: 100px auto;
@@ -37,6 +38,71 @@
       gap: 30px 20px;
       &__item {
         height: 200px;
+      }
+    }
+    &__notPosts {
+      margin: 150px auto;
+      font-size: 24px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    padding: 0;
+    &__body {
+      width: max-content;
+      margin: 100px auto;
+      grid-template-columns: repeat(3, 220px);
+      gap: 30px 20px;
+      &__item {
+        height: 190px;
+      }
+    }
+    &__notPosts {
+      margin: 150px auto;
+      font-size: 24px;
+    }
+  }
+  @media (max-width: 1000px) {
+    padding: 0;
+    &__body {
+      width: max-content;
+      margin: 100px auto;
+      grid-template-columns: repeat(3, 200px);
+      gap: 30px 20px;
+      &__item {
+        height: 180px;
+      }
+    }
+    &__notPosts {
+      margin: 150px auto;
+      font-size: 24px;
+    }
+  }
+  @media (max-width: 800px) {
+    padding: 0;
+    &__body {
+      width: max-content;
+      margin: 80px auto;
+      grid-template-columns: repeat(3, 170px);
+      gap: 30px 15px;
+      &__item {
+        height: 130px;
+      }
+    }
+    &__notPosts {
+      margin: 150px auto;
+      font-size: 24px;
+    }
+  }
+  @media (max-width: 600px) {
+    padding: 0;
+    &__body {
+      width: max-content;
+      margin: 60px auto;
+      grid-template-columns: repeat(3, 130px);
+      gap: 20px 15px;
+      &__item {
+        height: 100px;
       }
     }
     &__notPosts {

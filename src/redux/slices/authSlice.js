@@ -40,6 +40,14 @@ export const fetchUser = createAsyncThunk(
   }
 );
 
+export const fetchUserAll = createAsyncThunk(
+  "auth/fetchUserStatus",
+  async () => {
+    const response = await Axios.get(`/users`); // params не нужны токен в axois уже хранит в себе параметры
+    return response.data;
+  }
+);
+
 export const fetchUserUpdate = createAsyncThunk(
   "auth/fetchUserUpdateStatus",
   async ({ id, subscribersPushed }) => {

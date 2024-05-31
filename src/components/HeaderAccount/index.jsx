@@ -4,7 +4,9 @@ import Popup from "../Popup";
 
 import avatarDemo from "../../assets/avatar-demo.png";
 import { fetchUserUpdate } from "../../redux/slices/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../Loading";
+import { fetchMeUpdate } from "../../redux/slices/userSlice";
 
 const HeaderAccount = ({
   avatarUrl,
@@ -22,7 +24,8 @@ const HeaderAccount = ({
   setIsOpenModal,
   setIsOpenNewPost,
   setIsIdRequest,
-
+  isSubPopup,
+  setIsSubPopup,
   myId,
   id,
   isChangePost,
@@ -31,9 +34,12 @@ const HeaderAccount = ({
   const [isPopup, setIsPopup] = React.useState(false);
   const clickRef = React.useRef();
 
-  const sortedImage = avatarUrl?.split("").splice(0, 8)?.join("");
+  const sortedAvatar = avatarUrl?.split("").splice(0, 8)?.join("");
 
   const isMySubscription = subscribers?.includes(myId);
+
+  const myData = useSelector((state) => state.userSlice.dataMyAcc);
+  console.log(myData);
 
   const dispatch = useDispatch();
 
@@ -45,10 +51,20 @@ const HeaderAccount = ({
       } else {
         subscribersPushed.push(myId);
       }
+
+      let subscribedChange = [...myData.subscribed];
+      if (subscribedChange.includes(id)) {
+        subscribedChange = subscribedChange.filter((sub) => sub !== id);
+      } else {
+        subscribedChange.push(id);
+      }
+      const userEdit = {
+        subscribed: [...subscribedChange],
+      };
       dispatch(fetchUserUpdate({ id, subscribersPushed }));
-      //dispatch(fetchUserUpdate({ myId, userEdit }));
+
+      dispatch(fetchMeUpdate({ userEdit }));
       setIsChangePost(!isChangePost);
-      console.log(id, subscribersPushed);
     } catch (err) {
       console.warn(err);
     }
@@ -78,31 +94,36 @@ const HeaderAccount = ({
   //   }
   // };
 
-  // React.useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     if (
-  //       clickRef.current &&
-  //       !event.composedPath().includes(clickRef.current)
-  //     ) {
-  //       setIsPopup(false);
-  //       //console.log("закрыто");
-  //     }
-  //   };
-  //   document.body.addEventListener("click", handleClickOutside);
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        clickRef.current &&
+        !event.composedPath().includes(clickRef.current)
+      ) {
+        setIsPopup(false);
+        //console.log("закрыто");
+      }
+    };
+    document.body.addEventListener("click", handleClickOutside);
 
-  //   return () => {
-  //     document.body.removeEventListener("click", handleClickOutside);
-  //   };
-  // }, []);
+    return () => {
+      document.body.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div ref={clickRef} className={styles.header}>
       <img
         src={
-          sortedImage === "/uploads"
-            ? // ? `http://localhost:4444${avatarUrl}`
-              `${process.env.REACT_APP_API_URL}${avatarUrl}`
-            : avatarUrl || avatarDemo
+          sortedAvatar === "/uploads"
+            ? // ? `http://localhost:4444${dataUser?.avatarUrl}`
+              `${process.env.REACT_APP_API_URL}${avatarUrl}` !==
+              `undefined${avatarUrl}`
+              ? `${process.env.REACT_APP_API_URL}${avatarUrl}`
+              : avatarDemo
+            : avatarUrl
+            ? avatarUrl
+            : avatarDemo
         }
         alt="avatar"
       />
@@ -143,7 +164,7 @@ const HeaderAccount = ({
             <h3>{subscribers ? subscribers.length : 0}</h3>
             <p>подписчиков</p>
           </div>
-          <div>
+          <div onClick={() => setIsSubPopup(true)}>
             <h3>{subscribed}</h3>
             <p>подписки</p>
           </div>

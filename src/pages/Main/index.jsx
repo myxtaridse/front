@@ -15,6 +15,9 @@ const Main = () => {
   const [isLikedByYou, setIsLikedByYou] = React.useState(false);
 
   const posts = useSelector((state) => state.postsSlice.post.items);
+  const postsAll = [...posts];
+  const postsReversed = postsAll.reverse();
+  console.log(postsReversed);
 
   React.useEffect(() => {
     dispatch(fetchPosts());
@@ -45,10 +48,10 @@ const Main = () => {
 
   return (
     <div className={styles.main}>
-      {!posts ? (
+      {!postsReversed ? (
         <Loading />
       ) : (
-        posts?.map(
+        postsReversed?.map(
           ({
             createdAt,
             tags,

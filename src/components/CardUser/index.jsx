@@ -1,8 +1,19 @@
 import React from "react";
 import styles from "./CardUser.module.scss";
+import { useSelector } from "react-redux";
+import Loading from "../Loading";
+import errorPost from "../../assets/errorPost.png";
 
-const index = ({ imageUrl, comments, likes, _id }) => {
+const CardUser = ({ imageUrl, comments, likes, _id }) => {
   const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
+
+  const success = useSelector((state) => state.postsSlice.post.status);
+
+  if (!success) {
+    return <Loading />;
+  }
+
+  console.log(imageUrl);
 
   return (
     <div className={styles.card}>
@@ -10,8 +21,11 @@ const index = ({ imageUrl, comments, likes, _id }) => {
         src={
           sortedImage === "/uploads"
             ? // ? `http://localhost:4444${imageUrl}`
-              `${process.env.REACT_APP_API_URL}${imageUrl}`
-            : imageUrl
+              `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+              `undefined${imageUrl}`
+              ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+              : errorPost
+            : imageUrl || errorPost
         }
         alt="post"
       />
@@ -43,4 +57,4 @@ const index = ({ imageUrl, comments, likes, _id }) => {
   );
 };
 
-export default index;
+export default CardUser;

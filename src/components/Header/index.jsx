@@ -21,7 +21,9 @@ const Header = () => {
     window.location.reload();
   };
 
-  const sortedImage = dataUser?.avatarUrl?.split("").splice(0, 8)?.join("");
+  const sortedAvatar = dataUser?.avatarUrl?.split("").splice(0, 8)?.join("");
+
+  console.log(dataUser?.avatarUrl, sortedAvatar);
 
   return (
     <div className={styles.header}>
@@ -35,10 +37,15 @@ const Header = () => {
         <div onClick={myPage} className={styles.header__medium}>
           <img
             src={
-              sortedImage === "/uploads"
+              sortedAvatar === "/uploads"
                 ? // ? `http://localhost:4444${dataUser?.avatarUrl}`
-                  `${process.env.REACT_APP_API_URL}${dataUser?.avatarUrl}`
-                : dataUser?.avatarUrl || avatarDemo
+                  `${process.env.REACT_APP_API_URL}${dataUser?.avatarUrl}` !==
+                  `undefined${dataUser?.avatarUrl}`
+                  ? `${process.env.REACT_APP_API_URL}${dataUser?.avatarUrl}`
+                  : avatarDemo
+                : dataUser?.avatarUrl
+                ? dataUser?.avatarUrl
+                : avatarDemo
             }
             alt="avatar"
           />

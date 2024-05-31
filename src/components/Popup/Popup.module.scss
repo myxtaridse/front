@@ -71,4 +71,73 @@
       }
     }
   }
+  @media (max-width: 1250px) {
+    &__list {
+      width: 20px;
+      height: 20px;
+      top: -10px;
+      left: 200px;
+    }
+    &__open {
+      top: -10px;
+      left: 230px;
+      font-size: 12px;
+      p {
+        min-width: 210px;
+        column-gap: 7px;
+        padding: 8px 15px;
+
+        div {
+          width: 13px;
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+  @media (max-width: 1000px) {
+    &__list {
+      width: 18px;
+      height: 18px;
+      top: -10px;
+      left: 200px;
+    }
+    &__open {
+      top: -10px;
+      left: 230px;
+      font-size: 12px;
+      p {
+        min-width: 210px;
+        column-gap: 7px;
+        padding: 8px 15px;
+
+        div {
+          width: 13px;
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+  @media (max-width: 600px) {
+    &__list {
+      width: 15px;
+      height: 15px;
+      top: -10px;
+      left: 130px;
+    }
+    &__open {
+      top: 10px;
+      left: 130px;
+      font-size: 8px;
+      p {
+        min-width: 130px;
+        column-gap: 7px;
+        padding: 5px 10px;
+
+        div {
+          width: 8px;
+          margin-top: 2px;
+        }
+      }
+    }
+  }
 }

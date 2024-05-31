@@ -5,6 +5,8 @@ import Axios from "../../axios";
 import styles from "./DetailedCard.module.scss";
 import Comment from "../Comment";
 import avatarDemo from "../../assets/avatar-demo.png";
+import Loading from "../Loading";
+import errorPost from "../../assets/errorPost.png";
 
 const DetailedCard = ({
   userId,
@@ -21,14 +23,14 @@ const DetailedCard = ({
   setIsLikedByYou,
 }) => {
   const [isOpenComments, setIsOpenComments] = useState(true);
-  //const [isValue, setIsValue] = useState("");
-  //const [isLikedByYou, setIsLikedByYou] = useState(false);
-  const [setIsLoading] = React.useState(false);
+
   const [text, setText] = useState("");
   const textRef = React.useRef();
 
   const nickname = useSelector((state) => state.userSlice.dataMyAcc.nickname);
   const myId = useSelector((state) => state.userSlice.dataMyAcc._id);
+
+  const success = useSelector((state) => state.userSlice.status);
 
   const viewComments = [...comments];
   const splicedComments = viewComments.splice(
@@ -49,7 +51,7 @@ const DetailedCard = ({
         const commentsPushed = [...comments];
         commentsPushed.push({ nickname, text });
         console.log(commentsPushed);
-        setIsLoading(true);
+
         const { data } = await Axios.patch(`/posts/${id}`, {
           comments: [...commentsPushed],
         });
@@ -58,6 +60,7 @@ const DetailedCard = ({
         return data;
       } catch (err) {
         console.warn(err);
+        window.location.reload();
       }
     };
     reqComment();
@@ -74,7 +77,7 @@ const DetailedCard = ({
       }
 
       console.log(likesPushed);
-      setIsLoading(true);
+
       const { data } = await Axios.patch(`/posts/${id}`, {
         likes: [...likesPushed],
       });
@@ -84,6 +87,7 @@ const DetailedCard = ({
       return data;
     } catch (err) {
       console.warn(err);
+      window.location.reload();
     }
   };
 
@@ -186,6 +190,10 @@ const DetailedCard = ({
   //   }
   // };
 
+  if (!success) {
+    return <Loading />;
+  }
+
   return (
     <div className={styles.card}>
       <Link to={`/${user._id}`}>
@@ -194,9 +202,14 @@ const DetailedCard = ({
             width={40}
             src={
               sortedAvatar === "/uploads"
-                ? // ? `http://localhost:4444${user?.avatarUrl}`
-                  `${process.env.REACT_APP_API_URL}${user?.avatarUrl}`
-                : user?.avatarUrl || avatarDemo
+                ? // ? `http://localhost:4444${dataUser?.avatarUrl}`
+                  `${process.env.REACT_APP_API_URL}${user?.avatarUrl}` !==
+                  `undefined${user?.avatarUrl}`
+                  ? `${process.env.REACT_APP_API_URL}${user?.avatarUrl}`
+                  : avatarDemo
+                : user?.avatarUrl
+                ? user?.avatarUrl
+                : avatarDemo
             }
             alt="avatarUser"
           />
@@ -209,8 +222,11 @@ const DetailedCard = ({
           src={
             sortedImage === "/uploads"
               ? // ? `http://localhost:4444${imageUrl}`
-                `${process.env.REACT_APP_API_URL}${imageUrl}`
-              : imageUrl
+                `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                `undefined${imageUrl}`
+                ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                : errorPost
+              : imageUrl || errorPost
           }
           alt="card-post"
         />

@@ -6,9 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import Axios from "../../axios";
 
-const AddNewPost = ({ isOpenNewPost, setIsOpenNewPost, statePosts }) => {
+const AddNewPost = ({
+  isOpenNewPost,
+  setIsOpenNewPost,
+  statePosts,
+  isChangePost,
+  setIsChangePost,
+}) => {
   const closeModal = () => {
     setIsOpenNewPost(false);
+    setIsChangePost(!isChangePost);
   };
 
   const [isLoading, setIsLoading] = React.useState(false);
@@ -56,37 +63,51 @@ const AddNewPost = ({ isOpenNewPost, setIsOpenNewPost, statePosts }) => {
   //   }
   // }, []);
 
-  const onSubmit = async () => {
-    try {
-      setIsLoading(true);
-      const fields = { title, tags, imageUrl };
-      const { data } =
-        // ? await Axios.patch(`/posts/${id}`, fields)
-        await Axios.post("/posts", fields);
-      // const _id = isEditing ? id : data._id;
-      // navigate(`/post/${_id}`);
-      console.log(fields, data);
-      return data;
-    } catch (err) {
-      console.warn(err);
-    }
+  const onSubmit = () => {
+    const submit = async () => {
+      try {
+        setIsLoading(true);
+        const fields = { title, tags, imageUrl };
+        const { data } =
+          // ? await Axios.patch(`/posts/${id}`, fields)
+          await Axios.post("/posts", fields);
+        // const _id = isEditing ? id : data._id;
+        // navigate(`/post/${_id}`);
+        console.log(fields, data);
+        return data;
+      } catch (err) {
+        console.warn(err);
+      }
+    };
+    submit();
+    closeModal();
   };
 
   if (!window.localStorage.getItem("token") && !isAuth) {
     return <Navigate to="/" />;
   }
+
   return (
     <Modal
       className="popupModal"
       isOpen={isOpenNewPost}
       onRequestClose={closeModal}
       ariaHideApp={false}
+      style={{
+        overlay: {
+          backgroundColor: "rgba(255, 255, 255, 0.75)",
+        },
+        content: {
+          border: "none",
+          outline: "none",
+        },
+      }}
     >
       <div className={styles.edit}>
         <div>
           <img
-            src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
-            //src={imageUrl ? `http://localhost:4444${imageUrl}` : ""}
+            // src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
+            src={imageUrl ? `http://localhost:4444${imageUrl}` : ""}
             width={240}
             alt="post"
           />

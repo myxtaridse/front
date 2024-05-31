@@ -1,0 +1,41 @@
+.subs {
+  border-radius: 10px;
+  background-color: #fff;
+  width: 500px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  &__imnick {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    &__nickname {
+      font-weight: 700;
+      font-family: "Jura", sans-serif;
+    }
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  &__description {
+    opacity: 0.5;
+  }
+  &__iconRem {
+    width: 30px;
+    opacity: 0.7;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

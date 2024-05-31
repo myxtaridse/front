@@ -12,6 +12,9 @@ import AddNewPost from "../../components/AddNewPost";
 
 import { fetchUser } from "../../redux/slices/authSlice";
 import { fetchPosts } from "../../redux/slices/postsSlice";
+import Loading from "../../components/Loading";
+import InfiniteScroll from "react-infinite-scroll-component";
+import SubPopup from "../../components/SubPopup";
 
 const User = ({ setIsIdRequest }) => {
   const aboutMe = useSelector((state) => state.authSlice.dataUser);
@@ -23,17 +26,23 @@ const User = ({ setIsIdRequest }) => {
   const [statePosts] = React.useState();
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [isOpenNewPost, setIsOpenNewPost] = React.useState(false);
+  const [isSubPopup, setIsSubPopup] = React.useState(false);
 
-  //const [postsView, setPostsView] = React.useState([]);
+  const [postsView, setPostsView] = React.useState([]);
   const myData = useSelector((state) => state?.userSlice.dataMyAcc);
   const [isChangePost, setIsChangePost] = React.useState(false);
 
   const myId = JSON.parse(localStorage.getItem("data"));
   const { id } = useParams();
   const dispatch = useDispatch();
-  //const postsAll = statePosts?.posts;
 
-  const postsAll = postsAllMain?.filter((post) => post.user._id === id);
+  const postsAll = postsAllMain
+    ?.filter((post) => post.user._id === id)
+    .reverse();
+
+  const successMe = useSelector((state) => state.authSlice.status);
+  const successUser = useSelector((state) => state.userSlice.status);
+  const successPosts = useSelector((state) => state.postsSlice.post.status);
 
   React.useEffect(() => {
     dispatch(fetchUser(id));
@@ -86,9 +95,16 @@ const User = ({ setIsIdRequest }) => {
   const putValues = (id) => {
     setIsOpenPost(true);
     setIsPutValue(id);
+    console.log(id);
   };
 
+  console.log(isSubPopup);
+
   const postOne = postsAll[isPutValue];
+
+  if (!successMe && !successUser && !successPosts) {
+    return <Loading />;
+  }
 
   return (
     <div className={styles.user}>
@@ -114,6 +130,8 @@ const User = ({ setIsIdRequest }) => {
         myId={myData?._id}
         isChangePost={isChangePost}
         setIsChangePost={setIsChangePost}
+        isSubPopup={isSubPopup}
+        setIsSubPopup={setIsSubPopup}
       />
 
       {postsAll?.length > 0 ? (
@@ -126,7 +144,7 @@ const User = ({ setIsIdRequest }) => {
         //   // endMessage={<p style={{ textAlign: "center" }}>Пора за работу!</p>}
         // >
         <div className={styles.user__body}>
-          {postsAll.map((post, id) => (
+          {postsAll?.map((post, id) => (
             <div
               className={styles.user__body__item}
               onClick={() => {
@@ -139,7 +157,6 @@ const User = ({ setIsIdRequest }) => {
           ))}
         </div>
       ) : (
-        // </InfiniteScroll>
         <div className={styles.user__notPosts}>Постов нет</div>
       )}
 
@@ -165,6 +182,8 @@ const User = ({ setIsIdRequest }) => {
             statePosts={statePosts}
             isOpenModal={isOpenModal}
             setIsOpenModal={setIsOpenModal}
+            isChangePost={isChangePost}
+            setIsChangePost={setIsChangePost}
           />
         </div>
       )}
@@ -175,6 +194,20 @@ const User = ({ setIsIdRequest }) => {
             myId={myId}
             isOpenNewPost={isOpenNewPost}
             setIsOpenNewPost={setIsOpenNewPost}
+            isChangePost={isChangePost}
+            setIsChangePost={setIsChangePost}
+          />
+        </div>
+      )}
+      {isSubPopup && (
+        <div className={styles.user__popup}>
+          <SubPopup
+            statePosts={statePosts}
+            myData={myData}
+            isSubPopup={isSubPopup}
+            setIsSubPopup={setIsSubPopup}
+            isChangePost={isChangePost}
+            setIsChangePost={setIsChangePost}
           />
         </div>
       )}
