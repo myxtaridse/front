@@ -9,10 +9,16 @@ import { useNavigate } from "react-router-dom";
 import { fetchUserUpdate } from "../../redux/slices/authSlice";
 import { fetchMeUpdate } from "../../redux/slices/userSlice";
 
-const EditMyPage = ({ isOpenModal, setIsOpenModal, statePosts }) => {
+const EditMyPage = ({
+  isOpenModal,
+  setIsOpenModal,
+  statePosts,
+  isChangePost,
+  setIsChangePost,
+}) => {
   const closeModal = () => {
     setIsOpenModal(false);
-    //window.location.reload();
+    setIsChangePost(!isChangePost);
   };
 
   const prevMyData = useSelector((state) => state.userSlice.dataMyAcc);
