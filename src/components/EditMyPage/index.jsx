@@ -145,6 +145,7 @@ const EditMyPage = ({ isOpenModal, setIsOpenModal, statePosts }) => {
 
     closeModal();
   };
+  const sortedAvatar = imageUrl?.split("").splice(0, 8)?.join("");
 
   return (
     <Modal
@@ -169,10 +170,15 @@ const EditMyPage = ({ isOpenModal, setIsOpenModal, statePosts }) => {
               <div>
                 <img
                   src={
-                    avatarUrl
-                      ? // ? `http://localhost:4444${avatarUrl}`
-                        `${process.env.REACT_APP_API_URL}${avatarUrl}`
-                      : prevMyData.avatarUrl
+                    sortedAvatar === "/uploads"
+                ? // ? `http://localhost:4444${imageUrl}`
+                  `${process.env.REACT_APP_API_URL}${avatarUrl}` !==
+                  `undefined${avatarUrl}`
+                  ? `${process.env.REACT_APP_API_URL}${avatarUrl}`
+                  : avatarDemo
+                : avatarUrl || avatarDemo
+
+                    
                   }
                   width={70}
                   alt="avatar"

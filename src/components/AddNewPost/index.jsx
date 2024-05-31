@@ -5,6 +5,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import Axios from "../../axios";
+import errorPost from "../../assets/errorPost.png";
 
 const AddNewPost = ({
   isOpenNewPost,
@@ -83,6 +84,8 @@ const AddNewPost = ({
     closeModal();
   };
 
+  const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
+
   if (!window.localStorage.getItem("token") && !isAuth) {
     return <Navigate to="/" />;
   }
@@ -107,7 +110,15 @@ const AddNewPost = ({
         <div>
           <img
             // src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
-            src={imageUrl ? `http://localhost:4444${imageUrl}` : ""}
+            src={
+              sortedImage === "/uploads"
+                ? // ? `http://localhost:4444${imageUrl}`
+                  `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                  `undefined${imageUrl}`
+                  ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                  : errorPost
+                : imageUrl || errorPost
+            }
             width={240}
             alt="post"
           />
