@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import styles from "./EditMyPage.module.scss";
 import Axios from "../../axios";
 import { useDispatch, useSelector } from "react-redux";
+import avatarDemo from "../../assets/avatar-demo.png";
 
 import { useNavigate } from "react-router-dom";
 import { fetchUserUpdate } from "../../redux/slices/authSlice";
@@ -145,7 +146,7 @@ const EditMyPage = ({ isOpenModal, setIsOpenModal, statePosts }) => {
 
     closeModal();
   };
-  const sortedAvatar = imageUrl?.split("").splice(0, 8)?.join("");
+  const sortedAvatar = avatarUrl?.split("").splice(0, 8)?.join("");
 
   return (
     <Modal
@@ -171,14 +172,12 @@ const EditMyPage = ({ isOpenModal, setIsOpenModal, statePosts }) => {
                 <img
                   src={
                     sortedAvatar === "/uploads"
-                ? // ? `http://localhost:4444${imageUrl}`
-                  `${process.env.REACT_APP_API_URL}${avatarUrl}` !==
-                  `undefined${avatarUrl}`
-                  ? `${process.env.REACT_APP_API_URL}${avatarUrl}`
-                  : avatarDemo
-                : avatarUrl || avatarDemo
-
-                    
+                      ? // ? `http://localhost:4444${imageUrl}`
+                        `${process.env.REACT_APP_API_URL}${avatarUrl}` !==
+                        `undefined${avatarUrl}`
+                        ? `${process.env.REACT_APP_API_URL}${avatarUrl}`
+                        : avatarDemo
+                      : avatarUrl || avatarDemo
                   }
                   width={70}
                   alt="avatar"
