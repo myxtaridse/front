@@ -59,7 +59,7 @@ const HeaderAccount = ({
     } catch (err) {
       console.warn(err);
     }
-    setIsChangePost(!isChangePost);
+    window.location.reload();
   };
 
   React.useEffect(() => {
