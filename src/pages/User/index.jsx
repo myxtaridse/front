@@ -57,7 +57,7 @@ const User = ({ setIsIdRequest }) => {
     } catch (err) {
       console.log(err);
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, isChangePost]);
 
   React.useEffect(() => {
     if (

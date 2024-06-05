@@ -59,13 +59,12 @@ const HeaderAccount = ({
       );
       const res = await dispatch(fetchMeUpdate({ userEdit }));
 
-      setIsChangePost(!isChangePost);
-
       if (response) {
         return response.data;
       } else if (res) {
         return res.data;
       }
+      setIsChangePost(!isChangePost);
     } catch (err) {
       console.warn(err);
     }
