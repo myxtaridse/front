@@ -56,10 +56,10 @@ const HeaderAccount = ({
       dispatch(fetchUserUpdate({ id, subscribersPushed }));
 
       dispatch(fetchMeUpdate({ userEdit }));
-      setIsChangePost(!isChangePost);
     } catch (err) {
       console.warn(err);
     }
+    setIsChangePost(!isChangePost);
   };
 
   React.useEffect(() => {
