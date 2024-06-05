@@ -35,7 +35,7 @@ const DetailedCard = ({
   const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
   const sortedAvatar = user?.avatarUrl?.split("").splice(0, 8)?.join("");
 
-  const myId = useSelector((state) => state.userSlice.dataMyAcc._id);
+  const myId = useSelector((state) => state.userSlice.dataMyAcc?._id);
   const success = useSelector((state) => state.userSlice.status);
 
   const viewComments = [...comments];

@@ -22,6 +22,12 @@ const Header = () => {
     window.location.reload();
   };
 
+  console.log(
+    dataUser?.avatarUrl,
+    avatarDemo,
+    `${process.env.REACT_APP_API_URL}${dataUser?.avatarUrl}`
+  );
+
   if (statusMe === "loading") {
     return "";
   }

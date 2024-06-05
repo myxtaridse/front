@@ -28,7 +28,7 @@ const AddNewPost = ({
       const file = event.target.files[0];
       formData.append("image", file);
       // отправка на сервак
-      const { data } = await Axios.post("upload", formData);
+      const { data } = await Axios.post("/upload", formData);
       setImageUrl(data.url);
     } catch (err) {
       console.log("error");
