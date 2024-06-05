@@ -3,13 +3,14 @@
   height: 600px;
   width: 600px;
   z-index: 1000;
-  background-color: rgba(183, 179, 236, 0.748);
+  background-color: white;
   padding: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
   row-gap: 10px;
+  border: 3px solid #5858e2e3;
 
   h2 {
     text-align: center;

@@ -1,11 +1,11 @@
 import React from "react";
 import Modal from "react-modal";
 import Axios from "../../axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styles from "./OpenPost.module.scss";
-import Comment from "../Comment";
-import errorPost from "../../assets/errorPost.png";
 import { fetchPostsRemove } from "../../redux/slices/postsSlice";
+import errorPost from "../../assets/errorPost.png";
+import Comment from "../Comment";
 
 const OpenPost = ({
   post,
@@ -13,16 +13,23 @@ const OpenPost = ({
   setIsOpen,
   isChangePost,
   setIsChangePost,
+  allUsers,
+  id,
+  myData,
 }) => {
-  const [setIsLoading] = React.useState(false);
+  const dispatch = useDispatch();
+  const commentRef = React.useRef();
   const [isOpenComments, setIsOpenComments] = React.useState(true);
   const [text, setText] = React.useState("");
-  const commentRef = React.useRef();
-  const myData = useSelector((state) => state.userSlice.dataMyAcc);
-  const dispatch = useDispatch();
-
-  const nickname = myData?.nickname;
+  const [isRemoveComment, setIsRemoveComment] = React.useState(false);
+  const sortedImage = post?.imageUrl?.split("").splice(0, 8)?.join("");
   const myId = myData?._id;
+
+  React.useEffect(() => {
+    if (id === myId) {
+      setIsRemoveComment(true);
+    }
+  }, [id, myId]);
 
   const comments = post?.comments;
   const viewComments = [...comments];
@@ -35,20 +42,15 @@ const OpenPost = ({
     setIsOpen(false);
   };
 
-  const sortedImage = post?.imageUrl?.split("").splice(0, 8)?.join("");
-
   const onSendComment = () => {
     const reqComment = async () => {
       try {
         const commentsPushed = [...post.comments];
-        commentsPushed?.push({ nickname, text });
-        console.log(commentsPushed);
-        setIsLoading(true);
+        commentsPushed.push({ nickname: myId, text });
         const { data } = await Axios.patch(`/posts/${post._id}`, {
           comments: [...commentsPushed],
         });
         setIsChangePost(!isChangePost);
-        console.log(post?.comments, data);
         return data;
       } catch (err) {
         console.warn(err);
@@ -66,13 +68,10 @@ const OpenPost = ({
       } else {
         likesPushed.push(myId);
       }
-      console.log(likesPushed);
-      setIsLoading(true);
       const { data } = await Axios.patch(`/posts/${post._id}`, {
         likes: [...likesPushed],
       });
       setIsChangePost(!isChangePost);
-      console.log(post.likes, data);
       return data;
     } catch (err) {
       console.warn(err);
@@ -81,109 +80,10 @@ const OpenPost = ({
 
   const deletePost = async () => {
     if (window.confirm("Вы действительно хотите удалить пост?")) {
-      console.log(post.id);
       dispatch(fetchPostsRemove(post._id));
       setIsChangePost(!isChangePost);
     }
   };
-
-  // const onSendComment = async () => {
-  //   if (isValue) {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://localhost:3000/postsByUser/${post.author.id}`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //           },
-  //         }
-  //       );
-  //       const dataUser = JSON.parse(localStorage.getItem("data"));
-
-  //       response.data.posts[post.id - 1].comments.push({
-  //         nickname: `${dataUser.nickname}`,
-  //         text: `${isValue}`,
-  //       });
-
-  //       console.log(response.data);
-  //       const res = await axios.put(
-  //         `http://localhost:3000/postsByUser/${post.author.id}`,
-  //         response.data,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //           },
-  //         }
-  //       );
-  //       console.log(res.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-  //   setIsValue("");
-  // };
-
-  // React.useEffect(() => {
-  //   const isMyId = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://localhost:3000/postsByUser/${post.author.id}`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //           },
-  //         }
-  //       );
-  //       const dataUser = JSON.parse(localStorage.getItem("data"));
-  //       const isMyLike = response.data.posts[post.id - 1].likes.includes(
-  //         dataUser.id
-  //       );
-  //       if (isMyLike) {
-  //         setIsLikedByYou(true);
-  //       }
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   isMyId();
-  // }, []);
-
-  // const onLikeClick = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:3000/postsByUser/${post.author.id}`,
-  //       {
-  //         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  //       }
-  //     );
-  //     const dataUser = JSON.parse(localStorage.getItem("data"));
-  //     const isMyLike = response.data.posts[post.id - 1].likes.includes(
-  //       dataUser.id
-  //     );
-  //     console.log(dataUser.id);
-  //     if (isMyLike) {
-  //       response.data.posts[post.id - 1].likes = response.data.posts[
-  //         post.id - 1
-  //       ].likes.filter((like) => like !== dataUser?.id);
-  //       setIsLikedByYou(false);
-  //     } else {
-  //       response.data.posts[post.id - 1].likes.push(dataUser.id);
-  //       setIsLikedByYou(true);
-  //     }
-  //     console.log(response.data);
-  //     const res = await axios.put(
-  //       `http://localhost:3000/postsByUser/${post.author.id}`,
-  //       response.data,
-  //       {
-  //         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  //       }
-  //     );
-  //     console.log(res.data);
-  //     window.location.reload();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   return (
     <Modal
@@ -202,14 +102,10 @@ const OpenPost = ({
       }}
     >
       <div className={styles.popup}>
-        {/* {post.type === "video" ? (
-          <video poster={previuy} controls autoPlay loop width="250"></video>
-        ) : ( */}
         <img
           src={
             sortedImage === "/uploads"
-              ? // ? `http://localhost:4444${imageUrl}`
-                `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
+              ? `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
                 `undefined${post?.imageUrl}`
                 ? `${process.env.REACT_APP_API_URL}${post?.imageUrl}`
                 : errorPost
@@ -266,15 +162,20 @@ const OpenPost = ({
               </svg>
             </div>
           </div>
-          <div onClick={deletePost} className={styles.popup__detalies__delete}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
+          {myId === id && (
+            <div
+              onClick={deletePost}
+              className={styles.popup__detalies__delete}
             >
-              <path d="M7 4V2H17V4H22V6H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V6H2V4H7ZM6 6V20H18V6H6ZM9 9H11V17H9V9ZM13 9H15V17H13V9Z"></path>
-            </svg>
-          </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M7 4V2H17V4H22V6H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V6H2V4H7ZM6 6V20H18V6H6ZM9 9H11V17H9V9ZM13 9H15V17H13V9Z"></path>
+              </svg>
+            </div>
+          )}
         </div>
         <p className={styles.popup__likesNum}>
           Оценили {post.likes.length} человек
@@ -284,17 +185,43 @@ const OpenPost = ({
             {comments.length > 2 && isOpenComments ? (
               <>
                 <span
-                  onClick={() => setIsOpenComments(false)}
+                  onClick={() => {
+                    setIsOpenComments(false);
+                    setIsRemoveComment(true);
+                  }}
                   className={styles.popup__comments__btn}
                 >
                   Показать остальные комментарии
                 </span>
-                {splicedComments.map((comment, i) => (
-                  <Comment key={i} {...comment} />
-                ))}
+                {splicedComments.map((comment, i) =>
+                  allUsers
+                    .filter((user) => user._id === comment?.nickname)
+                    .map((user, i) => (
+                      <Comment
+                        key={i}
+                        text={comment?.text}
+                        nickname={user?.nickname}
+                      />
+                    ))
+                )}
               </>
             ) : (
-              comments.map((comment, i) => <Comment key={i} {...comment} />)
+              comments.map((comment) =>
+                allUsers
+                  .filter((user) => user._id === comment?.nickname)
+                  .map((user, i) => (
+                    <Comment
+                      key={i}
+                      text={comment?.text}
+                      nickname={user?.nickname}
+                      isRemoveComment={isRemoveComment}
+                      comments={comments}
+                      id={comment?.nickname}
+                      isChangePost={setIsChangePost}
+                      postId={post?._id}
+                    />
+                  ))
+              )
             )}
           </div>
         )}

@@ -11,6 +11,20 @@
     font-size: 16px;
   }
 
+  &__delete {
+    width: 18px;
+    height: 18px;
+    opacity: 0.8;
+    margin-right: 10px;
+    cursor: pointer;
+    svg {
+      fill: rgb(232, 94, 94);
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+
   @media (max-width: 1550px) {
     column-gap: 20px;
     font-size: 16px;

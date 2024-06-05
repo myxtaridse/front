@@ -8,51 +8,27 @@ import MainLayout from "./layout/MainLayout";
 import Main from "./pages/Main";
 import User from "./pages/User";
 import Register from "./pages/Register";
-import axios from "axios";
 
 const App = () => {
-  // React.useEffect(() => {
-  //   const req = async () => {
-  //     const res = await axios.get(
-  //       "https://black-production-be41.up.railway.app/posts"
-  //     );
-  //     console.log(res);
-  //   };
-  //   req();
-  // }, []);
-
-  const [isIdRequest, setIsIdRequest] = React.useState(true);
   const navigate = useNavigate();
-  const [dataUser, setDataUser] = React.useState();
 
   React.useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/auth");
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <Routes>
-      <Route
-        path=""
-        element={<MainLayout dataUser={dataUser} isIdRequest={isIdRequest} />}
-      >
+      <Route path="" element={<MainLayout />}>
         <>
           <Route path="/" element={<Main />} />
-          <Route
-            path="/:id"
-            element={
-              <User dataUser={dataUser} setIsIdRequest={setIsIdRequest} />
-            }
-          />
+          <Route path="/:id" element={<User />} />
         </>
       </Route>
       <>
-        <Route path="/auth" element={<Login setDataUser={setDataUser} />} />
-        <Route
-          path="/register"
-          element={<Register setDataUser={setDataUser} />}
-        />
+        <Route path="/auth" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </>
     </Routes>
   );

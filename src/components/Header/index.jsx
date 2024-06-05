@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logo-white.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAuthMe } from "../../redux/slices/userSlice";
 import avatarDemo from "../../assets/avatar-demo.png";
@@ -9,21 +9,22 @@ import avatarDemo from "../../assets/avatar-demo.png";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  //const dataUser = useSelector((state) => state?.authSlice.dataUser);
   const dataUser = useSelector((state) => state?.userSlice.dataMyAcc);
+  const statusMe = useSelector((state) => state.userSlice.status);
+  const sortedAvatar = dataUser?.avatarUrl?.split("").splice(0, 8)?.join("");
 
   React.useEffect(() => {
     dispatch(fetchAuthMe());
   }, [dispatch]);
 
   const myPage = () => {
-    navigate(`/${dataUser._id}`);
+    navigate(`/${dataUser?._id}`);
     window.location.reload();
   };
 
-  const sortedAvatar = dataUser?.avatarUrl?.split("").splice(0, 8)?.join("");
-
-  console.log(dataUser?.avatarUrl, sortedAvatar);
+  if (statusMe === "loading") {
+    return "";
+  }
 
   return (
     <div className={styles.header}>
@@ -38,8 +39,7 @@ const Header = () => {
           <img
             src={
               sortedAvatar === "/uploads"
-                ? // ? `http://localhost:4444${dataUser?.avatarUrl}`
-                  `${process.env.REACT_APP_API_URL}${dataUser?.avatarUrl}` !==
+                ? `${process.env.REACT_APP_API_URL}${dataUser?.avatarUrl}` !==
                   `undefined${dataUser?.avatarUrl}`
                   ? `${process.env.REACT_APP_API_URL}${dataUser?.avatarUrl}`
                   : avatarDemo

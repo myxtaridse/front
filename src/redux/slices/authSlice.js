@@ -41,7 +41,7 @@ export const fetchUser = createAsyncThunk(
 );
 
 export const fetchUserAll = createAsyncThunk(
-  "auth/fetchUserStatus",
+  "auth/fetchUserAllStatus",
   async () => {
     const response = await Axios.get(`/users`); // params не нужны токен в axois уже хранит в себе параметры
     return response.data;
@@ -61,6 +61,7 @@ export const fetchUserUpdate = createAsyncThunk(
 );
 
 const initialState = {
+  dataUserAll: null,
   dataUser: null,
   status: "loading",
 };
@@ -134,6 +135,21 @@ const authSlice = createSlice({
       console.log("error");
       state.status = "error";
       state.dataUser = null;
+    });
+    builder.addCase(fetchUserAll.pending, (state, action) => {
+      console.log("loading");
+      state.status = "loading";
+      state.dataUserAll = null;
+    });
+    builder.addCase(fetchUserAll.fulfilled, (state, action) => {
+      console.log("normall", state);
+      state.status = "success";
+      state.dataUserAll = action.payload;
+    });
+    builder.addCase(fetchUserAll.rejected, (state, action) => {
+      console.log("error");
+      state.status = "error";
+      state.dataUserAll = null;
     });
   },
 });

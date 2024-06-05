@@ -5,7 +5,6 @@ import Popup from "../Popup";
 import avatarDemo from "../../assets/avatar-demo.png";
 import { fetchUserUpdate } from "../../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Loading from "../Loading";
 import { fetchMeUpdate } from "../../redux/slices/userSlice";
 
 const HeaderAccount = ({
@@ -14,34 +13,27 @@ const HeaderAccount = ({
   description,
   postsLength,
   url,
-  firstName,
-  lastName,
   subscribed,
   subscribers,
   isMyPage,
-  //isMySubscription,
   isOpenModal,
   setIsOpenModal,
   setIsOpenNewPost,
   setIsIdRequest,
-  isSubPopup,
   setIsSubPopup,
   myId,
   id,
   isChangePost,
   setIsChangePost,
+  setIsSubscribed,
+  setIsSubscribers,
 }) => {
-  const [isPopup, setIsPopup] = React.useState(false);
-  const clickRef = React.useRef();
-
-  const sortedAvatar = avatarUrl?.split("").splice(0, 8)?.join("");
-
-  const isMySubscription = subscribers?.includes(myId);
-
-  const myData = useSelector((state) => state.userSlice.dataMyAcc);
-  console.log(myData);
-
   const dispatch = useDispatch();
+  const clickRef = React.useRef();
+  const sortedAvatar = avatarUrl?.split("").splice(0, 8)?.join("");
+  const isMySubscription = subscribers?.includes(myId);
+  const myData = useSelector((state) => state.userSlice.dataMyAcc);
+  const [isPopup, setIsPopup] = React.useState(false);
 
   const subscribMy = () => {
     try {
@@ -70,30 +62,6 @@ const HeaderAccount = ({
     }
   };
 
-  // const subscribMy = async () => {
-  //   try {
-  //     if (isMySubscription) {
-  //       statePosts.subscribers = statePosts.subscribers?.filter(
-  //         (subs) => subs !== myId?.id
-  //       );
-  //     } else {
-  //       statePosts.subscribers?.push(myId?.id);
-  //     }
-  //     console.log(statePosts);
-  //     const res = await axios.put(
-  //       `http://localhost:3000/postsByUser/${id}`,
-  //       statePosts,
-  //       {
-  //         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  //       }
-  //     );
-  //     console.log(res.data);
-  //     window.location.reload();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
   React.useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -101,34 +69,31 @@ const HeaderAccount = ({
         !event.composedPath().includes(clickRef.current)
       ) {
         setIsPopup(false);
-        //console.log("закрыто");
       }
     };
     document.body.addEventListener("click", handleClickOutside);
-
     return () => {
       document.body.removeEventListener("click", handleClickOutside);
     };
   }, []);
 
-  console.log(avatarUrl);
-
   return (
     <div ref={clickRef} className={styles.header}>
-      <img
-        src={
-          sortedAvatar === "/uploads"
-            ? // ? `http://localhost:4444${dataUser?.avatarUrl}`
-              `${process.env.REACT_APP_API_URL}${avatarUrl}` !==
-              `undefined${avatarUrl}`
-              ? `${process.env.REACT_APP_API_URL}${avatarUrl}`
+      <div className={styles.header__img}>
+        <img
+          src={
+            sortedAvatar === "/uploads"
+              ? `${process.env.REACT_APP_API_URL}${avatarUrl}` !==
+                `undefined${avatarUrl}`
+                ? `${process.env.REACT_APP_API_URL}${avatarUrl}`
+                : avatarDemo
+              : avatarUrl
+              ? avatarUrl
               : avatarDemo
-            : avatarUrl
-            ? avatarUrl
-            : avatarDemo
-        }
-        alt="avatar"
-      />
+          }
+          alt="avatar"
+        />
+      </div>
       <div className={styles.header__detailes}>
         <div className={styles.header__detailes__setting}>
           <h1>{nickname}</h1>
@@ -162,17 +127,30 @@ const HeaderAccount = ({
             <h3>{postsLength}</h3>
             <p>публикаций</p>
           </div>
-          <div>
+          <div
+            onClick={() => {
+              if (subscribers.length > 0) {
+                setIsSubPopup(true);
+                setIsSubscribers(true);
+              }
+            }}
+          >
             <h3>{subscribers ? subscribers.length : 0}</h3>
             <p>подписчиков</p>
           </div>
-          <div onClick={() => setIsSubPopup(true)}>
-            <h3>{subscribed}</h3>
+          <div
+            onClick={() => {
+              if (subscribed.length > 0) {
+                setIsSubPopup(true);
+                setIsSubscribed(true);
+              }
+            }}
+          >
+            <h3>{subscribed ? subscribed.length : 0}</h3>
             <p>подписки</p>
           </div>
         </div>
         <div className={styles.header__detailes__about}>
-          {/* <p>{`${firstName} ${lastName}`}</p> */}
           <p>{description}</p>
           <a href={url} target="_blank" rel="noreferrer">
             <div width={200}>{url}</div>

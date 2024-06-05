@@ -9,13 +9,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData } from "../../redux/slices/authSlice";
 
 const Login = () => {
-  const [openEye, setOpenEye] = React.useState(false);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const status = useSelector((state) => state.authSlice?.status);
   const isAuth = Boolean(status === "success");
-  const state = useSelector((state) => state);
+  const [openEye, setOpenEye] = React.useState(false);
 
   const {
     register,
@@ -32,10 +30,7 @@ const Login = () => {
 
   // если валидация прошла корректно при авторизации, все запросы отлично выполнились
   const onSubmit = async (values) => {
-    //console.log(values);
-
     const data = await dispatch(fetchUserData(values));
-    console.log(data);
     if (!data.payload) {
       alert("Не удалось авторизоваться:(");
       //setIsErrorInput(true);
@@ -48,29 +43,6 @@ const Login = () => {
   if (isAuth) {
     navigate("/");
   }
-
-  // const navigate = useNavigate();
-
-  // const submitRegister = async () => {
-  //   try {
-  //     const response = await axios.post("http://localhost:3000/login", {
-  //       email,
-  //       password,
-  //     });
-  //     localStorage.setItem("token", response.data.accessToken);
-  //     const res = await axios.get(
-  //       `http://localhost:3000/postsByUser/${response.data.user.id}`,
-  //       {
-  //         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  //       }
-  //     );
-  //     console.log(response.data, res.data);
-  //     setDataUser(res.data);
-  //     navigate(`/${res.data.id}`);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   return (
     <div className={styles.login}>
@@ -92,7 +64,6 @@ const Login = () => {
           </h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
-              // onChange={(e) => setIsLogin(e.target.value)}
               {...register("email", { required: "Укажите почту" })}
               placeholder="Введите E-mail"
               type="email"
@@ -100,7 +71,6 @@ const Login = () => {
             <div className={styles.login__container__formSub__password}>
               <input
                 {...register("password", { required: "Укажите пароль" })}
-                // onChange={(e) => setIsPassword(e.target.value)}
                 placeholder="Введите Пароль"
                 type={openEye ? "type" : "password"}
               />
@@ -108,7 +78,6 @@ const Login = () => {
                 <div
                   onClick={() => {
                     setOpenEye(false);
-                    //console.log("закрыт пароль");
                   }}
                 >
                   <svg
@@ -123,7 +92,6 @@ const Login = () => {
                 <div
                   onClick={() => {
                     setOpenEye(true);
-                    //console.log("открыт пароль");
                   }}
                 >
                   <svg
@@ -144,7 +112,11 @@ const Login = () => {
             <Link to="/register">Зарегистрироваться</Link>
           </p>
         </div>
-        <img className={styles.login__container__right} src={authBg} />
+        <img
+          className={styles.login__container__right}
+          src={authBg}
+          alt="authBg"
+        />
       </div>
     </div>
   );

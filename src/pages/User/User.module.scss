@@ -1,5 +1,5 @@
 .user {
-  padding: 50px 0 0;
+  padding: 0;
   position: relative;
 
   &__body {
@@ -24,9 +24,9 @@
   }
   &__notPosts {
     text-align: center;
-    margin: 150px auto;
+    margin: 80px auto;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 500;
   }
 
   @media (max-width: 1550px) {
@@ -41,7 +41,8 @@
       }
     }
     &__notPosts {
-      margin: 150px auto;
+      margin: 80px auto;
+
       font-size: 24px;
     }
   }

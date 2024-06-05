@@ -5,4 +5,12 @@
   align-items: center;
   justify-content: center;
   row-gap: 40px;
+  position: relative;
+  overflow-x: hidden;
+
+  &__alert {
+    position: absolute;
+    top: 20px;
+    right: 0;
+  }
 }

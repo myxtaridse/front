@@ -1,27 +1,23 @@
 import React from "react";
-import styles from "./CardUser.module.scss";
+import styles from "./PostsUser.module.scss";
 import { useSelector } from "react-redux";
 import Loading from "../Loading";
 import errorPost from "../../assets/errorPost.png";
 
-const CardUser = ({ imageUrl, comments, likes, _id }) => {
-  const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
-
+const PostsUser = ({ imageUrl, comments, likes }) => {
   const success = useSelector((state) => state.postsSlice.post.status);
+  const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
 
   if (!success) {
     return <Loading />;
   }
-
-  console.log(imageUrl);
 
   return (
     <div className={styles.card}>
       <img
         src={
           sortedImage === "/uploads"
-            ? // ? `http://localhost:4444${imageUrl}`
-              `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+            ? `${process.env.REACT_APP_API_URL}${imageUrl}` !==
               `undefined${imageUrl}`
               ? `${process.env.REACT_APP_API_URL}${imageUrl}`
               : errorPost
@@ -57,4 +53,4 @@ const CardUser = ({ imageUrl, comments, likes, _id }) => {
   );
 };
 
-export default CardUser;
+export default PostsUser;

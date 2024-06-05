@@ -10,15 +10,15 @@ import authBg from "../../assets/auth-bg.svg";
 import logo from "../../assets/logo.svg";
 
 const Register = () => {
-  const [openEye, setOpenEye] = React.useState(false);
-  const [avatarUrl, setAvatarUrl] = React.useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const fileRef = React.useRef();
+
+  const [openEye, setOpenEye] = React.useState(false);
+  const [avatarUrl, setAvatarUrl] = React.useState();
+
   const status = useSelector((state) => state.authSlice?.status);
   const isAuth = Boolean(status === "success");
-  const state = useSelector((state) => state);
-
-  const fileRef = React.useRef();
 
   const {
     register,
@@ -60,9 +60,7 @@ const Register = () => {
     Object.defineProperty(values, "avatarUrl", {
       value: avatarUrl,
     });
-
     const data = await dispatch(fetchRegisterUser(values));
-    console.log(data, values);
     if (!data.payload) {
       alert("Не удалось авторизоваться:(");
       //setIsErrorInput(true);
@@ -75,45 +73,6 @@ const Register = () => {
   if (isAuth) {
     navigate("/");
   }
-
-  // const Register = ({ setDataUser }) => {
-  //   const [openEye, setOpenEye] = React.useState(false);
-  //   const [nickname, setIsNickname] = React.useState();
-  //   const [email, setIsLogin__container] = React.useState();
-  //   const [password, setIsPassword] = React.useState();
-  //   const [avatarUrl, setIsAvatar] = React.useState();
-  //   const [firstName, setIsFirstName] = React.useState();
-  //   const [lastName, setIsLastName] = React.useState();
-  //   const [description, setIsDescription] = React.useState();
-  //   const [url, setIsUrl] = React.useState();
-
-  //   const submitRegister = async () => {
-  //     try {
-  //       const response = await axios.post("http://localhost:3000/register", {
-  //         nickname,
-  //         email,
-  //         password,
-  //         avatarUrl,
-  //         firstName,
-  //         lastName,
-  //         description,
-  //         url,
-  //         subscribers: [],
-  //         subscribed: [],
-  //       });
-  //       const res = await axios.post(
-  //         "http://localhost:3000/postsByUser",
-  //         response.data.user,
-  //         {
-  //           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  //         }
-  //       );
-  //       console.log(response.data, res.data);
-  //       setDataUser(res.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
 
   return (
     <div className={styles.login}>
@@ -146,8 +105,7 @@ const Register = () => {
                       className="avatar"
                       src={
                         sortedAvatar === "/uploads"
-                          ? // ? `http://localhost:4444${dataUser?.avatarUrl}`
-                            `${process.env.REACT_APP_API_URL}${avatarUrl}` !==
+                          ? `${process.env.REACT_APP_API_URL}${avatarUrl}` !==
                             `undefined${avatarUrl}`
                             ? `${process.env.REACT_APP_API_URL}${avatarUrl}`
                             : avatarDemo
@@ -178,33 +136,28 @@ const Register = () => {
                 ></input>
               </div>
               <input
-                // onChange={(e) => setIsFirstName(e.target.value)}
                 {...register("firstName", { optional: "Укажите имя" })}
                 placeholder="Ваше имя"
                 type="text"
               />
               <input
-                // onChange={(e) => setIsLastName(e.target.value)}
                 {...register("lastName", { optional: "Укажите фамилию" })}
                 placeholder="Ваша фамилия"
                 type="text"
               />
               <input
                 required
-                // onChange={(e) => setIsNickname(e.target.value)}
                 {...register("nickname", { required: "Укажите никнейм" })}
                 placeholder="Придумайте никнейм"
                 type="text"
               />
 
               <input
-                // onChange={(e) => setIsDescription(e.target.value)}
                 {...register("description", { optional: "Укажите описание" })}
                 placeholder="Обо мне"
                 type="text"
               />
               <input
-                // onChange={(e) => setIsUrl(e.target.value)}
                 {...register("url", { optional: "Укажите ссылки" })}
                 placeholder="Ссылки на другие соц сети"
                 type="text"
@@ -212,7 +165,6 @@ const Register = () => {
               <input
                 required
                 {...register("email", { required: "Укажите почту" })}
-                // onChange={(e) => setIsLogin__container(e.target.value)}
                 placeholder="Введите E-mail"
                 type="email"
               />
@@ -220,7 +172,6 @@ const Register = () => {
                 <input
                   required
                   {...register("password", { required: "Укажите пароль" })}
-                  // onChange={(e) => setIsPassword(e.target.value)}
                   placeholder="Введите Пароль"
                   type={openEye ? "type" : "password"}
                 />
@@ -228,7 +179,6 @@ const Register = () => {
                   <div
                     onClick={() => {
                       setOpenEye(false);
-                      //console.log("закрыт пароль");
                     }}
                   >
                     <svg
@@ -243,7 +193,6 @@ const Register = () => {
                   <div
                     onClick={() => {
                       setOpenEye(true);
-                      //console.log("открыт пароль");
                     }}
                   >
                     <svg
@@ -265,7 +214,11 @@ const Register = () => {
             Вы уже имеете аккаунт? <Link to="/auth">Войти в аккаунт</Link>
           </p>
         </div>
-        <img className={styles.login__container__right} src={authBg} />
+        <img
+          className={styles.login__container__right}
+          src={authBg}
+          alt="authBg"
+        />
       </div>
     </div>
   );

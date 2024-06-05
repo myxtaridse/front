@@ -3,49 +3,36 @@ import styles from "./SubPopup.module.scss";
 
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
-import Axios from "../../axios";
 import Subs from "../Subs";
 import { fetchUserAll } from "../../redux/slices/authSlice";
 
 const SubPopup = ({
   isSubPopup,
   setIsSubPopup,
-  myData,
+
   isChangePost,
   setIsChangePost,
+  isSubscribed,
+  myData,
+  titleModal,
+  setIsSubscribed,
+  setIsSubscribers,
+  subs,
 }) => {
+  const dispatch = useDispatch();
+  const dataSub = useSelector((state) => state.authSlice.dataUserAll);
+
   const closeModal = () => {
     setIsSubPopup(false);
+    setIsSubscribed(false);
+    setIsSubscribers(false);
     setIsChangePost(!isChangePost);
+    window.location.reload();
   };
-
-  console.log("123");
-
-  const [title, setTitle] = React.useState("");
-  const [imageUrl, setImageUrl] = React.useState("");
-  const status = useSelector((state) => state.authSlice.status);
-  const dataSub = useSelector((state) => state.authSlice.dataUser);
-
-  const subs = myData.subscribed;
-
-  const dispatch = useDispatch();
 
   React.useEffect(() => {
     dispatch(fetchUserAll());
-  }, []);
-
-  // const subFiltered = dataSub.filter(
-  //   (user) => user._id === subs.map((index) => index)
-  // );
-
-  console.log(dataSub, subs);
-
-  const isAuth = Boolean(status === "success");
-
-  if (!window.localStorage.getItem("token") && !isAuth) {
-    return <Navigate to="/" />;
-  }
+  }, [dispatch]);
 
   return (
     <Modal
@@ -64,12 +51,21 @@ const SubPopup = ({
       }}
     >
       <div className={styles.edit}>
-        <h2>Ваши подписки</h2>
-        {dataSub?.length > 0 &&
+        <h2>{titleModal}</h2>
+        {subs?.length > 0 &&
           subs?.map((subId) =>
             dataSub
               ?.filter((user) => user._id === subId)
-              .map((user) => <Subs user={user} />)
+              .map((user) => (
+                <Subs
+                  user={user}
+                  isSubscribed={isSubscribed}
+                  myData={myData}
+                  isChangePost={isChangePost}
+                  setIsChangePost={setIsChangePost}
+                  closeModal={closeModal}
+                />
+              ))
           )}
       </div>
     </Modal>

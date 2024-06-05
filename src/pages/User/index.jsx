@@ -1,25 +1,42 @@
 import React from "react";
-import styles from "./User.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import CardUser from "../../components/CardUser";
 import { useParams } from "react-router-dom";
-
-import HeaderAccount from "../../components/HeaderAccount";
-import OpenPost from "../../components/OpenPost";
-
-import EditMyPage from "../../components/EditMyPage";
-import AddNewPost from "../../components/AddNewPost";
-
-import { fetchUser } from "../../redux/slices/authSlice";
+import { fetchUser, fetchUserAll } from "../../redux/slices/authSlice";
 import { fetchPosts } from "../../redux/slices/postsSlice";
-import Loading from "../../components/Loading";
 import InfiniteScroll from "react-infinite-scroll-component";
-import SubPopup from "../../components/SubPopup";
+import styles from "./User.module.scss";
+import {
+  PostsUser,
+  HeaderAccount,
+  OpenPost,
+  EditMyPage,
+  AddNewPost,
+  SubPopup,
+  Loading,
+} from "../../components/index";
 
 const User = ({ setIsIdRequest }) => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const successMe = useSelector((state) => state.authSlice.status);
+  const successUser = useSelector((state) => state.userSlice.status);
+  const successPosts = useSelector((state) => state.postsSlice.post.status);
+  const allUsers = useSelector((state) => state.authSlice.dataUserAll);
   const aboutMe = useSelector((state) => state.authSlice.dataUser);
   const postsAllMain = useSelector((state) => state.postsSlice.post.items);
+  const myData = useSelector((state) => state?.userSlice.dataMyAcc);
+  const userData = useSelector((state) => state?.authSlice?.dataUser);
+  const myId = JSON.parse(localStorage.getItem("data"));
+  const postsAll = postsAllMain
+    ?.filter((post) => post.user._id === id)
+    .reverse();
 
+  const idFiltered = Boolean(myData?._id === id);
+
+  const [isChangePost, setIsChangePost] = React.useState(false);
   const [isOpenPost, setIsOpenPost] = React.useState(false);
   const [isPutValue, setIsPutValue] = React.useState(0);
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -27,83 +44,48 @@ const User = ({ setIsIdRequest }) => {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [isOpenNewPost, setIsOpenNewPost] = React.useState(false);
   const [isSubPopup, setIsSubPopup] = React.useState(false);
+  const [isSubscribed, setIsSubscribed] = React.useState(false);
+  const [isSubscribers, setIsSubscribers] = React.useState(false);
 
-  const [postsView, setPostsView] = React.useState([]);
-  const myData = useSelector((state) => state?.userSlice.dataMyAcc);
-  const [isChangePost, setIsChangePost] = React.useState(false);
-
-  const myId = JSON.parse(localStorage.getItem("data"));
-  const { id } = useParams();
-  const dispatch = useDispatch();
-
-  const postsAll = postsAllMain
-    ?.filter((post) => post.user._id === id)
-    .reverse();
-
-  const successMe = useSelector((state) => state.authSlice.status);
-  const successUser = useSelector((state) => state.userSlice.status);
-  const successPosts = useSelector((state) => state.postsSlice.post.status);
+  const postOne = postsAll[isPutValue];
 
   React.useEffect(() => {
-    dispatch(fetchUser(id));
-    dispatch(fetchPosts());
-  }, [isChangePost, dispatch, id]);
+    try {
+      dispatch(fetchUserAll());
+      dispatch(fetchUser(id));
+      dispatch(fetchPosts());
+    } catch (err) {
+      console.log(err);
+    }
+  }, [dispatch, id]);
 
-  // if (status === "success") {
-  //   console.log("yes");
-  // } else {
-  //   console.log("no");
-  // }
-
-  //console.log(postsView);
-
-  // React.useEffect(() => {
-  //   const funRes = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://localhost:3000/postsByUser/${id}`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //           },
-  //         }
-  //       );
-  //       setStatePosts(response.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   funRes();
-  // }, []);
-
-  // React.useEffect(() => {
-  //   if (postsAll?.length > 0) {
-  //     const newPostsAll = [...postsAll];
-  //     setPostsView(newPostsAll.splice(0, 9));
-  //   }
-  // }, [postsAll]);
-
-  // const nextHandler = () => {
-  //   if (postsAll?.length > 0) {
-  //     const newPostsAll = [...postsAll];
-  //     const offset = 9 * (page + 1);
-  //     setPostsView([...postsView, ...newPostsAll?.splice(offset, offset + 9)]);
-  //     setPage(page + 1);
-  //   }
-  // };
+  React.useEffect(() => {
+    if (
+      successMe === "loading" ||
+      successPosts === "loading" ||
+      successUser === "loading"
+    ) {
+      setIsLoading(true);
+    } else if (
+      successMe === "success" ||
+      successPosts === "success" ||
+      successUser === "success"
+    ) {
+      setIsLoading(false);
+    }
+  }, [successMe, successPosts, successUser]);
 
   const putValues = (id) => {
     setIsOpenPost(true);
     setIsPutValue(id);
-    console.log(id);
   };
 
-  console.log(isChangePost);
-
-  const postOne = postsAll[isPutValue];
-
-  if (!successMe && !successUser && !successPosts) {
-    return <Loading />;
+  if (
+    successMe === "loading" ||
+    successPosts === "loading" ||
+    successUser === "loading"
+  ) {
+    return <Loading isLoading={isLoading} setIsLoading={setIsLoading} />;
   }
 
   return (
@@ -116,7 +98,7 @@ const User = ({ setIsIdRequest }) => {
         url={aboutMe?.url}
         description={aboutMe?.description}
         subscribers={aboutMe?.subscribers}
-        subscribed={aboutMe?.subscribed ? aboutMe?.subscribed.length : 0}
+        subscribed={aboutMe?.subscribed}
         lastName={aboutMe?.lastName}
         firstName={aboutMe?.firstName}
         isMyPage={id === myData?._id}
@@ -132,6 +114,11 @@ const User = ({ setIsIdRequest }) => {
         setIsChangePost={setIsChangePost}
         isSubPopup={isSubPopup}
         setIsSubPopup={setIsSubPopup}
+        isSubscribed={isSubscribed}
+        setIsSubscribed={setIsSubscribed}
+        isSubscribers={isSubscribers}
+        setIsSubscribers={setIsSubscribers}
+        allUsers={allUsers}
       />
 
       {postsAll?.length > 0 ? (
@@ -152,19 +139,14 @@ const User = ({ setIsIdRequest }) => {
                 setIsOpen(true);
               }}
             >
-              <CardUser {...post} />
+              <PostsUser {...post} />
             </div>
           ))}
         </div>
       ) : (
-        <div className={styles.user__notPosts}>Постов нет</div>
+        <div className={styles.user__notPosts}>Постов пока нет </div>
       )}
 
-      {/* <div
-          className={styles.user__bg}
-          ref={clickRef}
-          onClick={onChangeBg}
-        ></div> */}
       {isOpenPost && postOne && (
         <div className={styles.user__popup}>
           <OpenPost
@@ -173,6 +155,9 @@ const User = ({ setIsIdRequest }) => {
             setIsChangePost={setIsChangePost}
             modalIsOpen={modalIsOpen}
             setIsOpen={setIsOpen}
+            allUsers={allUsers}
+            id={id}
+            myData={myData}
           />
         </div>
       )}
@@ -202,12 +187,17 @@ const User = ({ setIsIdRequest }) => {
       {isSubPopup && (
         <div className={styles.user__popup}>
           <SubPopup
-            statePosts={statePosts}
-            myData={myData}
+            subs={isSubscribed ? userData?.subscribed : userData?.subscribers}
             isSubPopup={isSubPopup}
             setIsSubPopup={setIsSubPopup}
             isChangePost={isChangePost}
             setIsChangePost={setIsChangePost}
+            titleModal={isSubscribed ? "Подписки" : "Подписчики"}
+            setIsSubscribed={setIsSubscribed}
+            setIsSubscribers={setIsSubscribers}
+            isSubscribed={idFiltered && isSubscribed}
+            myData={myData}
+            aboutMe={aboutMe}
           />
         </div>
       )}

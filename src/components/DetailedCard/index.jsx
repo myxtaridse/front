@@ -9,27 +9,33 @@ import Loading from "../Loading";
 import errorPost from "../../assets/errorPost.png";
 
 const DetailedCard = ({
-  userId,
   id,
   likes,
   comments,
   user,
   imageUrl,
-  viewsCount,
+
   title,
-  tags,
+
   createdAt,
-  isLikedByYou,
-  setIsLikedByYou,
+  isChangePost,
+  setIsChangePost,
+  setCopyAlert,
+
+  allUsers,
 }) => {
   const [isOpenComments, setIsOpenComments] = useState(true);
-
+  const [isRemoveComment, setIsRemoveComment] = React.useState(false);
   const [text, setText] = useState("");
   const textRef = React.useRef();
 
-  const nickname = useSelector((state) => state.userSlice.dataMyAcc?.nickname);
-  const myId = useSelector((state) => state.userSlice.dataMyAcc._id);
+  const [year, month, day] = createdAt.substr(0, 10).split("-");
+  const date = `${day}.${month}.${year}`;
 
+  const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
+  const sortedAvatar = user?.avatarUrl?.split("").splice(0, 8)?.join("");
+
+  const myId = useSelector((state) => state.userSlice.dataMyAcc._id);
   const success = useSelector((state) => state.userSlice.status);
 
   const viewComments = [...comments];
@@ -38,25 +44,22 @@ const DetailedCard = ({
     comments.length
   );
 
-  const [year, month, day] = createdAt.substr(0, 10).split("-");
-  const date = `${day}.${month}.${year}`;
-
-  const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
-
-  const sortedAvatar = user?.avatarUrl?.split("").splice(0, 8)?.join("");
+  React.useEffect(() => {
+    if (comments?.length <= 2) {
+      setIsRemoveComment(true);
+    }
+  }, [comments?.length]);
 
   const onSendComment = () => {
     const reqComment = async () => {
       try {
         const commentsPushed = [...comments];
-        commentsPushed.push({ nickname, text });
-        console.log(commentsPushed);
+        commentsPushed.push({ nickname: myId, text });
 
         const { data } = await Axios.patch(`/posts/${id}`, {
           comments: [...commentsPushed],
         });
-        setIsLikedByYou(!isLikedByYou);
-        console.log(comments, data);
+        setIsChangePost(!isChangePost);
         return data;
       } catch (err) {
         console.warn(err);
@@ -75,15 +78,10 @@ const DetailedCard = ({
       } else {
         likesPushed.push(myId);
       }
-
-      console.log(likesPushed);
-
       const { data } = await Axios.patch(`/posts/${id}`, {
         likes: [...likesPushed],
       });
-      setIsLikedByYou(!isLikedByYou);
-      console.log(likes, data);
-
+      setIsChangePost(!isChangePost);
       return data;
     } catch (err) {
       console.warn(err);
@@ -91,104 +89,12 @@ const DetailedCard = ({
     }
   };
 
-  // const onSendComment = async () => {
-  //   if (isValue) {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://localhost:3000/postsByUser/${userId}`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //           },
-  //         }
-  //       );
-  //       const dataUser = JSON.parse(localStorage.getItem("data"));
-
-  //       response.data.posts[id - 1].comments.push({
-  //         nickname: `${dataUser.nickname}`,
-  //         text: `${isValue}`,
-  //       });
-
-  //       console.log(response.data);
-  //       const res = await axios.put(
-  //         `http://localhost:3000/postsByUser/${userId}`,
-  //         response.data,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //           },
-  //         }
-  //       );
-  //       console.log(res.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-  //   setIsValue("");
-  // };
-
-  // React.useEffect(() => {
-  //   const isMyId = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://localhost:3000/postsByUser/${userId}`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //           },
-  //         }
-  //       );
-  //       const dataUser = JSON.parse(localStorage.getItem("data"));
-  //       const isMyLike = response.data.posts[id - 1].likes.includes(
-  //         dataUser.id
-  //       );
-  //       if (isMyLike) {
-  //         setIsLikedByYou(true);
-  //       }
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   isMyId();
-  // }, []);
-
-  // const onLikeClick = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:3000/postsByUser/${userId}`,
-  //       {
-  //         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  //       }
-  //     );
-  //     const dataUser = JSON.parse(localStorage.getItem("data"));
-  //     const isMyLike = response.data.posts[id - 1].likes.includes(dataUser.id);
-  //     console.log(dataUser.id);
-  //     if (isMyLike) {
-  //       // response.data.posts[id - 1].likes.filter(
-  //       //   (likes) => likes.likes !== dataUser?.id
-  //       // );
-  //       response.data.posts[id - 1].likes = response.data.posts[
-  //         id - 1
-  //       ].likes.filter((like) => like !== dataUser?.id);
-  //       setIsLikedByYou(false);
-  //     } else {
-  //       response.data.posts[id - 1].likes.push(dataUser.id);
-  //       setIsLikedByYou(true);
-  //     }
-  //     console.log(response.data);
-  //     const res = await axios.put(
-  //       `http://localhost:3000/postsByUser/${userId}`,
-  //       response.data,
-  //       {
-  //         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  //       }
-  //     );
-  //     console.log(res.data);
-  //     window.location.reload();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const copyHttp = () => {
+    navigator.clipboard.writeText(
+      `${process.env.REACT_APP_API_URL}/${user?._id}`
+    );
+    setCopyAlert(true);
+  };
 
   if (!success) {
     return <Loading />;
@@ -202,8 +108,7 @@ const DetailedCard = ({
             width={40}
             src={
               sortedAvatar === "/uploads"
-                ? // ? `http://localhost:4444${dataUser?.avatarUrl}`
-                  `${process.env.REACT_APP_API_URL}${user?.avatarUrl}` !==
+                ? `${process.env.REACT_APP_API_URL}${user?.avatarUrl}` !==
                   `undefined${user?.avatarUrl}`
                   ? `${process.env.REACT_APP_API_URL}${user?.avatarUrl}`
                   : avatarDemo
@@ -221,8 +126,7 @@ const DetailedCard = ({
         <img
           src={
             sortedImage === "/uploads"
-              ? // ? `http://localhost:4444${imageUrl}`
-                `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+              ? `${process.env.REACT_APP_API_URL}${imageUrl}` !==
                 `undefined${imageUrl}`
                 ? `${process.env.REACT_APP_API_URL}${imageUrl}`
                 : errorPost
@@ -269,7 +173,7 @@ const DetailedCard = ({
             <path d="M7.29117 20.8242L2 22L3.17581 16.7088C2.42544 15.3056 2 13.7025 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C10.2975 22 8.6944 21.5746 7.29117 20.8242ZM7.58075 18.711L8.23428 19.0605C9.38248 19.6745 10.6655 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 13.3345 4.32549 14.6175 4.93949 15.7657L5.28896 16.4192L4.63416 19.3658L7.58075 18.711Z"></path>
           </svg>
         </div>
-        <div className={styles.card__detalies__send}>
+        <div onClick={copyHttp} className={styles.card__detalies__send}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -284,21 +188,47 @@ const DetailedCard = ({
         {comments.length > 2 && isOpenComments ? (
           <>
             <span
-              onClick={() => setIsOpenComments(false)}
+              onClick={() => {
+                setIsOpenComments(false);
+                setIsRemoveComment(true);
+              }}
               className={styles.card__comments__btn}
             >
               Показать остальные комментарии
             </span>
-            {splicedComments.map((comment, i) => (
-              <Comment key={i} {...comment} />
-            ))}
+            {splicedComments.map((comment, i) =>
+              allUsers
+                ?.filter((user) => user._id === comment?.nickname)
+                ?.map((user, i) => (
+                  <Comment
+                    key={i}
+                    text={comment?.text}
+                    nickname={user?.nickname}
+                  />
+                ))
+            )}
           </>
         ) : (
-          comments.map((comment, i) => <Comment key={i} {...comment} />)
+          comments.map((comment) =>
+            allUsers
+              .filter((user) => user._id === comment?.nickname)
+              .map((user, i) => (
+                <Comment
+                  key={i}
+                  text={comment?.text}
+                  nickname={user?.nickname}
+                  isRemoveComment={isRemoveComment}
+                  comments={comments}
+                  id={comment?.nickname}
+                  isChangePost={isChangePost}
+                  setIsChangePost={setIsChangePost}
+                  postId={id}
+                />
+              ))
+          )
         )}
       </div>
       <div className={styles.card__commentsAdd}>
-        {/* <div className={styles.card__header__user}></div> */}
         <textarea
           ref={textRef}
           value={text}
@@ -308,7 +238,6 @@ const DetailedCard = ({
       </div>
       <div className={styles.card__createDate}>
         <p>Создано {date}</p>
-        {/* <p>Просмотров {viewsCount}</p> */}
       </div>
     </div>
   );

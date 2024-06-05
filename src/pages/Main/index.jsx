@@ -1,50 +1,43 @@
 import React from "react";
-import DetailedCard from "../../components/DetailedCard";
-import Loading from "../../components/Loading";
-
-import styles from "./Main.module.scss";
-
 import { useDispatch, useSelector } from "react-redux";
-
 import { fetchPosts, fetchTags } from "../../redux/slices/postsSlice";
-
-// import { getAuthorizedUser } from "../../redux/actions/user";
+import { fetchUserAll } from "../../redux/slices/authSlice";
+import styles from "./Main.module.scss";
+import { DetailedCard, Loading, Toast } from "../../components/index";
 
 const Main = () => {
   const dispatch = useDispatch();
-  const [isLikedByYou, setIsLikedByYou] = React.useState(false);
-
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [copyAlert, setCopyAlert] = React.useState(false);
+  const [isChangePost, setIsChangePost] = React.useState(false);
+  const successPosts = useSelector((state) => state.postsSlice.post.status);
+  const allUsers = useSelector((state) => state.authSlice.dataUserAll);
   const posts = useSelector((state) => state.postsSlice.post.items);
-  const postsAll = [...posts];
-  const postsReversed = postsAll.reverse();
-  console.log(postsReversed);
 
   React.useEffect(() => {
-    dispatch(fetchPosts());
-    dispatch(fetchTags());
-  }, [isLikedByYou, dispatch]);
+    if (successPosts === "loading") {
+      setIsLoading(true);
+    } else if (successPosts === "success") {
+      setIsLoading(false);
+    }
+  }, [successPosts]);
 
-  // React.useEffect(() => {
-  //   const funRes = async () => {
-  //     try {
-  //       const response = await axios.get("http://localhost:3000/postsByUser", {
-  //         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  //       });
-  //       setStatePosts(response.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //       navigate("/auth");
-  //       localStorage.clear();
-  //     }
-  //   };
-  //   funRes();
-  // }, []);
+  const postsAll = [...posts];
+  const postsReversed = postsAll.reverse();
 
-  // const postsAllMain = statePosts?.filter((post) => post.posts?.length > 0);
+  React.useEffect(() => {
+    try {
+      dispatch(fetchPosts());
+      dispatch(fetchTags());
+      dispatch(fetchUserAll());
+    } catch (err) {
+      console.log(err);
+    }
+  }, [isChangePost, dispatch]);
 
-  // const postsMaped = postsAllMain?.map((post) =>
-  //   post.posts.filter((post) => post.likes.length > 2)
-  // );
+  if (successPosts === "loading") {
+    return <Loading isLoading={isLoading} setIsLoading={setIsLoading} />;
+  }
 
   return (
     <div className={styles.main}>
@@ -74,11 +67,18 @@ const Main = () => {
               title={title}
               tags={tags}
               createdAt={createdAt}
-              isLikedByYou={isLikedByYou}
-              setIsLikedByYou={setIsLikedByYou}
+              isChangePost={isChangePost}
+              setIsChangePost={setIsChangePost}
+              setCopyAlert={setCopyAlert}
+              allUsers={allUsers}
             />
           )
         )
+      )}
+      {copyAlert && (
+        <div className={styles.main__alert}>
+          <Toast copyAlert={copyAlert} setCopyAlert={setCopyAlert} />
+        </div>
       )}
     </div>
   );

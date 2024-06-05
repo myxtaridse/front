@@ -1,0 +1,13 @@
+export { default as AddNewPost } from "./AddNewPost";
+export { default as PostsUser } from "./PostsUser";
+export { default as Comment } from "./Comment";
+export { default as DetailedCard } from "./DetailedCard";
+export { default as EditMyPage } from "./EditMyPage";
+export { default as Header } from "./Header";
+export { default as HeaderAccount } from "./HeaderAccount";
+export { default as Loading } from "./Loading";
+export { default as OpenPost } from "./OpenPost";
+export { default as Popup } from "./Popup";
+export { default as SubPopup } from "./SubPopup";
+export { default as Subs } from "./Subs";
+export { default as Toast } from "./Toast";

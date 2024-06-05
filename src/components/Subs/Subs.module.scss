@@ -1,5 +1,4 @@
 .subs {
-  border-radius: 10px;
   background-color: #fff;
   width: 500px;
   height: 80px;
@@ -7,6 +6,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.681);
   &__imnick {
     display: flex;
     align-items: center;

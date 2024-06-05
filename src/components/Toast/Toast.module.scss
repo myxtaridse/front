@@ -1,0 +1,75 @@
+.toast {
+  border-radius: 12px;
+  background: #fff;
+  padding: 20px 35px 20px 25px;
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  transform: translateX(0%);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+
+  &__content {
+    display: flex;
+    align-items: center;
+
+    &__message {
+      display: flex;
+      flex-direction: column;
+      margin: 0 20px;
+
+      &__text1,
+      &__text2 {
+        font-size: 16px;
+        font-weight: 400;
+        color: #666666;
+      }
+      &__text1 {
+        font-weight: 600;
+        color: #333;
+      }
+    }
+  }
+  &__progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+  }
+
+  &__progress:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #2770ff;
+    animation: progress 5s linear forwards;
+  }
+
+  @keyframes progress {
+    100% {
+      right: 100%;
+    }
+  }
+  &__check {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+  }
+
+  &__close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+    width: 30px;
+  }
+
+  &__close:hover {
+    opacity: 1;
+  }
+}

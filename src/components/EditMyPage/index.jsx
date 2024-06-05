@@ -4,25 +4,17 @@ import styles from "./EditMyPage.module.scss";
 import Axios from "../../axios";
 import { useDispatch, useSelector } from "react-redux";
 import avatarDemo from "../../assets/avatar-demo.png";
-
-import { useNavigate } from "react-router-dom";
-import { fetchUserUpdate } from "../../redux/slices/authSlice";
 import { fetchMeUpdate } from "../../redux/slices/userSlice";
 
-const EditMyPage = ({
-  isOpenModal,
-  setIsOpenModal,
-  statePosts,
-  isChangePost,
-  setIsChangePost,
-}) => {
+const EditMyPage = ({ isOpenModal, setIsOpenModal }) => {
+  const fileRef = React.useRef();
+  const dispatch = useDispatch();
+  const prevMyData = useSelector((state) => state.userSlice.dataMyAcc);
+
   const closeModal = () => {
     setIsOpenModal(false);
     window.location.reload();
   };
-  console.log(isChangePost);
-
-  const prevMyData = useSelector((state) => state.userSlice.dataMyAcc);
 
   const [nickname, setNickname] = React.useState(prevMyData?.nickname);
   const [firstName, setFirstName] = React.useState(prevMyData?.firstName);
@@ -30,98 +22,6 @@ const EditMyPage = ({
   const [avatarUrl, setAvatarUrl] = React.useState(prevMyData?.avatarUrl);
   const [description, setDescription] = React.useState(prevMyData?.description);
   const [url, setUrl] = React.useState(prevMyData?.url);
-
-  // const [isChangeAvatar, setChangeAvatar] = React.useState();
-  // const [isChangeNickname, setChangeNickname] = React.useState();
-  // const [isChangeFirstName, setChangeFirstName] = React.useState();
-  // const [isChangeLastName, setChangeLastName] = React.useState();
-  // const [isChangeAboutMe, setChangeAboutMe] = React.useState();
-  // const [isChangeUrl, setChangeUrl] = React.useState();
-  // const [isChangePassword, setChangePassword] = React.useState();
-  // const [isChangeEmail, setChangeEmail] = React.useState();
-
-  // const userEdit = {
-  //   id: statePosts.id,
-  //   avatarUrl: isChangeAvatar?.valueOf ? isChangeAvatar : statePosts.avatarUrl,
-
-  //   description: isChangeAboutMe?.valueOf
-  //     ? isChangeAboutMe
-  //     : statePosts.description,
-
-  //   firstName: isChangeFirstName?.valueOf
-  //     ? isChangeFirstName
-  //     : statePosts.firstName,
-
-  //   lastName: isChangeLastName?.valueOf
-  //     ? isChangeLastName
-  //     : statePosts.lastName,
-
-  //   nickname: isChangeNickname?.valueOf
-  //     ? isChangeNickname
-  //     : statePosts.nickname,
-
-  //   url: isChangeUrl?.valueOf ? isChangeUrl : statePosts.url,
-
-  //   subscribed: statePosts.subscribed,
-  //   subscribers: statePosts.subscribers,
-  //   email: isChangeEmail,
-  //   password: isChangePassword,
-  // };
-
-  // const userEditInfo = {
-  //   id: statePosts.id,
-  //   avatarUrl: isChangeAvatar?.valueOf ? isChangeAvatar : statePosts.avatarUrl,
-
-  //   description: isChangeAboutMe?.valueOf
-  //     ? isChangeAboutMe
-  //     : statePosts.description,
-
-  //   firstName: isChangeFirstName?.valueOf
-  //     ? isChangeFirstName
-  //     : statePosts.firstName,
-
-  //   lastName: isChangeLastName?.valueOf
-  //     ? isChangeLastName
-  //     : statePosts.lastName,
-
-  //   nickname: isChangeNickname?.valueOf
-  //     ? isChangeNickname
-  //     : statePosts.nickname,
-
-  //   url: isChangeUrl?.valueOf ? isChangeUrl : statePosts.url,
-
-  //   subscribed: statePosts.subscribed,
-  //   subscribers: statePosts.subscribers,
-  //   posts: statePosts.posts,
-  // };
-
-  // const submitChange = async () => {
-  //   try {
-  //     const response = await axios.put(
-  //       `http://localhost:3000/users/${statePosts.id}`,
-  //       userEdit,
-  //       {
-  //         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  //       }
-  //     );
-  //     const res = await axios.put(
-  //       `http://localhost:3000/postsByUser/${statePosts.id}`,
-  //       userEditInfo,
-  //       {
-  //         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  //       }
-  //     );
-  //     console.log(response.data, res.data);
-
-  //     window.location.reload();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  const fileRef = React.useRef();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleChangeFile = async (event) => {
     try {
@@ -137,6 +37,8 @@ const EditMyPage = ({
     }
   };
 
+  const sortedAvatar = avatarUrl?.split("").splice(0, 8)?.join("");
+
   const onSubmit = () => {
     const userEdit = {
       avatarUrl,
@@ -146,14 +48,9 @@ const EditMyPage = ({
       nickname,
       url,
     };
-
-    const id = prevMyData?._id;
-    console.log(id, userEdit);
     dispatch(fetchMeUpdate({ userEdit }));
-
     closeModal();
   };
-  const sortedAvatar = avatarUrl?.split("").splice(0, 8)?.join("");
 
   return (
     <Modal
@@ -179,8 +76,7 @@ const EditMyPage = ({
                 <img
                   src={
                     sortedAvatar === "/uploads"
-                      ? // ? `http://localhost:4444${imageUrl}`
-                        `${process.env.REACT_APP_API_URL}${avatarUrl}` !==
+                      ? `${process.env.REACT_APP_API_URL}${avatarUrl}` !==
                         `undefined${avatarUrl}`
                         ? `${process.env.REACT_APP_API_URL}${avatarUrl}`
                         : avatarDemo
