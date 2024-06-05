@@ -198,6 +198,7 @@ const User = ({ setIsIdRequest }) => {
             isSubscribed={idFiltered && isSubscribed}
             myData={myData}
             aboutMe={aboutMe}
+            allUsers={allUsers}
           />
         </div>
       )}

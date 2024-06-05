@@ -7,15 +7,17 @@ const Loading = ({ isLoading, setIsLoading }) => {
     setIsLoading(false);
   };
 
-  if (isLoading === "success") {
-    closeModal();
-  }
+  React.useEffect(() => {
+    if (isLoading === "success") {
+      closeModal();
+    }
+  }, []);
 
   return (
     <Modal
       className="popupModalLoading"
       isOpen={isLoading}
-      onRequestClose={isLoading === false}
+      onRequestClose={!isLoading}
       ariaHideApp={false}
       style={{
         overlay: {

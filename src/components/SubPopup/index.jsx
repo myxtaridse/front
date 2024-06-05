@@ -1,10 +1,7 @@
+import React from "react";
 import Modal from "react-modal";
 import styles from "./SubPopup.module.scss";
-
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Subs from "../Subs";
-import { fetchUserAll } from "../../redux/slices/authSlice";
 
 const SubPopup = ({
   isSubPopup,
@@ -18,10 +15,8 @@ const SubPopup = ({
   setIsSubscribed,
   setIsSubscribers,
   subs,
+  allUsers,
 }) => {
-  const dispatch = useDispatch();
-  const dataSub = useSelector((state) => state.authSlice.dataUserAll);
-
   const closeModal = () => {
     setIsSubPopup(false);
     setIsSubscribed(false);
@@ -29,10 +24,6 @@ const SubPopup = ({
     setIsChangePost(!isChangePost);
     window.location.reload();
   };
-
-  React.useEffect(() => {
-    dispatch(fetchUserAll());
-  }, [dispatch]);
 
   return (
     <Modal
@@ -54,7 +45,7 @@ const SubPopup = ({
         <h2>{titleModal}</h2>
         {subs?.length > 0 &&
           subs?.map((subId) =>
-            dataSub
+            allUsers
               ?.filter((user) => user._id === subId)
               .map((user) => (
                 <Subs
