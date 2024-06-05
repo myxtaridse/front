@@ -25,7 +25,8 @@ const Header = () => {
   console.log(
     dataUser?.avatarUrl,
     avatarDemo,
-    `${process.env.REACT_APP_API_URL}${dataUser?.avatarUrl}`
+    `${process.env.REACT_APP_API_URL}${dataUser?.avatarUrl}`,
+    `${process.env.REACT_APP_API_URL}`
   );
 
   if (statusMe === "loading") {
