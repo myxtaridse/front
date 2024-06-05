@@ -28,7 +28,6 @@ const Comment = ({
           comments: [...filteredComment],
         });
 
-        console.log(data);
         return data;
       } catch (err) {
         console.log(err);
