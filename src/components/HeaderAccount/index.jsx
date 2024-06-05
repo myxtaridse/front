@@ -35,7 +35,7 @@ const HeaderAccount = ({
   const myData = useSelector((state) => state.userSlice.dataMyAcc);
   const [isPopup, setIsPopup] = React.useState(false);
 
-  const subscribMy = () => {
+  const subscribMy = async () => {
     try {
       let subscribersPushed = [...subscribers];
       if (subscribersPushed.includes(myId)) {
@@ -59,7 +59,7 @@ const HeaderAccount = ({
     } catch (err) {
       console.warn(err);
     }
-    window.location.reload();
+    setIsChangePost(!isChangePost);
   };
 
   React.useEffect(() => {
