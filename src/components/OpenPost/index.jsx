@@ -223,7 +223,8 @@ const OpenPost = ({
                       isRemoveComment={isRemoveComment}
                       comments={comments}
                       id={comment?.nickname}
-                      isChangePost={setIsChangePost}
+                      isChangePost={isChangePost}
+                      setIsChangePost={setIsChangePost}
                       postId={post?._id}
                     />
                   ))
@@ -232,7 +233,6 @@ const OpenPost = ({
           </div>
         )}
         <div className={styles.popup__commentsAdd}>
-          {/* <div className={styles.popup__header__user}></div> */}
           <textarea
             onChange={(e) => {
               e.target.style.height = e.target.scrollHeight + "px";
