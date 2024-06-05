@@ -59,7 +59,9 @@ const DetailedCard = ({
         const { data } = await Axios.patch(`/posts/${id}`, {
           comments: [...commentsPushed],
         });
-        setIsChangePost(!isChangePost);
+        setTimeout(() => {
+          setIsChangePost(!isChangePost);
+        }, 100);
         return data;
       } catch (err) {
         console.warn(err);
@@ -81,7 +83,9 @@ const DetailedCard = ({
       const { data } = await Axios.patch(`/posts/${id}`, {
         likes: [...likesPushed],
       });
-      setIsChangePost(!isChangePost);
+      setTimeout(() => {
+        setIsChangePost(!isChangePost);
+      }, 100);
       return data;
     } catch (err) {
       console.warn(err);

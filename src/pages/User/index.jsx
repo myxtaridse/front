@@ -139,7 +139,7 @@ const User = ({ setIsIdRequest }) => {
                 setIsOpen(true);
               }}
             >
-              <PostsUser {...post} />
+              <PostsUser key={id} {...post} />
             </div>
           ))}
         </div>

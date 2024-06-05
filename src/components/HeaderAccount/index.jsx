@@ -53,18 +53,20 @@ const HeaderAccount = ({
       const userEdit = {
         subscribed: [...subscribedChange],
       };
+      const userEditSub = {
+        subscribers: [...subscribersPushed],
+      };
 
-      const response = await dispatch(
-        fetchUserUpdate({ id, subscribersPushed })
-      );
+      const response = await dispatch(fetchUserUpdate({ id, userEditSub }));
       const res = await dispatch(fetchMeUpdate({ userEdit }));
-
+      setTimeout(() => {
+        setIsChangePost(!isChangePost);
+      }, 100);
       if (response) {
         return response.data;
       } else if (res) {
         return res.data;
       }
-      setIsChangePost(!isChangePost);
     } catch (err) {
       console.warn(err);
     }

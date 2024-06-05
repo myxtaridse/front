@@ -9,7 +9,7 @@ const Subs = ({ user, isSubscribed, myData, closeModal }) => {
   const dispatch = useDispatch();
   const sortedAvatar = user?.avatarUrl?.split("").splice(0, 8)?.join("");
 
-  const removeSubs = () => {
+  const removeSubs = ({ setIsChangePost, isChangePost }) => {
     if (window.confirm("Вы действительно хотите убрать подписку?")) {
       try {
         let subscribedFilter = [...myData?.subscribed];
@@ -26,7 +26,9 @@ const Subs = ({ user, isSubscribed, myData, closeModal }) => {
         const id = user?._id;
         dispatch(fetchUserUpdate({ id, subscribersPushed }));
         dispatch(fetchMeUpdate({ userEdit }));
-        // setIsChangePost(!isChangePost);
+        setTimeout(() => {
+          setIsChangePost(!isChangePost);
+        }, 100);
       } catch (err) {
         console.warn(err);
       }

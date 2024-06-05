@@ -6,14 +6,21 @@ import { useDispatch, useSelector } from "react-redux";
 import avatarDemo from "../../assets/avatar-demo.png";
 import { fetchMeUpdate } from "../../redux/slices/userSlice";
 
-const EditMyPage = ({ isOpenModal, setIsOpenModal }) => {
+const EditMyPage = ({
+  isOpenModal,
+  setIsOpenModal,
+  isChangePost,
+  setIsChangePost,
+}) => {
   const fileRef = React.useRef();
   const dispatch = useDispatch();
   const prevMyData = useSelector((state) => state.userSlice.dataMyAcc);
 
   const closeModal = () => {
     setIsOpenModal(false);
-    window.location.reload();
+    setTimeout(() => {
+      setIsChangePost(!isChangePost);
+    }, 100);
   };
 
   const [nickname, setNickname] = React.useState(prevMyData?.nickname);

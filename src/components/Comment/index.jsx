@@ -34,7 +34,9 @@ const Comment = ({
       }
     };
     remove();
-    setIsChangePost(!isChangePost);
+    setTimeout(() => {
+      setIsChangePost(!isChangePost);
+    }, 100);
   };
 
   return (

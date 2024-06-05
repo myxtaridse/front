@@ -50,12 +50,9 @@ export const fetchUserAll = createAsyncThunk(
 
 export const fetchUserUpdate = createAsyncThunk(
   "auth/fetchUserUpdateStatus",
-  async ({ id, subscribersPushed }) => {
-    console.log(id, subscribersPushed);
-    const { data } = await Axios.patch(`/user/${id}`, {
-      subscribers: [...subscribersPushed],
-    });
-    console.log(data);
+  async ({ id, userEditSub }) => {
+    const { data } = await Axios.patch(`/user/${id}`, userEditSub);
+    console.log(data, id, userEditSub);
     return data;
   }
 );

@@ -18,7 +18,9 @@ const AddNewPost = ({
 
   const closeModal = () => {
     setIsOpenNewPost(false);
-    setIsChangePost(!isChangePost);
+    setTimeout(() => {
+      setIsChangePost(!isChangePost);
+    }, 100);
   };
 
   const handleChangeFile = async (event) => {

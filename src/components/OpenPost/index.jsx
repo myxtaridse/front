@@ -50,7 +50,9 @@ const OpenPost = ({
         const { data } = await Axios.patch(`/posts/${post._id}`, {
           comments: [...commentsPushed],
         });
-        setIsChangePost(!isChangePost);
+        setTimeout(() => {
+          setIsChangePost(!isChangePost);
+        }, 100);
         return data;
       } catch (err) {
         console.warn(err);
@@ -71,7 +73,9 @@ const OpenPost = ({
       const { data } = await Axios.patch(`/posts/${post._id}`, {
         likes: [...likesPushed],
       });
-      setIsChangePost(!isChangePost);
+      setTimeout(() => {
+        setIsChangePost(!isChangePost);
+      }, 100);
       return data;
     } catch (err) {
       console.warn(err);
@@ -81,7 +85,9 @@ const OpenPost = ({
   const deletePost = async () => {
     if (window.confirm("Вы действительно хотите удалить пост?")) {
       dispatch(fetchPostsRemove(post._id));
-      setIsChangePost(!isChangePost);
+      setTimeout(() => {
+        setIsChangePost(!isChangePost);
+      }, 100);
     }
   };
 

@@ -21,8 +21,9 @@ const SubPopup = ({
     setIsSubPopup(false);
     setIsSubscribed(false);
     setIsSubscribers(false);
-    setIsChangePost(!isChangePost);
-    window.location.reload();
+    setTimeout(() => {
+      setIsChangePost(!isChangePost);
+    }, 100);
   };
 
   return (
