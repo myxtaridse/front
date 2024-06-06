@@ -11,7 +11,7 @@ import { fetchUserData } from "../../redux/slices/authSlice";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const status = useSelector((state) => state.authSlice?.status);
+  const status = useSelector((state) => state.userSlice?.status);
   const isAuth = Boolean(status === "success");
   const [openEye, setOpenEye] = React.useState(false);
 
@@ -44,7 +44,7 @@ const Login = () => {
     if (isAuth) {
       navigate("/");
     }
-  }, []);
+  }, [isAuth]);
 
   return (
     <div className={styles.login}>
