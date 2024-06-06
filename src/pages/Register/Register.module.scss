@@ -126,14 +126,12 @@
   }
 
   @media (max-width: 500px) {
-    background-color: #fff;
     width: 100vw;
     height: 100vh;
     padding: 0;
 
     &__container {
       box-shadow: none;
-      background-color: #fff;
       display: block;
       width: 100vw;
       height: 100vh;
