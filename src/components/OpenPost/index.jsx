@@ -18,6 +18,7 @@ const OpenPost = ({
   myData,
 }) => {
   const dispatch = useDispatch();
+  const widthRef = React.useRef();
   const commentRef = React.useRef();
   const [isOpenComments, setIsOpenComments] = React.useState(true);
   const [text, setText] = React.useState("");
@@ -100,6 +101,7 @@ const OpenPost = ({
       style={{
         overlay: {
           backgroundColor: "rgba(0, 0, 0, 0.75)",
+          zIndex: "100",
         },
         content: {
           border: "none",
@@ -109,6 +111,7 @@ const OpenPost = ({
     >
       <div className={styles.popup}>
         <img
+          ref={widthRef}
           src={
             sortedImage === "/uploads"
               ? `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==

@@ -22,6 +22,7 @@ const Loading = ({ isLoading, setIsLoading }) => {
       style={{
         overlay: {
           backgroundColor: "rgba(255, 255, 255, 0.75)",
+          zIndex: "100",
         },
         content: {
           border: "none",
