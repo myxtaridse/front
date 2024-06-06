@@ -315,7 +315,7 @@
   }
 
   @media (max-width: 500px) {
-    column-gap: 50px;
+    column-gap: 35px;
 
     &__img {
       border: 2px solid #3535dca1;
@@ -329,7 +329,7 @@
     }
 
     &__detailes {
-      row-gap: 20px;
+      row-gap: 12px;
 
       &__setting {
         button {
@@ -342,7 +342,7 @@
       }
 
       h1 {
-        font-size: 24px;
+        font-size: 20px;
       }
       &__static {
         display: flex;
