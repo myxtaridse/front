@@ -153,16 +153,6 @@ const Register = () => {
               />
 
               <input
-                {...register("description", { optional: "Укажите описание" })}
-                placeholder="Обо мне"
-                type="text"
-              />
-              <input
-                {...register("url", { optional: "Укажите ссылки" })}
-                placeholder="Ссылки на другие соц сети"
-                type="text"
-              />
-              <input
                 required
                 {...register("email", { required: "Укажите почту" })}
                 placeholder="Введите E-mail"
