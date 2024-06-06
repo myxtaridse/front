@@ -166,7 +166,7 @@
 
         &__logo {
           position: absolute;
-          top: 0;
+          top: 10px;
           margin: 10px;
           column-gap: 6px;
           &__img {
@@ -195,6 +195,7 @@
           align-items: center;
 
           &__avatar {
+            margin-right: 20px;
             display: flex;
             flex-direction: row-reverse;
             align-items: center;
@@ -219,6 +220,7 @@
 
         &__title {
           font-size: 20px;
+          margin-top: 20px;
           font-family: "Ledger", serif;
           font-weight: 500;
         }
