@@ -140,4 +140,27 @@
       }
     }
   }
+  @media (max-width: 500px) {
+    &__list {
+      width: 15px;
+      height: 15px;
+      top: -10px;
+      left: 90px;
+    }
+    &__open {
+      top: 10px;
+      left: 90px;
+      font-size: 8px;
+      p {
+        min-width: 130px;
+        column-gap: 7px;
+        padding: 5px 10px;
+
+        div {
+          width: 8px;
+          margin-top: 2px;
+        }
+      }
+    }
+  }
 }
