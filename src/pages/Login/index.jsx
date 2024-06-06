@@ -40,9 +40,11 @@ const Login = () => {
     }
   };
 
-  if (isAuth) {
-    navigate("/");
-  }
+  React.useEffect(() => {
+    if (isAuth) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div className={styles.login}>
