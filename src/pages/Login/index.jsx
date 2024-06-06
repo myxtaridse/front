@@ -41,6 +41,7 @@ const Login = () => {
     }
     if (isAuth) {
       navigate(`/${dataMyAcc?._id}`);
+      window.location.reload();
     }
   };
 
