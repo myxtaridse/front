@@ -47,4 +47,9 @@
   &:hover &__bg {
     display: flex;
   }
+
+  @media (max-width: 500px) {
+    box-shadow: none;
+    border: 1px solid #f5fbfe;
+  }
 }

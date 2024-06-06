@@ -116,10 +116,11 @@
     &__body {
       width: 100vw;
       margin: 60px auto;
-      grid-template-columns: repeat(3, calc(width / 3));
+      grid-template-columns: repeat(3, calc(100vw / 3));
       gap: 0;
       &__item {
         height: 120px;
+        
       }
     }
     &__notPosts {
