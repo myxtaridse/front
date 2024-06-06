@@ -157,8 +157,9 @@
     }
 
     &__image {
+      height: 350px;
       img {
-        height: 250px;
+        height: 100%;
       }
     }
 
@@ -200,5 +201,12 @@
         height: 30px;
       }
     }
+  }
+  @media (max-width: 500px) {
+    width: 100vw;
+    margin-bottom: 0;
+    box-shadow: none;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.142);
   }
 }

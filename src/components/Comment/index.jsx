@@ -33,10 +33,13 @@ const Comment = ({
         console.log(err);
       }
     };
-    remove();
-    setTimeout(() => {
-      setIsChangePost(!isChangePost);
-    }, 100);
+    if (window.confirm("Вы действительно хотите удалить комментарий?")) {
+      remove();
+      setTimeout(() => {
+        setIsChangePost(!isChangePost);
+      }, 100);
+    }
+    
   };
 
   return (

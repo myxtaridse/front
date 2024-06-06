@@ -240,7 +240,11 @@ const OpenPost = ({
             }}
             ref={commentRef}
             value={text}
-            //onChange={(e) => setText(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                onSendComment();
+              }
+            }}
           ></textarea>
           <button onClick={onSendComment}>Отправить</button>
         </div>

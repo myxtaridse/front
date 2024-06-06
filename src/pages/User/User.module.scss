@@ -111,4 +111,20 @@
       font-size: 24px;
     }
   }
+  @media (max-width: 500px) {
+    padding: 0;
+    &__body {
+      width: max-content;
+      margin: 60px auto;
+      grid-template-columns: repeat(3, 250px);
+      gap: 0;
+      &__item {
+        height: 250px;
+      }
+    }
+    &__notPosts {
+      margin: 150px auto;
+      font-size: 24px;
+    }
+  }
 }

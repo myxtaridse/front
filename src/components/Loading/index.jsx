@@ -11,7 +11,7 @@ const Loading = ({ isLoading, setIsLoading }) => {
     if (isLoading === "success") {
       closeModal();
     }
-  }, []);
+  }, [isLoading]);
 
   return (
     <Modal
@@ -21,7 +21,7 @@ const Loading = ({ isLoading, setIsLoading }) => {
       ariaHideApp={false}
       style={{
         overlay: {
-          backgroundColor: "rgba(255, 255, 255, 0.75)",
+          backgroundColor: "rgba(0, 0, 0, 0.75)",
         },
         content: {
           border: "none",
