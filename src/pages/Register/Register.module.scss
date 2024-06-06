@@ -164,7 +164,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        row-gap: 20px;
 
         &__logo {
           margin: 10px;
@@ -183,7 +182,7 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          row-gap: 40px;
+          row-gap: 30px;
         }
 
         &__inputs {
@@ -202,7 +201,7 @@
 
             &__button {
               color: rgb(92, 92, 232);
-              font-size: 12px;
+              font-size: 11px;
               cursor: pointer;
               font-family: "Jura", sans-serif;
             }
@@ -218,7 +217,7 @@
         }
 
         &__title {
-          font-size: 22px;
+          font-size: 20px;
           font-family: "Ledger", serif;
           font-weight: 500;
           margin: 10px 0;
@@ -226,15 +225,15 @@
 
         input {
           width: 70vw;
-          height: 50px;
+          height: 45px;
           padding-left: 10px;
-          font-size: 12px;
-          border: 0.5px solid rgba(128, 128, 128, 0.244);
+          font-size: 13px;
+          border: 1px solid rgba(128, 128, 128, 0.244);
           box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.368);
         }
         button {
           border-radius: 5px;
-          font-size: 15px;
+          font-size: 12px;
           padding: 5px 15px;
         }
         &__password {
