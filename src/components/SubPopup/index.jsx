@@ -34,7 +34,7 @@ const SubPopup = ({
       ariaHideApp={false}
       style={{
         overlay: {
-          backgroundColor: "rgba(255, 255, 255, 0.75)",
+          backgroundColor: "rgba(0, 0, 0, 0.75)",
           zIndex: "100",
         },
         content: {

@@ -124,4 +124,132 @@
       }
     }
   }
+
+  @media (max-width: 500px) {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+
+    &__container {
+      box-shadow: none;
+      background-color: #fff;
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+
+      column-gap: 0;
+
+      &__right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+      }
+
+      &__formSub {
+        background-color: #fff;
+        position: absolute;
+        top: 5vh;
+        left: 5vw;
+        width: 90vw;
+        height: 90vh;
+        z-index: 10;
+        padding: 0;
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 20px;
+
+        &__logo {
+          margin: 10px;
+          column-gap: 6px;
+          &__img {
+            width: 16px;
+            height: 16px;
+          }
+          &__text {
+            font-size: 12px;
+          }
+        }
+
+        form {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          row-gap: 40px;
+        }
+
+        &__inputs {
+          display: flex;
+          grid-template-columns: none;
+          flex-direction: column;
+          row-gap: 15px;
+          justify-content: center;
+          align-items: center;
+
+          &__avatar {
+            margin-left: 10px;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            column-gap: 10px;
+
+            &__button {
+              color: rgb(92, 92, 232);
+              font-size: 10px;
+              cursor: pointer;
+              font-family: "Jura", sans-serif;
+            }
+            div {
+              &__img {
+                width: 40px;
+                border-radius: 50%;
+                height: 40px;
+                object-fit: cover;
+              }
+            }
+          }
+        }
+
+        &__title {
+          font-size: 22px;
+          font-family: "Ledger", serif;
+          font-weight: 500;
+        }
+
+        input {
+          width: 60vw;
+          height: 40px;
+          padding-left: 10px;
+          font-size: 10px;
+          border: 0.1px solid rgba(128, 128, 128, 0.244);
+          box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.368);
+        }
+        button {
+          border-radius: 5px;
+          font-size: 15px;
+          padding: 5px 15px;
+        }
+        &__password {
+          position: relative;
+          div {
+            position: absolute;
+            top: 12px;
+            right: 20px;
+            width: 15px;
+          }
+        }
+        &__link {
+          font-size: 12px;
+        }
+      }
+    }
+  }
 }

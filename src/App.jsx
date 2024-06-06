@@ -11,16 +11,17 @@ import Register from "./pages/Register";
 
 const App = () => {
   const navigate = useNavigate();
+  const auth = localStorage.getItem("token");
 
-  React.useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      navigate("/auth");
-    }
-  }, [navigate]);
+  // React.useEffect(() => {
+  //   if (!localStorage.getItem("token")) {
+  //     navigate("/auth");
+  //   }
+  // }, [navigate]);
 
   return (
     <Routes>
-      <Route path="" element={<MainLayout />}>
+      <Route path="" element={auth ? <MainLayout /> : <Login />}>
         <>
           <Route path="/" element={<Main />} />
           <Route path="/:id" element={<User />} />

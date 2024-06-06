@@ -67,7 +67,7 @@ const EditMyPage = ({
       ariaHideApp={false}
       style={{
         overlay: {
-          backgroundColor: "rgba(255, 255, 255, 0.75)",
+          backgroundColor: "rgba(0, 0, 0, 0.75)",
           zIndex: "100",
         },
         content: {
@@ -77,40 +77,42 @@ const EditMyPage = ({
       }}
     >
       <div className={styles.edit}>
+        <h1 className={styles.edit__title}>Редактирование страницы</h1>
         <div className={styles.edit__about}>
-          <div className={styles.edit__about__avatar}>
-            {
-              <div>
-                <img
-                  src={
-                    sortedAvatar === "/uploads"
-                      ? `${process.env.REACT_APP_API_URL}${avatarUrl}` !==
-                        `undefined${avatarUrl}`
-                        ? `${process.env.REACT_APP_API_URL}${avatarUrl}`
-                        : avatarDemo
-                      : avatarUrl || avatarDemo
-                  }
-                  width={70}
-                  alt="avatar"
-                />
-              </div>
-            }
-
-            <button
-              onClick={() => {
-                fileRef.current.click();
-              }}
-            >
-              Загрузить изображение
-            </button>
-            <input
-              ref={fileRef}
-              type="file"
-              hidden
-              onChange={handleChangeFile}
-            ></input>
-          </div>
           <div className={styles.edit__about__input}>
+            <div className={styles.edit__about__avatar}>
+              {
+                <div>
+                  <img
+                    src={
+                      sortedAvatar === "/uploads"
+                        ? `${process.env.REACT_APP_API_URL}${avatarUrl}` !==
+                          `undefined${avatarUrl}`
+                          ? `${process.env.REACT_APP_API_URL}${avatarUrl}`
+                          : avatarDemo
+                        : avatarUrl || avatarDemo
+                    }
+                    width={70}
+                    alt="avatar"
+                  />
+                </div>
+              }
+
+              <button
+                className={styles.edit__about__avatar__down}
+                onClick={() => {
+                  fileRef.current.click();
+                }}
+              >
+                Загрузить изображение
+              </button>
+              <input
+                ref={fileRef}
+                type="file"
+                hidden
+                onChange={handleChangeFile}
+              ></input>
+            </div>
             <div>
               <p>Никнейм:</p>
               <input
@@ -147,7 +149,9 @@ const EditMyPage = ({
               />
             </div>
           </div>
-          <button onClick={onSubmit}>Редактировать</button>
+          <button className={styles.edit__about__button} onClick={onSubmit}>
+            Редактировать
+          </button>
         </div>
       </div>
     </Modal>

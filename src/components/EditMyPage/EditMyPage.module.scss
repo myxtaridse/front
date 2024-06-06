@@ -1,9 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Ledger&display=swap");
 .edit {
-  border-radius: 10px;
-  z-index: 1000;
-  background-color: #b7b3ec;
-  height: max-content;
+  border-radius: 3px;
+  z-index: 100;
+  background-color: #ffffff;
+  height: 80vh;
   padding: 50px;
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 50px;
+
+  &__title {
+    font-family: "Ledger", serif;
+    font-weight: 500;
+    text-align: center;
+  }
 
   &__about {
     display: flex;
@@ -12,21 +25,27 @@
     row-gap: 40px;
 
     &__avatar {
+      margin-left: 40px;
       display: flex;
       align-items: center;
-      column-gap: 20px;
+      column-gap: 30px;
       img {
-        width: 150px;
-        height: 150px;
+        width: 80px;
+        height: 80px;
         object-fit: cover;
         border-radius: 50%;
+      }
+      &__down {
+        width: 180px;
+        height: 40px;
+        font-size: 12px;
       }
     }
 
     &__input {
       display: grid;
-      grid-template-columns: repeat(2, 400px);
-      gap: 20px;
+      grid-template-columns: repeat(2, 420px);
+      gap: 30px;
 
       &__password {
         position: relative;
@@ -41,33 +60,95 @@
 
       p {
         text-align: left;
-        font-size: 20px;
-        color: rgb(86, 85, 85);
-        font-weight: 700;
+        font-size: 15px;
+        color: rgba(86, 85, 85, 0.675);
+        font-weight: 500;
+        font-family: "Ledger", serif;
+        margin: 3px;
       }
+    }
+    &__button {
+      width: 400px;
+      height: 70px;
+      font-size: 22px;
+      margin: 20px auto;
     }
   }
   button {
-    width: 400px;
-    height: 70px;
-    border-radius: 10px;
-    background-color: rgb(92, 92, 232);
+    font-family: "Ledger", serif;
+    border-radius: 5px;
+    background-color: #703fef;
     color: white;
     border: none;
-    font-size: 22px;
-    font-weight: 700;
-    margin: 20px auto;
+    font-weight: 500;
+    opacity: 0.95;
+    &:hover {
+      opacity: 1;
+    }
   }
   input {
+    font-family: "Ledger", serif;
     width: 400px;
-    height: 60px;
-    border-radius: 10px;
-    border: none;
+    height: 50px;
+    border-radius: 3px;
+    border: 1px solid rgba(128, 128, 128, 0.659);
     padding-left: 20px;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   @media (max-width: 1550px) {
+    height: max-content;
+    padding: 30px;
+
+    &__about {
+      row-gap: 20px;
+
+      &__avatar {
+        column-gap: 20px;
+        img {
+          width: 120px;
+          height: 120px;
+          object-fit: cover;
+        }
+      }
+
+      &__input {
+        display: grid;
+        grid-template-columns: repeat(2, 330px);
+        gap: 30px 20px;
+
+        &__password {
+          div {
+            top: 15px;
+            right: 50px;
+            width: 22px;
+          }
+        }
+
+        p {
+          text-align: left;
+          font-size: 14px;
+          margin: 0 0 10px 10px;
+        }
+      }
+    }
+    button {
+      width: 320px;
+      height: 60px;
+
+      font-size: 20px;
+
+      margin: 20px auto;
+    }
+    input {
+      width: 300px;
+      height: 50px;
+      padding-left: 15px;
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 500px) {
     height: max-content;
     padding: 30px;
 

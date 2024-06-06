@@ -62,7 +62,7 @@ const AddNewPost = ({
       ariaHideApp={false}
       style={{
         overlay: {
-          backgroundColor: "rgba(255, 255, 255, 0.75)",
+          backgroundColor: "rgba(0, 0, 0, 0.75)",
           zIndex: "100",
         },
         content: {
@@ -72,7 +72,7 @@ const AddNewPost = ({
       }}
     >
       <div className={styles.edit}>
-        <div>
+        <div className={styles.edit__image}>
           <img
             src={
               sortedImage === "/uploads"
@@ -86,27 +86,31 @@ const AddNewPost = ({
             width={240}
             alt="post"
           />
+          <button
+            className={styles.edit__image__down}
+            onClick={() => {
+              fileRef.current.click();
+            }}
+          >
+            Загрузить изображение
+          </button>
+          <input
+            ref={fileRef}
+            type="file"
+            hidden
+            onChange={handleChangeFile}
+          ></input>
         </div>
-        <button
-          onClick={() => {
-            fileRef.current.click();
-          }}
-        >
-          Загрузить изображение
-        </button>
-        <input
-          ref={fileRef}
-          type="file"
-          hidden
-          onChange={handleChangeFile}
-        ></input>
+
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="createPost__title"
-          placeholder="Название..."
+          className={styles.edit__input}
+          placeholder="Введите описание для поста"
         ></input>
-        <button onClick={onSubmit}>Опубликовать</button>
+        <button className={styles.edit__btn} onClick={onSubmit}>
+          Опубликовать
+        </button>
       </div>
     </Modal>
   );

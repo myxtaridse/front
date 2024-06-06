@@ -2,6 +2,7 @@
   margin-bottom: 20px;
   width: 500px;
   background-color: #fff;
+  border-radius: 3px;
 
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.34);
 
@@ -10,13 +11,6 @@
     display: flex;
     align-items: center;
     column-gap: 20px;
-
-    &__user {
-      width: 40px;
-      height: 40px;
-      background-color: grey;
-      border-radius: 50%;
-    }
 
     img {
       width: 40px;
@@ -45,7 +39,7 @@
 
   &__description {
     text-align: right;
-    font-size: 12px;
+    font-size: 14px;
     margin: 10px 10px -5px 20px;
   }
 
@@ -109,18 +103,20 @@
       resize: none;
       border: 1px solid #c8c8e9;
       padding: 10px;
+      border-radius: 3px;
     }
     button {
       width: 100px;
       height: 30px;
 
-      background-color: #3535dca1;
-      border-radius: 10px;
+      background-color: #6d39f0;
+      border-radius: 4px;
       color: white;
       border: none;
+      opacity: 0.9;
 
       &:hover {
-        background-color: #5e5ee8;
+        opacity: 1;
       }
     }
   }
@@ -139,11 +135,6 @@
     &__header {
       padding: 20px;
       column-gap: 15px;
-
-      &__user {
-        width: 40px;
-        height: 40px;
-      }
 
       img {
         width: 25px;
@@ -209,7 +200,7 @@
     border-bottom: 1px solid rgba(128, 128, 128, 0.142);
 
     &__header {
-      padding: 20px;
+      padding: 10px 20px;
       column-gap: 15px;
 
       img {

@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #6363ebf4;
+  background-color: #703fef;
 
   &__left {
     display: flex;
@@ -42,7 +42,7 @@
     column-gap: 20px;
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 10px;
+    border-radius: 3px;
     transition: all 0.4s;
 
     &:hover {

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchUser, fetchUserAll } from "../../redux/slices/authSlice";
 import { fetchPosts } from "../../redux/slices/postsSlice";
 import InfiniteScroll from "react-infinite-scroll-component";
+import notPosts from "../../assets/notPosts.svg";
 import styles from "./User.module.scss";
 import {
   PostsUser,
@@ -144,7 +145,10 @@ const User = ({ setIsIdRequest }) => {
           ))}
         </div>
       ) : (
-        <div className={styles.user__notPosts}>Постов пока нет </div>
+        <div className={styles.user__notPosts}>
+          <img src={notPosts} alt="notPosts" />
+          <p>Постов пока нет</p>
+        </div>
       )}
 
       {isOpenPost && postOne && (
