@@ -25,9 +25,12 @@
     &__down {
       width: 160px;
       height: 40px;
-
+      background-color: transparent;
       font-size: 12px;
       margin: 20px 10px;
+      color: #703fef;
+      font-family: "Ledger", serif;
+      border: none;
     }
   }
   &__btn {
@@ -35,8 +38,6 @@
     height: 70px;
     font-size: 22px;
     margin: 20px auto;
-  }
-  button {
     font-family: "Ledger", serif;
     border-radius: 5px;
     background-color: rgb(92, 92, 232);
@@ -45,6 +46,7 @@
 
     font-weight: 500;
   }
+
   &__input {
     font-family: "Ledger", serif;
     border: 1px solid rgba(128, 128, 128, 0.422);
@@ -85,27 +87,60 @@
   // }
 
   @media (max-width: 500px) {
+    margin-top: 30px;
+    border-radius: 10px;
+    z-index: 1000;
+    background-color: #fff;
     height: max-content;
-    padding: 20px;
-    row-gap: 25px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 40px;
+    width: 90vw;
+    height: 80vh;
 
-    img {
+    &__image {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      row-gap: 5px;
+      img {
+        border: 1px solid rgba(128, 128, 128, 0.432);
+        width: 72vw;
+        height: 250px;
+        border-radius: 5px;
+      }
+      &__down {
+        width: 170px;
+        height: 30px;
+
+        font-size: 13px;
+        margin: 0;
+      }
+    }
+    &__btn {
       width: 300px;
-      height: 250px;
-      margin-bottom: -20px;
-    }
+      height: 50px;
+      font-size: 16px;
+      margin: 20px auto;
+      font-family: "Ledger", serif;
+      border-radius: 5px;
+      background-color: rgb(92, 92, 232);
+      color: white;
+      border: none;
 
-    button {
-      width: 80%;
-      height: 40px;
       font-weight: 500;
-      font-size: 14px;
-      margin: 10px auto;
     }
-    input {
-      width: 85%;
-      height: 45px;
 
+    &__input {
+      font-family: "Ledger", serif;
+      border: 1px solid rgba(128, 128, 128, 0.422);
+      width: 80vw;
+      height: 50px;
+      padding: 10px 15px;
+      border-radius: 3px;
       padding-left: 20px;
       font-size: 14px;
     }
