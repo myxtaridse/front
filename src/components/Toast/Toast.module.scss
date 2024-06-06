@@ -72,4 +72,36 @@
   &__close:hover {
     opacity: 1;
   }
+
+  @media (max-width: 500px) {
+    border-radius: 12px;
+    padding: 20px 35px 20px 25px;
+
+    &__content {
+      &__message {
+        margin: 0 20px;
+
+        &__text1,
+        &__text2 {
+          font-size: 12px;
+        }
+      }
+    }
+    &__progress {
+      height: 3px;
+      width: 100%;
+    }
+
+    &__check {
+      height: 25px;
+      width: 25px;
+    }
+
+    &__close {
+      top: 10px;
+      right: 15px;
+      padding: 5px;
+      width: 20px;
+    }
+  }
 }
