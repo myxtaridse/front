@@ -20,7 +20,6 @@
 }
 .loading {
   position: absolute;
-  left: 50%;
 }
 
 Link,
@@ -51,16 +50,9 @@ h3 {
 }
 .popupModalLoading {
   z-index: 1000;
-  width: 100vw;
-  height: 100vh;
-  margin: 0 auto;
 
-  background-color: #f5fbfe;
   &:focus-visible {
     outline: transparent auto 1px;
-  }
-  @media (max-width: 1500px) {
-    margin: 0 auto;
   }
 }
 

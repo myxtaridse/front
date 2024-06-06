@@ -29,8 +29,8 @@ const Loading = ({ isLoading, setIsLoading }) => {
         },
       }}
     >
-      <div className="loading">
-        <span className={styles.loader}></span>
+      <div className={styles.loading}>
+        <span className={styles.loading__loader}></span>
       </div>
     </Modal>
   );
