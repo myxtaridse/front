@@ -196,9 +196,7 @@ const Register = () => {
                 )}
               </div>
             </div>
-            <button style={{ padding: "20px 50px" }} type="submit">
-              Создать аккаунт
-            </button>
+            <button type="submit">Создать аккаунт</button>
           </form>
           <p className={styles.login__container__formSub__link}>
             Вы уже имеете аккаунт? <Link to="/auth">Войти в аккаунт</Link>
