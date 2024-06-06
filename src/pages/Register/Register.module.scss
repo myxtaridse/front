@@ -125,7 +125,7 @@
     }
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 800px) {
     width: 100vw;
     height: 100vh;
     padding: 0;
@@ -141,8 +141,7 @@
 
       &__right {
         position: absolute;
-        top: 0;
-        left: 0;
+        inset: 0;
         width: 100vw;
         height: 100vh;
         object-fit: cover;
