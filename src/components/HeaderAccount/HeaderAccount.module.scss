@@ -313,4 +313,59 @@
       }
     }
   }
+
+  @media (max-width: 500px) {
+    column-gap: 50px;
+
+    &__img {
+      border: 2px solid #3535dca1;
+      width: 75px;
+      height: 75px;
+      img {
+        border: 3px solid white;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &__detailes {
+      row-gap: 20px;
+
+      &__setting {
+        button {
+          margin-left: 50px;
+          border-radius: 10px;
+          padding: 5px 15px;
+          font-size: 12px;
+        }
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+      &__static {
+        display: flex;
+        column-gap: 50px;
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-size: 12px;
+        }
+      }
+
+      &__about {
+        display: flex;
+        flex-direction: column;
+        row-gap: 7px;
+        width: 200px;
+        a {
+          div {
+            width: 400px;
+            word-break: break-all;
+          }
+        }
+      }
+    }
+  }
 }
