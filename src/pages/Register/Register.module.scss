@@ -165,6 +165,8 @@
         row-gap: 15px;
 
         &__logo {
+          position: absolute;
+          top: 0;
           margin: 10px;
           column-gap: 6px;
           &__img {

@@ -98,4 +98,104 @@
       }
     }
   }
+  @media (max-width: 500px) {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+
+    &__container {
+      box-shadow: none;
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+
+      column-gap: 0;
+
+      &__right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+      }
+
+      &__formSub {
+        background-color: #fff;
+        position: absolute;
+        top: 5vh;
+        left: 5vw;
+        width: 90vw;
+        height: 90vh;
+        z-index: 10;
+        padding: 0;
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 15px;
+
+        &__logo {
+          position: absolute;
+          top: 80px;
+          margin-top: -50px;
+          margin-bottom: 40px;
+          column-gap: 6px;
+          &__img {
+            width: 16px;
+            height: 16px;
+          }
+          &__text {
+            font-size: 12px;
+          }
+        }
+
+        form {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          row-gap: 20px;
+        }
+
+        &__title {
+          font-size: 22px;
+          font-family: "Ledger", serif;
+          font-weight: 500;
+          margin: 10px auto;
+        }
+
+        input {
+          width: 75vw;
+          height: 50px;
+          padding-left: 10px;
+          font-size: 14px;
+          border: 1px solid rgba(128, 128, 128, 0.244);
+          box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.368);
+        }
+        button {
+          border-radius: 5px;
+          font-size: 14px;
+          padding: 10px 40px;
+        }
+        &__password {
+          position: relative;
+          div {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            width: 18px;
+          }
+        }
+        &__link {
+          margin-top: 10px;
+          font-size: 13px;
+          width: 200px;
+          text-align: center;
+        }
+      }
+    }
+  }
 }
