@@ -183,6 +183,7 @@
           height: 50px;
           object-fit: cover;
           border-radius: 50%;
+          
         }
         &__down {
           color: #703fef;
@@ -240,7 +241,7 @@
     input {
       font-family: "Ledger", serif;
       width: 70vw;
-      height: 45px;
+      height: 40px;
       border-radius: 3px;
       border: 1px solid rgba(128, 128, 128, 0.659);
       padding-left: 20px;
