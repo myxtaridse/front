@@ -1,6 +1,6 @@
 .toast {
   border-radius: 3px;
-  background: #fff;
+  background: var(--bg-color);
   padding: 20px 35px 20px 25px;
   box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -21,11 +21,11 @@
       &__text2 {
         font-size: 16px;
         font-weight: 400;
-        color: #666666;
+        color: var(--text-color);
       }
       &__text1 {
         font-weight: 600;
-        color: #333;
+        color: var(--text-color);
       }
     }
   }
@@ -57,6 +57,9 @@
     height: 35px;
     width: 35px;
     border-radius: 50%;
+    svg {
+      fill: rgb(92, 92, 232);
+    }
   }
 
   &__close {
@@ -67,6 +70,9 @@
     cursor: pointer;
     opacity: 0.7;
     width: 30px;
+    svg {
+      fill: var(--svg-color);
+    }
   }
 
   &__close:hover {
