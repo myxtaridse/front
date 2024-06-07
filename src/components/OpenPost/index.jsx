@@ -118,7 +118,7 @@ const OpenPost = ({
       }}
     >
       <div
-        style={{ backgroundColor: theme === "dark" ? "#333" : "#fff" }}
+        style={{ backgroundColor: theme === "dark" ? "#171717" : "#fff" }}
         className={styles.popup}
       >
         <img
@@ -261,7 +261,7 @@ const OpenPost = ({
         <div className={styles.popup__commentsAdd}>
           <textarea
             style={{
-              backgroundColor: theme === "dark" ? "#333" : "#fff",
+              backgroundColor: theme === "dark" ? "#171717" : "#fff",
               color: theme === "dark" ? "#fff" : "#333",
             }}
             onChange={(e) => {

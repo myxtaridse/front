@@ -74,7 +74,7 @@ const AddNewPost = ({
       }}
     >
       <div
-        style={{ backgroundColor: theme === "dark" ? "#333" : "#fff" }}
+        style={{ backgroundColor: theme === "dark" ? "#171717" : "#fff" }}
         className={styles.edit}
       >
         <div className={styles.edit__image}>
@@ -109,6 +109,10 @@ const AddNewPost = ({
         </div>
 
         <input
+          style={{
+            backgroundColor: theme === "dark" ? "#171717" : "#fff",
+            color: theme === "dark" ? "#fff" : "#333",
+          }}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           className={styles.edit__input}

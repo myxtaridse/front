@@ -79,7 +79,7 @@ const EditMyPage = ({
       }}
     >
       <div
-        style={{ backgroundColor: theme === "dark" ? "#333" : "#fff" }}
+        style={{ backgroundColor: theme === "dark" ? "#171717" : "#fff" }}
         className={styles.edit}
       >
         <h1
