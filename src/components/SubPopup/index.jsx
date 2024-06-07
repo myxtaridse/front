@@ -25,7 +25,7 @@ const SubPopup = ({
       setIsChangePost(!isChangePost);
     }, 100);
   };
-  
+  const theme = window.localStorage?.getItem("theme");
 
   return (
     <Modal
@@ -44,7 +44,13 @@ const SubPopup = ({
         },
       }}
     >
-      <div className={styles.edit}>
+      <div
+        style={{
+          backgroundColor: theme === "dark" ? "#171717" : "#fff",
+          color: theme === "dark" ? "#fff" : "#171717",
+        }}
+        className={styles.edit}
+      >
         <h2>{titleModal}</h2>
         {subs?.length > 0 &&
           subs?.map((subId) =>
@@ -58,6 +64,7 @@ const SubPopup = ({
                   isChangePost={isChangePost}
                   setIsChangePost={setIsChangePost}
                   closeModal={closeModal}
+                  theme={theme}
                 />
               ))
           )}
