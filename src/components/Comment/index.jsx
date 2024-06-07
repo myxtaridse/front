@@ -22,7 +22,7 @@ const Comment = ({
           (comment) => comment?.text !== text
         );
 
-        console.log(filteredComment);
+        //console.log(filteredComment);
 
         const { data } = await Axios.patch(`/posts/${postId}`, {
           comments: [...filteredComment],
@@ -39,7 +39,6 @@ const Comment = ({
         setIsChangePost(!isChangePost);
       }, 100);
     }
-    
   };
 
   return (

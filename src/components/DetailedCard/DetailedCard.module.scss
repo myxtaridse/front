@@ -1,10 +1,10 @@
 .card {
   margin-bottom: 20px;
   width: 500px;
-  background-color: #fff;
+  background-color: var(--bg-color-card);
   border-radius: 3px;
 
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.34);
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.645);
 
   &__header {
     padding: 20px;
@@ -22,6 +22,7 @@
     h3 {
       font-size: 20px;
       font-weight: 700;
+      color: var(--text-color);
     }
   }
 
@@ -41,6 +42,7 @@
     text-align: right;
     font-size: 14px;
     margin: 10px 10px -5px 20px;
+    color: var(--text-color);
   }
 
   &__detalies {
@@ -53,9 +55,7 @@
       width: 35px;
       opacity: 0.8;
       cursor: pointer;
-      svg {
-        fill: rgba(94, 94, 232, 1);
-      }
+
       &:hover {
         opacity: 1;
       }
@@ -73,6 +73,7 @@
     margin: 0 0 10px 20px;
     font-weight: 600;
     font-size: 16px;
+    color: var(--text-color);
   }
 
   &__comments {
@@ -101,18 +102,18 @@
       min-height: 50px;
       width: 100%;
       resize: none;
-      border: 1px solid #c8c8e9;
+      border: 1px solid var(--border-color-3);
       padding: 10px;
       border-radius: 3px;
+      background-color: var(--bg-color-card);
     }
     button {
       width: 100px;
       height: 30px;
-
-      background-color: #6d39f0;
+      background-color: var(--svg-color);
       border-radius: 4px;
-      color: white;
       border: none;
+      color: var(--bg-color);
       opacity: 0.9;
 
       &:hover {

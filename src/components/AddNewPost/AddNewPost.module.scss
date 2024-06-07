@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Ledger&display=swap");
 .edit {
-  border-radius: 10px;
+  border-radius: 5px;
   z-index: 1000;
   background-color: #fff;
   height: max-content;
@@ -57,40 +57,162 @@
     font-size: 18px;
   }
 
-  // @media (max-width: 1550px) {
-  //   height: max-content;
-  //   padding: 40px;
+  @media (max-width: 1500px) {
+    padding: 40px;
 
-  //   row-gap: 30px;
+    row-gap: 40px;
+    width: 45vw;
+    height: 70vh;
 
-  //   img {
-  //     width: 300px;
-  //     height: 300px;
-  //     object-fit: cover;
-  //   }
+    &__image {
+      display: flex;
+      align-items: end;
+      img {
+        width: 400px;
+        height: 320px;
+      }
+      &__down {
+        width: 100px;
+        height: 40px;
 
-  //   button {
-  //     width: 380px;
-  //     height: 60px;
+        font-size: 12px;
+        margin: 20px 10px;
+      }
+    }
+    &__btn {
+      width: 340px;
+      height: 60px;
+      font-size: 20px;
+      margin: 20px auto;
+    }
 
-  //     font-size: 18px;
+    &__input {
+      width: 95%;
+      height: 70px;
 
-  //     margin: 10px auto;
-  //   }
-  //   input {
-  //     width: 380px;
-  //     height: 55px;
+      padding-left: 20px;
+      font-size: 18px;
+    }
+  }
+  @media (max-width: 1200px) {
+    padding: 30px;
 
-  //     padding-left: 20px;
-  //     font-size: 18px;
-  //   }
-  // }
+    row-gap: 40px;
+    width: 50vw;
+    height: 70vh;
+
+    &__image {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      img {
+        width: 35vw;
+        height: 100%;
+      }
+      &__down {
+        width: max-content;
+        height: max-content;
+
+        font-size: 12px;
+        margin: 10px;
+      }
+    }
+    &__btn {
+      width: 35vw;
+      height: 60px;
+      font-size: 18px;
+      margin: 20px auto;
+    }
+
+    &__input {
+      width: 40vw;
+      height: 60px;
+
+      padding-left: 20px;
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    padding: 20px;
+
+    row-gap: 30px;
+    width: 65vw;
+    height: 70vh;
+
+    &__image {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      img {
+        width: 50vw;
+        height: 100%;
+      }
+      &__down {
+        width: max-content;
+        height: max-content;
+
+        font-size: 12px;
+        margin: 10px;
+      }
+    }
+    &__btn {
+      width: 40vw;
+      height: 60px;
+      font-size: 18px;
+      margin: 20px auto;
+    }
+
+    &__input {
+      width: 50vw;
+      height: 60px;
+
+      padding-left: 20px;
+      font-size: 18px;
+    }
+  }
+  @media (max-width: 800px) {
+    padding: 20px;
+
+    row-gap: 30px;
+    width: 75vw;
+    height: 80vh;
+
+    &__image {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      img {
+        width: 65vw;
+        height: 100%;
+      }
+      &__down {
+        width: max-content;
+        height: max-content;
+
+        font-size: 12px;
+        margin: 10px;
+      }
+    }
+    &__btn {
+      width: 55vw;
+      height: 60px;
+      font-size: 18px;
+      margin: 20px auto;
+    }
+
+    &__input {
+      width: 60vw;
+      height: 60px;
+
+      padding-left: 20px;
+      font-size: 18px;
+    }
+  }
 
   @media (max-width: 500px) {
     margin-top: 30px;
-    border-radius: 10px;
     z-index: 1000;
-    background-color: #fff;
     height: max-content;
     padding: 20px 0;
     display: flex;

@@ -17,7 +17,7 @@ const Loading = ({ isLoading, setIsLoading }) => {
     <Modal
       className="popupModalLoading"
       isOpen={isLoading}
-      onRequestClose={!isLoading}
+      onRequestClose={closeModal}
       ariaHideApp={false}
       style={{
         overlay: {

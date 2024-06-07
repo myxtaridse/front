@@ -3,13 +3,13 @@
   position: relative;
 
   &__body {
-    width: 900px;
+    width: max-content;
     margin: 100px auto;
     display: grid;
-    grid-template-columns: repeat(3, 300px);
+    grid-template-columns: repeat(4, 280px);
     gap: 40px 30px;
     &__item {
-      height: 240px;
+      height: 220px;
     }
   }
 
@@ -84,15 +84,17 @@
       font-size: 24px;
     }
   }
-  @media (max-width: 800px) {
-    padding: 0;
+
+  @media (max-width: 900px) {
+    margin-top: 80px;
     &__body {
-      width: max-content;
-      margin: 80px auto;
-      grid-template-columns: repeat(3, 170px);
-      gap: 30px 15px;
+      width: 90vw;
+      margin: 60px auto;
+      grid-template-columns: repeat(3, calc(85vw / 3));
+      gap: 15px;
       &__item {
-        height: 130px;
+        height: 100%;
+        min-height: 100px;
       }
     }
     &__notPosts {
@@ -101,23 +103,6 @@
     }
   }
   @media (max-width: 600px) {
-    padding: 0;
-    &__body {
-      width: max-content;
-      margin: 60px auto;
-      grid-template-columns: repeat(3, 130px);
-      gap: 20px 15px;
-      &__item {
-        height: 100px;
-      }
-    }
-    &__notPosts {
-      margin: 150px auto;
-      font-size: 24px;
-    }
-  }
-
-  @media (max-width: 500px) {
     margin-top: 80px;
     &__body {
       width: 100vw;

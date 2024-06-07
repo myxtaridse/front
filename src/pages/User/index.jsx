@@ -134,6 +134,7 @@ const User = ({ setIsIdRequest }) => {
         <div className={styles.user__body}>
           {postsAll?.map((post, id) => (
             <div
+              key={id}
               className={styles.user__body__item}
               onClick={() => {
                 putValues(id);

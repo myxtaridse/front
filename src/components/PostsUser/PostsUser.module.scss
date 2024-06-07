@@ -4,7 +4,7 @@
   height: 100%;
   cursor: pointer;
   position: relative;
-  box-shadow: 3px 3px 10px grey;
+  box-shadow: 3px 3px 10px rgba(128, 128, 128, 0.541);
 
   img {
     width: 100%;
@@ -49,7 +49,7 @@
     display: flex;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     box-shadow: none;
     border: 1px solid #f5fbfe;
     width: 100%;

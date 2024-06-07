@@ -13,7 +13,7 @@ export const fetchMeUpdate = createAsyncThunk(
   "auth/fetchMeUpdateStatus",
   async ({ userEdit }) => {
     const { data } = await Axios.patch(`/user/me`, userEdit);
-    console.log(data, userEdit);
+    //console.log(data, userEdit);
     return data;
   }
 );
@@ -34,12 +34,12 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAuthMe.pending, (state, action) => {
-      console.log("loading");
+      //console.log("loading");
       state.status = "loading";
       state.dataMyAcc = null;
     });
     builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
-      console.log("normall", state);
+      //console.log("normall", state);
       state.status = "success";
       state.dataMyAcc = action.payload;
     });

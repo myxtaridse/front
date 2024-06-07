@@ -25,6 +25,7 @@ const SubPopup = ({
       setIsChangePost(!isChangePost);
     }, 100);
   };
+  
 
   return (
     <Modal

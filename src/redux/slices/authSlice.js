@@ -5,7 +5,7 @@ export const fetchUserData = createAsyncThunk(
   "auth/fetchUserDataStatus",
   async (params) => {
     const response = await Axios.post("/auth/login", params); // в params будут хранится email, password
-    console.log(response);
+    //console.log(response);
     return response.data; // если все ок - получим объект с инфой о пользователе
   }
 );
@@ -13,10 +13,10 @@ export const fetchUserData = createAsyncThunk(
 export const fetchRegisterUser = createAsyncThunk(
   "auth/fetchRegisterUserStatus",
   async (params) => {
-    console.log(params);
+    //console.log(params);
     try {
       const response = await Axios.post("/auth/register", params); // в params будут хранится email, password
-      console.log(response);
+      //console.log(response);
       return response.data; // если все ок - получим объект с инфой о пользователе
     } catch (err) {
       console.log(err);
@@ -52,7 +52,7 @@ export const fetchUserUpdate = createAsyncThunk(
   "auth/fetchUserUpdateStatus",
   async ({ id, userEditSub }) => {
     const { data } = await Axios.patch(`/user/${id}`, userEditSub);
-    console.log(data, id, userEditSub);
+    //console.log(data, id, userEditSub);
     return data;
   }
 );
@@ -74,12 +74,12 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUserData.pending, (state, action) => {
-      console.log("loading");
+      //console.log("loading");
       state.status = "loading";
       state.dataUser = null;
     });
     builder.addCase(fetchUserData.fulfilled, (state, action) => {
-      console.log("normall", state);
+      //console.log("normall", state);
       state.status = "success";
       state.dataUser = action.payload;
     });
@@ -89,12 +89,12 @@ const authSlice = createSlice({
       state.dataUser = null;
     });
     builder.addCase(fetchUserUpdate.pending, (state, action) => {
-      console.log("loading");
+      //console.log("loading");
       state.status = "loading";
       state.dataUser = null;
     });
     builder.addCase(fetchUserUpdate.fulfilled, (state, action) => {
-      console.log("normall", state);
+      //console.log("normall", state);
       state.status = "success";
       state.dataUser = action.payload;
     });
@@ -104,12 +104,12 @@ const authSlice = createSlice({
       state.dataUser = null;
     });
     builder.addCase(fetchUser.pending, (state, action) => {
-      console.log("loading");
+      //console.log("loading");
       state.status = "loading";
       state.dataUser = null;
     });
     builder.addCase(fetchUser.fulfilled, (state, action) => {
-      console.log("normall", state);
+      //console.log("normall", state);
       state.status = "success";
       state.dataUser = action.payload;
     });
@@ -119,12 +119,12 @@ const authSlice = createSlice({
       state.dataUser = null;
     });
     builder.addCase(fetchRegisterUser.pending, (state, action) => {
-      console.log("loading");
+      //console.log("loading");
       state.status = "loading";
       state.dataUser = null;
     });
     builder.addCase(fetchRegisterUser.fulfilled, (state, action) => {
-      console.log("normall", state);
+      //console.log("normall", state);
       state.status = "success";
       state.dataUser = action.payload;
     });
@@ -134,12 +134,12 @@ const authSlice = createSlice({
       state.dataUser = null;
     });
     builder.addCase(fetchUserAll.pending, (state, action) => {
-      console.log("loading");
+      //console.log("loading");
       state.status = "loading";
       state.dataUserAll = null;
     });
     builder.addCase(fetchUserAll.fulfilled, (state, action) => {
-      console.log("normall", state);
+      //console.log("normall", state);
       state.status = "success";
       state.dataUserAll = action.payload;
     });

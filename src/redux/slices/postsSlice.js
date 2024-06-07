@@ -18,7 +18,7 @@ export const fetchTags = createAsyncThunk("posts/fetchTagsStatus", async () => {
 export const fetchPostsRemove = createAsyncThunk(
   "posts/fetchPostsRemoveStatus",
   async (id) => {
-    console.log(id);
+    //console.log(id);
     await Axios.delete(`/posts/${id}`);
   }
 );
@@ -63,7 +63,7 @@ const postsSlice = createSlice({
       //console.log("normall", state);
       state.post.items = action.payload;
       state.post.status = "success";
-      console.log(action.payload);
+      //console.log(action.payload);
     });
     builder.addCase(fetchPosts.rejected, (state, action) => {
       //console.log("loading");

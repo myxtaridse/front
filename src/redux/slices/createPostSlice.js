@@ -5,7 +5,7 @@ export const fetchCreatePost = createAsyncThunk(
   "create/fetchCreatePostStatus",
   async (fields) => {
     const response = await Axios.post("/posts", fields);
-    console.log(fields);
+    //console.log(fields);
     return response.data;
   }
 );
