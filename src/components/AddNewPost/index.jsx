@@ -114,7 +114,7 @@ const AddNewPost = ({
             color: theme === "dark" ? "#fff" : "#333",
           }}
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => setTitle(e?.target?.value ? e.target.value : "")}
           className={styles.edit__input}
           placeholder="Введите описание для поста"
         ></input>
