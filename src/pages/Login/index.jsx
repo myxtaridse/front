@@ -39,13 +39,11 @@ const Login = () => {
     if (data.payload) {
       window.localStorage.setItem("token", data.payload.token);
     }
+    window.location.reload();
     if (isAuth) {
       navigate(`/${dataMyAcc?._id}`);
-      window.location.reload();
     }
   };
-
-  
 
   return (
     <div className={styles.login}>
