@@ -211,7 +211,7 @@
   }
 
   @media (max-width: 500px) {
-    margin-top: 30px;
+    margin-top: 50px;
     z-index: 1000;
     height: max-content;
     padding: 20px 0;
@@ -221,7 +221,6 @@
     justify-content: center;
     row-gap: 40px;
     width: 90vw;
-    height: 80vh;
 
     &__image {
       display: flex;

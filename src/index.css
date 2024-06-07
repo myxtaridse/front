@@ -19,8 +19,9 @@
   --border-color-3: #c8c8e9;
   --moon-color: transparent;
   --sun-color: #fff;
-  --bg-theme: #7676b7;
-  --svg-popup-color: white;
+  --bg-theme: #7676b7ce;
+  --svg-popup-color-1: black;
+  --svg-popup-color-2: rgba(67, 70, 110, 0.582);
 }
 #root.dark {
   --bg-color: #030303;
@@ -33,7 +34,8 @@
   --moon-color: #fff;
   --sun-color: transparent;
   --bg-theme: #414141;
-  --svg-popup-color: rgb(92, 92, 232);
+  --svg-popup-color-1: rgba(84, 95, 130, 0.582);
+  --svg-popup-color-2: black;
 }
 
 body {

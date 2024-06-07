@@ -93,13 +93,13 @@
       &__light {
         background-color: var(--sun-color);
         svg {
-          fill: #000;
+          fill: var(--svg-popup-color-1);
         }
       }
       &__dark {
         background-color: var(--moon-color);
         svg {
-          fill: #000;
+          fill: var(--svg-popup-color-2);
         }
       }
     }
@@ -199,10 +199,11 @@
 
     &__right {
       column-gap: 20px;
-      width: 45%;
+      width: 25%;
       &__medium {
         padding: 2px 7px;
         column-gap: 10px;
+        border: none;
 
         img {
           width: 30px;
@@ -211,6 +212,51 @@
 
         h3 {
           font-size: 14px;
+          display: none;
+        }
+      }
+      &__theme {
+        width: max-content;
+        column-gap: 4px;
+
+        div {
+          padding: 2px 2px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+  @media (max-width: 450px) {
+    height: 50px;
+    padding: 0 20px;
+    &__left {
+      img {
+        width: 20px;
+        height: 20px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+
+    &__right {
+      column-gap: 20px;
+      width: 30%;
+      &__medium {
+        padding: 2px 7px;
+        column-gap: 10px;
+        border: none;
+
+        img {
+          width: 30px;
+          height: 30px;
+        }
+
+        h3 {
+          font-size: 14px;
+          display: none;
         }
       }
       &__theme {
