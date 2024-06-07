@@ -1,9 +1,10 @@
 import React, { createContext } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = React.useState("light");
+  const [theme, setTheme] = useLocalStorage("theme", "light");
   React.useEffect(() => {
     if (theme === "dark") {
       document.getElementById("root")?.classList.add("dark");

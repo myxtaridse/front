@@ -227,6 +227,7 @@ const DetailedCard = ({
       <div className={styles.card__commentsAdd}>
         <textarea
           ref={textRef}
+          placeholder="Написать комментарий..."
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => {

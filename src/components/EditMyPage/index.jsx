@@ -59,6 +59,8 @@ const EditMyPage = ({
     closeModal();
   };
 
+  const theme = window.localStorage?.getItem("theme");
+
   return (
     <Modal
       className="popupModal"
@@ -76,8 +78,16 @@ const EditMyPage = ({
         },
       }}
     >
-      <div className={styles.edit}>
-        <h1 className={styles.edit__title}>Редактирование страницы</h1>
+      <div
+        style={{ backgroundColor: theme === "dark" ? "#333" : "#fff" }}
+        className={styles.edit}
+      >
+        <h1
+          style={{ color: theme === "dark" ? "#fff" : "#333" }}
+          className={styles.edit__title}
+        >
+          Редактирование страницы
+        </h1>
         <div className={styles.edit__about}>
           <div className={styles.edit__about__input}>
             <div className={styles.edit__about__avatar}>
@@ -99,6 +109,7 @@ const EditMyPage = ({
               }
 
               <button
+                style={{ color: theme === "dark" ? "#cab6fe" : "#703fef" }}
                 className={styles.edit__about__avatar__down}
                 onClick={() => {
                   fileRef.current.click();
@@ -114,35 +125,43 @@ const EditMyPage = ({
               ></input>
             </div>
             <div>
-              <p>Никнейм:</p>
+              <p style={{ color: theme === "dark" ? "#fff" : "#333" }}>
+                Никнейм:
+              </p>
               <input
                 onChange={(e) => setNickname(e.target.value)}
                 placeholder={prevMyData?.nickname}
               />
             </div>
             <div>
-              <p>Имя:</p>
+              <p style={{ color: theme === "dark" ? "#fff" : "#333" }}>Имя:</p>
               <input
                 onChange={(e) => setFirstName(e.target.value)}
                 placeholder={prevMyData?.firstName}
               />
             </div>
             <div>
-              <p>Фамилия:</p>
+              <p style={{ color: theme === "dark" ? "#fff" : "#333" }}>
+                Фамилия:
+              </p>
               <input
                 onChange={(e) => setLastName(e.target.value)}
                 placeholder={prevMyData.lastName}
               />
             </div>
             <div>
-              <p>Описание вашей страницы:</p>
+              <p style={{ color: theme === "dark" ? "#fff" : "#333" }}>
+                Описание вашей страницы:
+              </p>
               <input
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder={prevMyData.description}
               />
             </div>
             <div>
-              <p>Ссылки на другие веб-страницы:</p>
+              <p style={{ color: theme === "dark" ? "#fff" : "#333" }}>
+                Ссылки на другие веб-страницы:
+              </p>
               <input
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder={prevMyData.url}

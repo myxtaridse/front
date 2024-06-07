@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap");
 .card {
   margin-bottom: 20px;
   width: 500px;
@@ -23,6 +24,7 @@
       font-size: 20px;
       font-weight: 700;
       color: var(--text-color);
+      font-family: "Jura", sans-serif;
     }
   }
 
@@ -86,6 +88,7 @@
       margin: 0 auto 10px;
       opacity: 0.6;
       cursor: pointer;
+      color: var(--text-color);
       &:hover {
         opacity: 1;
       }
@@ -105,8 +108,13 @@
       border: 1px solid var(--border-color-3);
       padding: 10px;
       border-radius: 3px;
+      color: var(--text-color);
       background-color: var(--bg-color-card);
+      &::placeholder {
+        color: var(--text-color);
+      }
     }
+
     button {
       width: 100px;
       height: 30px;
@@ -198,6 +206,7 @@
     margin-bottom: 0;
     box-shadow: none;
     padding: 10px 0;
+    background-color: var(--bg-color);
     border-bottom: 1px solid rgba(128, 128, 128, 0.142);
 
     &__header {
@@ -256,6 +265,7 @@
       textarea {
         min-height: 50px;
         width: 100%;
+        background-color: var(--bg-color);
       }
       button {
         width: 100px;

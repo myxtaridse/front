@@ -10,7 +10,7 @@ import User from "./pages/User";
 import Register from "./pages/Register";
 
 const App = () => {
-  const navigate = useNavigate();
+  
   const auth = localStorage.getItem("token");
 
   return (

@@ -29,9 +29,7 @@
         width: 35px;
         opacity: 0.8;
         cursor: pointer;
-        svg {
-          fill: rgba(94, 94, 232, 1);
-        }
+
         &:hover {
           opacity: 1;
         }
@@ -104,6 +102,7 @@
       min-height: 50px;
       width: 100%;
       resize: none;
+      color: var(--text-color);
       border: 1px solid #c8c8e9;
       &::-webkit-scrollbar {
         width: 0.4rem;
@@ -114,6 +113,9 @@
         border-radius: 4px;
         background-color: rgb(92, 92, 232);
       } /*перетаскиваемый дескриптор прокрутки*/
+      &::placeholder {
+        color: var(--text-color);
+      }
     }
     button {
       width: 100px;

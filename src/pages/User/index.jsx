@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchUser, fetchUserAll } from "../../redux/slices/authSlice";
 import { fetchPosts } from "../../redux/slices/postsSlice";
-import InfiniteScroll from "react-infinite-scroll-component";
 import notPosts from "../../assets/notPosts.svg";
 import styles from "./User.module.scss";
 import {

@@ -54,6 +54,8 @@ const AddNewPost = ({
 
   const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
 
+  const theme = window.localStorage?.getItem("theme");
+
   return (
     <Modal
       className="popupModal"
@@ -71,7 +73,10 @@ const AddNewPost = ({
         },
       }}
     >
-      <div className={styles.edit}>
+      <div
+        style={{ backgroundColor: theme === "dark" ? "#333" : "#fff" }}
+        className={styles.edit}
+      >
         <div className={styles.edit__image}>
           <img
             src={
@@ -87,6 +92,7 @@ const AddNewPost = ({
             alt="post"
           />
           <button
+            style={{ color: theme === "dark" ? "#cab6fe" : "#703fef" }}
             className={styles.edit__image__down}
             onClick={() => {
               fileRef.current.click();
