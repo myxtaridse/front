@@ -11,7 +11,8 @@ import { fetchUserData } from "../../redux/slices/authSlice";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const status = useSelector((state) => state.authSlice?.status);
+  const status = useSelector((state) => state.userSlice?.status);
+  const dataMyAcc = useSelector((state) => state.userSlice?.dataMyAcc);
   const isAuth = Boolean(status === "success");
   const [openEye, setOpenEye] = React.useState(false);
 
@@ -38,13 +39,13 @@ const Login = () => {
     if (data.payload) {
       window.localStorage.setItem("token", data.payload.token);
     }
+    if (isAuth) {
+      navigate(`/${dataMyAcc?._id}`);
+      window.location.reload();
+    }
   };
 
-  React.useEffect(() => {
-    if (isAuth) {
-      navigate("/");
-    }
-  }, []);
+  
 
   return (
     <div className={styles.login}>
