@@ -136,6 +136,7 @@ const DetailedCard = ({
       <div className={styles.card__image}>
         {sortedVideo === "mp4" || sortedVideo === "MOV" ? (
           <video
+            autoPlay
             controls="controls"
             loop="loop"
             type="video/mp4"
