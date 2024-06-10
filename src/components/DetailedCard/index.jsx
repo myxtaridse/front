@@ -137,9 +137,11 @@ const DetailedCard = ({
         {sortedVideo === "mp4" || sortedVideo === "MOV" ? (
           <video
             autoPlay
-            controls="controls"
-            loop="loop"
-            type="video/mp4"
+            controls
+            loop
+            width="100%"
+            height="100%"
+            type={`video/${sortedVideo}`}
             src={
               `${process.env.REACT_APP_API_URL}${imageUrl}` !==
               `undefined/${imageUrl}`

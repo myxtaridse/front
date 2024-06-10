@@ -173,6 +173,9 @@
       img {
         height: 100%;
       }
+      video {
+        height: 100%;
+      }
     }
 
     &__detalies {
@@ -241,6 +244,10 @@
       width: 100%;
       min-height: 400px;
       max-height: 450px;
+
+      video {
+        height: 100%;
+      }
       img {
         height: 100%;
       }
