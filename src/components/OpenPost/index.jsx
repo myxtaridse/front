@@ -105,6 +105,10 @@ const OpenPost = ({
       }, 100);
     }
   };
+  const sortedVideo = post?.imageUrl
+    ?.split("")
+    .splice(post?.imageUrl?.length - 3, post?.imageUrl?.length)
+    ?.join("");
 
   React.useEffect(() => {
     if (comments?.length <= 2) {
@@ -135,19 +139,38 @@ const OpenPost = ({
         style={{ backgroundColor: theme === "dark" ? "#171717" : "#fff" }}
         className={styles.popup}
       >
-        <img
-          ref={widthRef}
-          src={
-            sortedImage === "/uploads"
-              ? `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
-                `undefined${post?.imageUrl}`
+        {sortedVideo === "mp4" ? (
+          <video
+            controls="controls"
+            loop="loop"
+            src={
+              `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
+              `undefined${post?.imageUrl}`
                 ? `${process.env.REACT_APP_API_URL}${post?.imageUrl}`
                 : errorPost
-              : post?.imageUrl || errorPost
-          }
-          alt="post"
-        />
-
+            }
+          ></video>
+        ) : (
+          <img
+            src={
+              sortedImage === "/uploads"
+                ? // ? `http://localhost:4444${imageUrl}`
+                  `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
+                  `undefined${post?.imageUrl}`
+                  ? `${process.env.REACT_APP_API_URL}${post?.imageUrl}`
+                  : errorPost
+                : post?.imageUrl || errorPost
+            }
+            width={240}
+            alt="post"
+          />
+        )}
+        <p
+          style={{ color: theme === "dark" ? "#fff" : "#333" }}
+          className={styles.popup__description}
+        >
+          {post?.title}
+        </p>
         <div className={styles.popup__detalies}>
           <div className={styles.popup__detalies__icons}>
             <div onClick={onLikeClick}>

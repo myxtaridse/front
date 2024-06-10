@@ -6,12 +6,18 @@
   width: 600px;
   height: max-content;
 
+  &__description {
+    font-size: 16px;
+    color: var(--text-color);
+    padding: 10px 15px;
+  }
+
   img {
     border-radius: 10px 10px 0 0;
     height: 450px;
     width: 100%;
-      min-height: 340px;
-      max-height: 600px;
+    min-height: 340px;
+    max-height: 600px;
     object-fit: cover;
   }
 

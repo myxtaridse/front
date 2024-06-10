@@ -34,6 +34,10 @@ const DetailedCard = ({
   const [year, month, day] = createdAt.substr(0, 10).split("-");
   const date = `${day}.${month}.${year}`;
 
+  const dateDay = new Date();
+  //const [yearDay, monthDay, dayDay] = dateDay.substr(0, 10).split("-");
+  console.log(createdAt, dateDay);
+
   const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
   const sortedAvatar = user?.avatarUrl?.split("").splice(0, 8)?.join("");
 
@@ -102,6 +106,11 @@ const DetailedCard = ({
     setCopyAlert(true);
   };
 
+  const sortedVideo = imageUrl
+    ?.split("")
+    .splice(imageUrl?.length - 3, imageUrl?.length)
+    ?.join("");
+
   if (!success) {
     return <Loading />;
   }
@@ -129,17 +138,32 @@ const DetailedCard = ({
         </div>
       </Link>
       <div className={styles.card__image}>
-        <img
-          src={
-            sortedImage === "/uploads"
-              ? `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-                `undefined${imageUrl}`
+        {sortedVideo === "mp4" ? (
+          <video
+            controls="controls"
+            loop="loop"
+            src={
+              `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+              `undefined${imageUrl}`
                 ? `${process.env.REACT_APP_API_URL}${imageUrl}`
                 : errorPost
-              : imageUrl || errorPost
-          }
-          alt="card-post"
-        />
+            }
+          ></video>
+        ) : (
+          <img
+            src={
+              sortedImage === "/uploads"
+                ? // ? `http://localhost:4444${imageUrl}`
+                  `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                  `undefined${imageUrl}`
+                  ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                  : errorPost
+                : imageUrl || errorPost
+            }
+            width={240}
+            alt="card-post"
+          />
+        )}
       </div>
       <p className={styles.card__description}>{title}</p>
       <div className={styles.card__detalies}>

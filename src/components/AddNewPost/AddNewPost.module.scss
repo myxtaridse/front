@@ -1,4 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Ledger&display=swap");
+.alert {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  background-color: #fff;
+}
+
 .edit {
   border-radius: 5px;
   z-index: 1000;

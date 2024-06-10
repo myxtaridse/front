@@ -3,6 +3,7 @@ import React from "react";
 import Axios from "../../axios";
 import styles from "./AddNewPost.module.scss";
 import errorPost from "../../assets/errorPost.png";
+import Toast from "../Toast";
 
 const AddNewPost = ({
   isOpenNewPost,
@@ -11,7 +12,7 @@ const AddNewPost = ({
   setIsChangePost,
 }) => {
   const fileRef = React.useRef();
-
+  const [copyAlert, setCopyAlert] = React.useState(false);
   const [tags, setTags] = React.useState("");
   const [title, setTitle] = React.useState("");
   const [imageUrl, setImageUrl] = React.useState("");
@@ -34,15 +35,12 @@ const AddNewPost = ({
         const { data } = await Axios.post("/upload", formData);
         setImageUrl(data.url);
       } else {
-        alert(
-          `Файл ${event.target.files[0].name} превышает допустимый размер для загрузки.`
-        );
+        setCopyAlert(true);
         event.target.value("");
       }
     } catch (err) {
       console.log("error");
     }
-    checkFileSize(event);
   };
 
   const onSubmit = () => {
@@ -58,14 +56,6 @@ const AddNewPost = ({
     };
     submit();
     closeModal();
-  };
-
-  const checkFileSize = (event) => {
-    // if(fileRef?.current.files[0].size > 5 * 1024 * 1024) { // Ограничение размера до 5МБ
-    //   alert('Превышен допустимый вес. Уменьшите размер файла.');
-    //   input.value = ''; // Запрещаем загрузку слишком больших файлов
-    // }
-    console.log(event?.target.files[0].size);
   };
 
   const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
@@ -157,6 +147,16 @@ const AddNewPost = ({
           Опубликовать
         </button>
       </div>
+      {copyAlert && (
+        <div className={styles.alert}>
+          <Toast
+            title="Загрузка файла"
+            subTitle="Файл превышает допустимый размер для загрузки!:("
+            copyAlert={copyAlert}
+            setCopyAlert={setCopyAlert}
+          />
+        </div>
+      )}
     </Modal>
   );
 };

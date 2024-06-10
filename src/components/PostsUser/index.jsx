@@ -8,6 +8,10 @@ import VideoVektor from "../VideoVektor";
 const PostsUser = ({ imageUrl, comments, likes }) => {
   const success = useSelector((state) => state.postsSlice.post.status);
   const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
+  const sortedVideo = imageUrl
+    ?.split("")
+    .splice(imageUrl?.length - 3, imageUrl?.length)
+    ?.join("");
 
   if (!success) {
     return <Loading />;
@@ -15,20 +19,24 @@ const PostsUser = ({ imageUrl, comments, likes }) => {
 
   return (
     <div className={styles.card}>
-      {/* <img
-        src={
-          sortedImage === "/uploads"
-            ? `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-              `undefined${imageUrl}`
-              ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-              : errorPost
-            : imageUrl || errorPost
-        }
-        alt="post"
-      /> */}
-      <div className={styles.card__preview}>
-        <VideoVektor />
-      </div>
+      {sortedVideo === "mp4" ? (
+        <div className={styles.card__preview}>
+          <VideoVektor />
+        </div>
+      ) : (
+        <img
+          src={
+            sortedImage === "/uploads"
+              ? `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                `undefined${imageUrl}`
+                ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                : errorPost
+              : imageUrl || errorPost
+          }
+          alt="post"
+        />
+      )}
+
       <div className={styles.card__bg}>
         <div className={styles.card__bg__detaiels}>
           <div>

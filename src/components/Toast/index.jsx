@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "./Toast.module.scss";
+import broke from "../../assets/folder-close-fill.svg";
+import check from "../../assets/checkbox-circle-fill.svg";
 
-const Toast = ({ copyAlert, setCopyAlert }) => {
+const Toast = ({ copyAlert, setCopyAlert, title, subTitle }) => {
   if (copyAlert) {
     setTimeout(() => {
       setCopyAlert(false);
@@ -16,21 +18,13 @@ const Toast = ({ copyAlert, setCopyAlert }) => {
     <div className={styles.toast}>
       <div className={styles.toast__content}>
         <div className={styles.toast__check} width={40}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="rgba(92,92,232,1)"
-          >
-            <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z"></path>
-          </svg>
+          <img src={title === "Буфер обмена" ? check : broke} alt="message" />
         </div>
 
         <div className={styles.toast__content__message}>
-          <span className={styles.toast__content__message__text1}>
-            Буфер обмена
-          </span>
+          <span className={styles.toast__content__message__text1}>{title}</span>
           <span className={styles.toast__content__message__text2}>
-            Ссылка на аккаунт скопирована!
+            {subTitle}
           </span>
         </div>
       </div>

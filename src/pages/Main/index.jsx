@@ -77,7 +77,12 @@ const Main = () => {
       )}
       {copyAlert && (
         <div className={styles.main__alert}>
-          <Toast copyAlert={copyAlert} setCopyAlert={setCopyAlert} />
+          <Toast
+            title="Буфер обмена"
+            subTitle="Ссылка на аккаунт скопирована!"
+            copyAlert={copyAlert}
+            setCopyAlert={setCopyAlert}
+          />
         </div>
       )}
     </div>
