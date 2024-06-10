@@ -86,6 +86,8 @@ const AddNewPost = ({
         <div className={styles.edit__image}>
           {sortedVideo === "mp4" ? (
             <video
+              controls="controls"
+              loop="loop"
               src={
                 `${process.env.REACT_APP_API_URL}${imageUrl}` !==
                 `undefined${imageUrl}`
