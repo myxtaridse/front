@@ -30,8 +30,8 @@
   &__image {
     height: 100%;
     width: 100%;
-    min-height: 450px;
-    max-height: 550px;
+    min-height: 400px;
+    max-height: 450px;
 
     video {
       height: 100%;
@@ -166,8 +166,10 @@
     }
 
     &__image {
-      min-height: 350px;
-      max-height: 550px;
+      height: 100%;
+      width: 100%;
+      min-height: 400px;
+      max-height: 450px;
       img {
         height: 100%;
       }
@@ -235,7 +237,9 @@
     }
 
     &__image {
-      min-height: 300px;
+      height: 100%;
+      width: 100%;
+      min-height: 400px;
       max-height: 450px;
       img {
         height: 100%;

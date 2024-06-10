@@ -34,10 +34,6 @@ const DetailedCard = ({
   const [year, month, day] = createdAt.substr(0, 10).split("-");
   const date = `${day}.${month}.${year}`;
 
-  const dateDay = new Date();
-  //const [yearDay, monthDay, dayDay] = dateDay.substr(0, 10).split("-");
-  console.log(createdAt, dateDay);
-
   const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
   const sortedAvatar = user?.avatarUrl?.split("").splice(0, 8)?.join("");
 
@@ -145,10 +141,11 @@ const DetailedCard = ({
             type="video/mp4"
             src={
               `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-              `undefined${imageUrl}`
+              `undefined/${imageUrl}`
                 ? `${process.env.REACT_APP_API_URL}${imageUrl}`
                 : errorPost
             }
+            alt={errorPost}
           ></video>
         ) : (
           <img
