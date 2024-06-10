@@ -8,6 +8,7 @@ import avatarDemo from "../../assets/avatar-demo.png";
 import Loading from "../Loading";
 import errorPost from "../../assets/errorPost.png";
 import LikedView from "../LikedView";
+import { Player } from "video-react";
 
 const DetailedCard = ({
   id,
@@ -135,12 +136,23 @@ const DetailedCard = ({
       </Link>
       <div className={styles.card__image}>
         {sortedVideo === "mp4" || sortedVideo === "MOV" ? (
-          <video
-            controls="controls"
-            autoPlay="autoplay"
-            loop="loop"
-            width="100%"
-          >
+          // <video
+          //   controls="controls"
+          //   autoPlay="autoplay"
+          //   loop="loop"
+          //   width="100%"
+          // >
+          //   <source
+          //     src={
+          //       `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+          //       `undefined/${imageUrl}`
+          //         ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+          //         : errorPost
+          //     }
+          //     type={`video/${sortedVideo}`}
+          //   />
+          // </video>
+          <Player>
             <source
               src={
                 `${process.env.REACT_APP_API_URL}${imageUrl}` !==
@@ -148,9 +160,8 @@ const DetailedCard = ({
                   ? `${process.env.REACT_APP_API_URL}${imageUrl}`
                   : errorPost
               }
-              type={`video/${sortedVideo}`}
             />
-          </video>
+          </Player>
         ) : (
           // <video
           //   autoPlay
