@@ -26,7 +26,7 @@ const AddNewPost = ({
   const handleChangeFile = async (event) => {
     try {
       // спец формат, который помогает вшивать картинку в бэкенд
-      if (event?.target.files[0].size > 8388608) {
+      if (event?.target.files[0].size < 8388608) {
         const formData = new FormData();
         const file = event.target.files[0];
         formData.append("image", file);
