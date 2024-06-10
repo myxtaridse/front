@@ -28,7 +28,12 @@
   --bg-color-card: #333333;
   --text-color: white;
   --svg-color: white;
-  --border-color-1: #000;
+  /* --border-color-1: #252850; */
+  /* --border-color-1: #32127a; */
+  --border-color-1: #20155e;
+
+  /* --border-color-1: #0e294b; */
+
   --border-color-2: #3f3f3fb5;
   --border-color-3: #ffffff89;
   --moon-color: #fff;

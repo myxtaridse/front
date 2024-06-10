@@ -94,13 +94,13 @@
       &__light {
         background-color: var(--sun-color);
         svg {
-          fill: var(--svg-popup-color-1);
+          fill: var(--border-color-1);
         }
       }
       &__dark {
         background-color: var(--moon-color);
         svg {
-          fill: var(--svg-popup-color-2);
+          fill: var(--border-color-1);
         }
       }
     }
@@ -268,6 +268,52 @@
           padding: 2px 2px;
           width: 18px;
           height: 18px;
+        }
+      }
+    }
+  }
+  @media (max-width: 350px) {
+    height: 45px;
+    padding: 0 20px;
+    &__left {
+      img {
+        width: 16px;
+        height: 16px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+
+    &__right {
+      column-gap: 10px;
+      width: max-content;
+      &__medium {
+        padding: 2px 7px;
+        column-gap: 10px;
+        border: none;
+
+        img {
+          width: 25px;
+          height: 25px;
+        }
+
+        h3 {
+          font-size: 14px;
+          display: none;
+        }
+      }
+      &__theme {
+        width: max-content;
+        column-gap: 4px;
+
+        div {
+          padding: 2px 2px;
+          width: 14px;
+          height: 14px;
+          display: flex;
+          align-items: center;
         }
       }
     }

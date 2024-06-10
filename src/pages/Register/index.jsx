@@ -18,6 +18,7 @@ const Register = () => {
   const [avatarUrl, setAvatarUrl] = React.useState();
 
   const status = useSelector((state) => state.authSlice?.status);
+  const dataMyAcc = useSelector((state) => state.userSlice?.dataMyAcc);
   const isAuth = Boolean(status === "success");
 
   const {
@@ -68,11 +69,11 @@ const Register = () => {
     if (data.payload) {
       window.localStorage.setItem("token", data.payload.token);
     }
+    window.location.reload();
+    if (isAuth) {
+      navigate(`/${dataMyAcc?._id}`);
+    }
   };
-
-  if (isAuth) {
-    navigate("/");
-  }
 
   return (
     <div className={styles.login}>

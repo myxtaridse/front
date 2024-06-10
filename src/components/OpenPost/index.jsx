@@ -32,6 +32,19 @@ const OpenPost = ({
     }
   }, [id, myId]);
 
+  let i = 0;
+  let placeholder = "";
+  const txt = "Написать комментарий...";
+  const speed = 120;
+
+  function type() {
+    placeholder += txt.charAt(i);
+    commentRef?.current?.setAttribute("placeholder", placeholder);
+    i++;
+    setTimeout(type, speed);
+  }
+  type();
+
   const comments = post?.comments;
   const viewComments = [...comments];
   const splicedComments = viewComments.splice(
