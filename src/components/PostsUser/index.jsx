@@ -19,7 +19,7 @@ const PostsUser = ({ imageUrl, comments, likes }) => {
 
   return (
     <div className={styles.card}>
-      {sortedVideo === "mp4" ? (
+      {sortedVideo === "mp4" || sortedVideo === "MOV" ? (
         <div className={styles.card__preview}>
           <VideoVektor />
         </div>

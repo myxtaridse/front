@@ -139,7 +139,7 @@ const OpenPost = ({
         style={{ backgroundColor: theme === "dark" ? "#171717" : "#fff" }}
         className={styles.popup}
       >
-        {sortedVideo === "mp4" ? (
+        {sortedVideo === "mp4" || sortedVideo === "MOV"  ? (
           <video
             controls="controls"
             loop="loop"

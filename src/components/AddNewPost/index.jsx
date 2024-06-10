@@ -91,7 +91,7 @@ const AddNewPost = ({
         className={styles.edit}
       >
         <div className={styles.edit__image}>
-          {sortedVideo === "mp4" ? (
+          {sortedVideo === "mp4" || sortedVideo === "MOV"  ? (
             <video
               controls="controls"
               loop="loop"
