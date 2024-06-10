@@ -54,6 +54,12 @@ const AddNewPost = ({
 
   const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
 
+  const sortedVideo = imageUrl
+    ?.split("")
+    .splice(imageUrl?.length - 3, imageUrl?.length)
+    ?.join("");
+  console.log(sortedVideo);
+
   const theme = window.localStorage?.getItem("theme");
 
   return (
@@ -78,19 +84,30 @@ const AddNewPost = ({
         className={styles.edit}
       >
         <div className={styles.edit__image}>
-          <img
-            src={
-              sortedImage === "/uploads"
-                ? // ? `http://localhost:4444${imageUrl}`
-                  `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-                  `undefined${imageUrl}`
+          {sortedVideo === "mp4" ? (
+            <video
+              src={
+                `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                `undefined${imageUrl}`
                   ? `${process.env.REACT_APP_API_URL}${imageUrl}`
                   : errorPost
-                : imageUrl || errorPost
-            }
-            width={240}
-            alt="post"
-          />
+              }
+            ></video>
+          ) : (
+            <img
+              src={
+                sortedImage === "/uploads"
+                  ? // ? `http://localhost:4444${imageUrl}`
+                    `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                    `undefined${imageUrl}`
+                    ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                    : errorPost
+                  : imageUrl || errorPost
+              }
+              width={240}
+              alt="post"
+            />
+          )}
           <button
             style={{ color: theme === "dark" ? "#cab6fe" : "#703fef" }}
             className={styles.edit__image__down}

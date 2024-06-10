@@ -3,6 +3,7 @@ import styles from "./PostsUser.module.scss";
 import { useSelector } from "react-redux";
 import Loading from "../Loading";
 import errorPost from "../../assets/errorPost.png";
+import VideoVektor from "../VideoVektor";
 
 const PostsUser = ({ imageUrl, comments, likes }) => {
   const success = useSelector((state) => state.postsSlice.post.status);
@@ -14,7 +15,7 @@ const PostsUser = ({ imageUrl, comments, likes }) => {
 
   return (
     <div className={styles.card}>
-      <img
+      {/* <img
         src={
           sortedImage === "/uploads"
             ? `${process.env.REACT_APP_API_URL}${imageUrl}` !==
@@ -24,7 +25,10 @@ const PostsUser = ({ imageUrl, comments, likes }) => {
             : imageUrl || errorPost
         }
         alt="post"
-      />
+      /> */}
+      <div className={styles.card__preview}>
+        <VideoVektor />
+      </div>
       <div className={styles.card__bg}>
         <div className={styles.card__bg__detaiels}>
           <div>
