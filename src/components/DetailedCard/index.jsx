@@ -135,22 +135,30 @@ const DetailedCard = ({
       </Link>
       <div className={styles.card__image}>
         {sortedVideo === "mp4" || sortedVideo === "MOV" ? (
-          <video
-            autoPlay
-            controls
-            loop
-            width="100%"
-            height="100%"
-            type={`video/${sortedVideo}`}
-            src={
-              `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-              `undefined/${imageUrl}`
-                ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-                : errorPost
-            }
-            alt={errorPost}
-          ></video>
+          <video controls autoplay loop width="100%">
+            <source
+              src={
+                `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                `undefined/${imageUrl}`
+                  ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                  : errorPost
+              }
+              type={`video/${sortedVideo}`}
+            />
+          </video>
         ) : (
+          // <video
+          //   autoPlay
+          //   controls
+          //   loop
+          //   width="100%"
+          //   height="100%"
+          //   type={`video/${sortedVideo}`}
+          //   src={
+
+          //   }
+          //   alt={errorPost}
+          // ></video>
           <img
             src={
               sortedImage === "/uploads"
