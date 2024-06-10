@@ -6,7 +6,6 @@ import Subs from "../Subs";
 const SubPopup = ({
   isSubPopup,
   setIsSubPopup,
-
   isChangePost,
   setIsChangePost,
   isSubscribed,

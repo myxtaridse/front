@@ -8,17 +8,38 @@ import MainLayout from "./layout/MainLayout";
 import Main from "./pages/Main";
 import User from "./pages/User";
 import Register from "./pages/Register";
+import { Loading } from "./components";
 
 const App = () => {
-  
   const auth = localStorage.getItem("token");
+
+  const Main = React.lazy(() =>
+    import(/* webpackChunkName: "Cart" */ "./pages/Main")
+  );
+  const User = React.lazy(() =>
+    import(/* webpackChunkName: "Cart" */ "./pages/User")
+  );
 
   return (
     <Routes>
       <Route path="" element={auth ? <MainLayout /> : <Login />}>
         <>
-          <Route path="/" element={<Main />} />
-          <Route path="/:id" element={<User />} />
+          <Route
+            path="/"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <Main />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/:id"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <User />
+              </React.Suspense>
+            }
+          />
         </>
       </Route>
       <>

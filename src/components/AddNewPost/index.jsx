@@ -4,6 +4,7 @@ import Axios from "../../axios";
 import styles from "./AddNewPost.module.scss";
 import errorPost from "../../assets/errorPost.png";
 import Toast from "../Toast";
+import imageCompression from "browser-image-compression";
 
 const AddNewPost = ({
   isOpenNewPost,
@@ -126,6 +127,7 @@ const AddNewPost = ({
             Загрузить изображение
           </button>
           <input
+            accept="image/*, .png, .jpg, .gif, .web, .webp, .mp4,"
             ref={fileRef}
             type="file"
             hidden
