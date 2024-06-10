@@ -7,6 +7,7 @@ import { fetchPostsRemove } from "../../redux/slices/postsSlice";
 import errorPost from "../../assets/errorPost.png";
 import Comment from "../Comment";
 import LikedView from "../LikedView";
+import VideoPlayer from "../VideoPlayer";
 
 const OpenPost = ({
   post,
@@ -108,7 +109,8 @@ const OpenPost = ({
   const sortedVideo = post?.imageUrl
     ?.split("")
     .splice(post?.imageUrl?.length - 3, post?.imageUrl?.length)
-    ?.join("");
+    ?.join("")
+    .toLowerCase();
 
   React.useEffect(() => {
     if (comments?.length <= 2) {
@@ -139,17 +141,11 @@ const OpenPost = ({
         style={{ backgroundColor: theme === "dark" ? "#171717" : "#fff" }}
         className={styles.popup}
       >
-        {sortedVideo === "mp4" || sortedVideo === "MOV"  ? (
-          <video
-            controls="controls"
-            loop="loop"
-            src={
-              `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
-              `undefined${post?.imageUrl}`
-                ? `${process.env.REACT_APP_API_URL}${post?.imageUrl}`
-                : errorPost
-            }
-          ></video>
+        <div className={styles.popup__image}>
+        {sortedVideo === "mp4" || sortedVideo === "MOV" ? (
+          <div className={styles.popup__video}>
+            <VideoPlayer imageUrl={post?.imageUrl} sortedVideo={sortedVideo} />
+          </div>
         ) : (
           <img
             src={
@@ -165,6 +161,7 @@ const OpenPost = ({
             alt="post"
           />
         )}
+        </div>
         <p
           style={{ color: theme === "dark" ? "#fff" : "#333" }}
           className={styles.popup__description}

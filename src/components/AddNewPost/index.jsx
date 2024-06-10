@@ -64,8 +64,8 @@ const AddNewPost = ({
   const sortedVideo = imageUrl
     ?.split("")
     .splice(imageUrl?.length - 3, imageUrl?.length)
-    ?.join("");
-  console.log(sortedVideo);
+    ?.join("")
+    .toLowerCase();
 
   const theme = window.localStorage?.getItem("theme");
 
@@ -91,27 +91,27 @@ const AddNewPost = ({
         className={styles.edit}
       >
         <div className={styles.edit__image}>
-          {sortedVideo === "mp4" || sortedVideo === "MOV"  ? (
+          {sortedVideo === "mp4" || sortedVideo === "mov" ? (
             <video
               controls="controls"
               loop="loop"
               src={
-                `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-                `undefined${imageUrl}`
-                  ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-                  : errorPost
+                // `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                // `undefined${imageUrl}`
+                //   ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                `http://localhost:4444${imageUrl}` || errorPost
               }
             ></video>
           ) : (
             <img
               src={
                 sortedImage === "/uploads"
-                  ? // ? `http://localhost:4444${imageUrl}`
-                    `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-                    `undefined${imageUrl}`
-                    ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-                    : errorPost
-                  : imageUrl || errorPost
+                  ? `http://localhost:4444${imageUrl}`
+                  : // `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                    // `undefined${imageUrl}`
+                    // ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                    // : errorPost
+                    imageUrl || errorPost
               }
               width={240}
               alt="post"

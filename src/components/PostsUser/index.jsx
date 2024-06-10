@@ -11,7 +11,8 @@ const PostsUser = ({ imageUrl, comments, likes }) => {
   const sortedVideo = imageUrl
     ?.split("")
     .splice(imageUrl?.length - 3, imageUrl?.length)
-    ?.join("");
+    ?.join("")
+    .toLowerCase();
 
   if (!success) {
     return <Loading />;
@@ -27,11 +28,12 @@ const PostsUser = ({ imageUrl, comments, likes }) => {
         <img
           src={
             sortedImage === "/uploads"
-              ? `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-                `undefined${imageUrl}`
-                ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-                : errorPost
-              : imageUrl || errorPost
+              ? `http://localhost:4444${imageUrl}`
+              : // ? `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                //   `undefined${imageUrl}`
+                //   ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                //   : errorPost
+                imageUrl || errorPost
           }
           alt="post"
         />

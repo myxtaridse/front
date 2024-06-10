@@ -28,13 +28,13 @@
   }
 
   &__image {
-    height: 100%;
     width: 100%;
-    min-height: 400px;
-    max-height: 450px;
+    height: max-content;
+    height: 100%;
 
     video {
       height: 100%;
+      max-height: 500px;
       width: 100%;
       object-fit: cover;
     }
@@ -42,10 +42,10 @@
       border-top: 2px solid #5e5ee818;
       border-bottom: 2px solid #5e5ee818;
       width: 100%;
-      height: inherit;
+      height: 100%;
+      max-height: 500px;
 
       object-fit: cover;
-      background-size: 100% 100%;
     }
   }
 
@@ -168,13 +168,13 @@
     &__image {
       height: 100%;
       width: 100%;
-      min-height: 400px;
-      max-height: 450px;
       img {
         height: 100%;
+        max-height: 420px;
       }
       video {
         height: 100%;
+        max-height: 420px;
       }
     }
 

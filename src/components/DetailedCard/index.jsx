@@ -8,6 +8,7 @@ import avatarDemo from "../../assets/avatar-demo.png";
 import Loading from "../Loading";
 import errorPost from "../../assets/errorPost.png";
 import LikedView from "../LikedView";
+import VideoPlayer from "../VideoPlayer";
 
 const DetailedCard = ({
   id,
@@ -105,7 +106,8 @@ const DetailedCard = ({
   const sortedVideo = imageUrl
     ?.split("")
     .splice(imageUrl?.length - 3, imageUrl?.length)
-    ?.join("");
+    ?.join("")
+    .toLowerCase();
 
   if (!success) {
     return <Loading />;
@@ -135,44 +137,17 @@ const DetailedCard = ({
       </Link>
       <div className={styles.card__image}>
         {sortedVideo === "mp4" || sortedVideo === "MOV" ? (
-          <video
-            controls="controls"
-            autoPlay="autoplay"
-            loop="loop"
-            width="100%"
-          >
-            <source
-              src={
-                `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-                `undefined/${imageUrl}`
-                  ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-                  : errorPost
-              }
-              type={`video/${sortedVideo}`}
-            />
-          </video>
+          <VideoPlayer imageUrl={imageUrl} sortedVideo={sortedVideo} />
         ) : (
-          // <video
-          //   autoPlay
-          //   controls
-          //   loop
-          //   width="100%"
-          //   height="100%"
-          //   type={`video/${sortedVideo}`}
-          //   src={
-
-          //   }
-          //   alt={errorPost}
-          // ></video>
           <img
             src={
               sortedImage === "/uploads"
-                ? // ? `http://localhost:4444${imageUrl}`
-                  `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-                  `undefined${imageUrl}`
-                  ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-                  : errorPost
-                : imageUrl || errorPost
+                ? `http://localhost:4444${imageUrl}`
+                : // `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                  // `undefined${imageUrl}`
+                  // ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                  // : errorPost
+                  imageUrl || errorPost
             }
             width={240}
             alt="card-post"
