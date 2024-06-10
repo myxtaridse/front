@@ -142,6 +142,7 @@ const DetailedCard = ({
           <video
             controls="controls"
             loop="loop"
+            type="video/mp4"
             src={
               `${process.env.REACT_APP_API_URL}${imageUrl}` !==
               `undefined${imageUrl}`
