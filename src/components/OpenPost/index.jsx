@@ -39,13 +39,12 @@ const OpenPost = ({
   const txt = "Написать комментарий...";
   const speed = 120;
 
-  function type() {
+  const type = () => {
     placeholder += txt.charAt(i);
     commentRef?.current?.setAttribute("placeholder", placeholder);
     i++;
     setTimeout(type, speed);
-  }
-  type();
+  };
 
   const comments = post?.comments;
   const viewComments = [...comments];
@@ -179,7 +178,10 @@ const OpenPost = ({
 
             <div
               className={styles.popup__detalies__icons__like}
-              onClick={() => commentRef.current.focus()}
+              onClick={() => {
+                commentRef.current.focus();
+                type();
+              }}
             >
               <svg
                 style={{
