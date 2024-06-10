@@ -26,15 +26,23 @@ const AddNewPost = ({
   const handleChangeFile = async (event) => {
     try {
       // спец формат, который помогает вшивать картинку в бэкенд
-      const formData = new FormData();
-      const file = event.target.files[0];
-      formData.append("image", file);
-      // отправка на сервак
-      const { data } = await Axios.post("/upload", formData);
-      setImageUrl(data.url);
+      if (event?.target.files[0].size > 8388608) {
+        const formData = new FormData();
+        const file = event.target.files[0];
+        formData.append("image", file);
+        // отправка на сервак
+        const { data } = await Axios.post("/upload", formData);
+        setImageUrl(data.url);
+      } else {
+        alert(
+          `Файл ${event.target.files[0].name} превышает допустимый размер для загрузки.`
+        );
+        event.target.value("");
+      }
     } catch (err) {
       console.log("error");
     }
+    checkFileSize(event);
   };
 
   const onSubmit = () => {
@@ -50,6 +58,14 @@ const AddNewPost = ({
     };
     submit();
     closeModal();
+  };
+
+  const checkFileSize = (event) => {
+    // if(fileRef?.current.files[0].size > 5 * 1024 * 1024) { // Ограничение размера до 5МБ
+    //   alert('Превышен допустимый вес. Уменьшите размер файла.');
+    //   input.value = ''; // Запрещаем загрузку слишком больших файлов
+    // }
+    console.log(event?.target.files[0].size);
   };
 
   const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
