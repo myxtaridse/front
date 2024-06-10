@@ -135,7 +135,12 @@ const DetailedCard = ({
       </Link>
       <div className={styles.card__image}>
         {sortedVideo === "mp4" || sortedVideo === "MOV" ? (
-          <video controls autoplay loop width="100%">
+          <video
+            controls="controls"
+            autoPlay="autoplay"
+            loop="loop"
+            width="100%"
+          >
             <source
               src={
                 `${process.env.REACT_APP_API_URL}${imageUrl}` !==
