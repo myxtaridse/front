@@ -7,6 +7,7 @@ import Comment from "../Comment";
 import avatarDemo from "../../assets/avatar-demo.png";
 import Loading from "../Loading";
 import errorPost from "../../assets/errorPost.png";
+import LikedView from "../LikedView";
 
 const DetailedCard = ({
   id,
@@ -28,6 +29,7 @@ const DetailedCard = ({
   const [isRemoveComment, setIsRemoveComment] = React.useState(false);
   const [text, setText] = useState("");
   const textRef = React.useRef();
+  const [isLikedView, setIsLikedView] = React.useState(false);
 
   const [year, month, day] = createdAt.substr(0, 10).split("-");
   const date = `${day}.${month}.${year}`;
@@ -179,7 +181,14 @@ const DetailedCard = ({
           </svg>
         </div>
       </div>
-      <p className={styles.card__likesNum}>Оценили {likes?.length} человек</p>
+      <p
+        onClick={() => {
+          setIsLikedView(true);
+        }}
+        className={styles.card__likesNum}
+      >
+        Оценили {likes?.length} человек
+      </p>
       <div className={styles.card__comments}>
         {comments.length > 2 && isOpenComments ? (
           <>
@@ -241,6 +250,14 @@ const DetailedCard = ({
       <div className={styles.card__createDate}>
         <p>Создано {date}</p>
       </div>
+      {isLikedView && (
+        <LikedView
+          isLikedView={isLikedView}
+          setIsLikedView={setIsLikedView}
+          likes={likes}
+          allUsers={allUsers}
+        />
+      )}
     </div>
   );
 };
