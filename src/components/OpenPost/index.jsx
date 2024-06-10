@@ -6,6 +6,7 @@ import styles from "./OpenPost.module.scss";
 import { fetchPostsRemove } from "../../redux/slices/postsSlice";
 import errorPost from "../../assets/errorPost.png";
 import Comment from "../Comment";
+import LikedView from "../LikedView";
 
 const OpenPost = ({
   post,
@@ -25,6 +26,7 @@ const OpenPost = ({
   const [isRemoveComment, setIsRemoveComment] = React.useState(false);
   const sortedImage = post?.imageUrl?.split("").splice(0, 8)?.join("");
   const myId = myData?._id;
+  const [isLikedView, setIsLikedView] = React.useState(false);
 
   React.useEffect(() => {
     if (id === myId) {
@@ -219,8 +221,13 @@ const OpenPost = ({
         <p
           style={{ color: theme === "dark" ? "#fff" : "#333" }}
           className={styles.popup__likesNum}
+          onClick={() => {
+            if (post?.likes?.length > 0) {
+              setIsLikedView(true);
+            }
+          }}
         >
-          Оценили {post.likes.length} человек
+          Оценили {post?.likes.length} человек
         </p>
         {comments.length > 0 && (
           <div
@@ -293,6 +300,14 @@ const OpenPost = ({
           <button onClick={onSendComment}>Отправить</button>
         </div>
       </div>
+      {isLikedView && (
+        <LikedView
+          isLikedView={isLikedView}
+          setIsLikedView={setIsLikedView}
+          likes={post?.likes}
+          allUsers={allUsers}
+        />
+      )}
     </Modal>
   );
 };

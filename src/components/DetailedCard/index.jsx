@@ -183,7 +183,9 @@ const DetailedCard = ({
       </div>
       <p
         onClick={() => {
-          setIsLikedView(true);
+          if (likes?.length > 0) {
+            setIsLikedView(true);
+          }
         }}
         className={styles.card__likesNum}
       >
