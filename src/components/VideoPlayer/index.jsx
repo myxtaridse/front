@@ -6,6 +6,7 @@ const VideoPlayer = ({ imageUrl, sortedVideo }) => {
   const soundRef = React.useRef();
   const videoNode = document.querySelector("video");
   const [isSound, setIsSound] = React.useState(true);
+
   const soundClick = () => {
     setIsSound(!isSound);
 
@@ -26,7 +27,7 @@ const VideoPlayer = ({ imageUrl, sortedVideo }) => {
         allow="autoplay"
         autoPlay
         loop
-        muted
+        muted="muted"
         width="100%"
       >
         <source
