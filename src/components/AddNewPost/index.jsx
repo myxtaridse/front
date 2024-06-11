@@ -96,11 +96,10 @@ const AddNewPost = ({
               controls="controls"
               loop="loop"
               src={
-                `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-                `undefined${imageUrl}`
-                  ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-                  : // `http://localhost:4444${imageUrl}`
-                    errorPost
+                // `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                // `undefined${imageUrl}`
+                //   ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                `http://localhost:4444${imageUrl}` || errorPost
               }
             ></video>
           ) : (
@@ -110,9 +109,7 @@ const AddNewPost = ({
                   ? `http://localhost:4444${imageUrl}`
                   : // `${process.env.REACT_APP_API_URL}${imageUrl}` !==
                     // `undefined${imageUrl}`
-                    // ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-                    // : errorPost
-                    imageUrl || errorPost
+                    `${process.env.REACT_APP_API_URL}${imageUrl}` || errorPost
               }
               width={240}
               alt="post"
