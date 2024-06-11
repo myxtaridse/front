@@ -142,25 +142,28 @@ const OpenPost = ({
         className={styles.popup}
       >
         <div className={styles.popup__image}>
-        {sortedVideo === "mp4" || sortedVideo === "MOV" ? (
-          <div className={styles.popup__video}>
-            <VideoPlayer imageUrl={post?.imageUrl} sortedVideo={sortedVideo} />
-          </div>
-        ) : (
-          <img
-            src={
-              sortedImage === "/uploads"
-                ? // ? `http://localhost:4444${imageUrl}`
-                  `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
-                  `undefined${post?.imageUrl}`
-                  ? `${process.env.REACT_APP_API_URL}${post?.imageUrl}`
-                  : errorPost
-                : post?.imageUrl || errorPost
-            }
-            width={240}
-            alt="post"
-          />
-        )}
+          {sortedVideo === "mp4" || sortedVideo === "MOV" ? (
+            <div className={styles.popup__video}>
+              <VideoPlayer
+                imageUrl={post?.imageUrl}
+                sortedVideo={sortedVideo}
+              />
+            </div>
+          ) : (
+            <img
+              src={
+                sortedImage === "/uploads"
+                  ? // ? // ? `http://localhost:4444${imageUrl}`
+                    `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
+                    `undefined${post?.imageUrl}`
+                    ? `${process.env.REACT_APP_API_URL}${post?.imageUrl}`
+                    : errorPost
+                  : post?.imageUrl || errorPost
+              }
+              width={240}
+              alt="post"
+            />
+          )}
         </div>
         <p
           style={{ color: theme === "dark" ? "#fff" : "#333" }}
