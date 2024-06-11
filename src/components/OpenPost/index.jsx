@@ -8,6 +8,7 @@ import errorPost from "../../assets/errorPost.png";
 import Comment from "../Comment";
 import LikedView from "../LikedView";
 import VideoPlayer from "../VideoPlayer";
+import { dateFunc } from "../../utils";
 
 const OpenPost = ({
   post,
@@ -28,6 +29,12 @@ const OpenPost = ({
   const sortedImage = post?.imageUrl?.split("").splice(0, 8)?.join("");
   const myId = myData?._id;
   const [isLikedView, setIsLikedView] = React.useState(false);
+
+  const createdAt = post?.createdAt;
+
+  const { date, dayMonth, createMonth, daysBetween, declOfNum } = dateFunc({
+    createdAt,
+  });
 
   React.useEffect(() => {
     if (id === myId) {
@@ -323,6 +330,18 @@ const OpenPost = ({
             }}
           ></textarea>
           <button onClick={onSendComment}>Отправить</button>
+        </div>
+        <div className={styles.popup__createDate}>
+          <p>
+            Создано{" "}
+            {dayMonth === createMonth
+              ? `${daysBetween} ${declOfNum(daysBetween, [
+                  "день",
+                  "дня",
+                  "дней",
+                ])}  назад`
+              : date}
+          </p>
         </div>
       </div>
       {isLikedView && (

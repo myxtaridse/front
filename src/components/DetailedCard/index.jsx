@@ -9,6 +9,7 @@ import Loading from "../Loading";
 import errorPost from "../../assets/errorPost.png";
 import LikedView from "../LikedView";
 import VideoPlayer from "../VideoPlayer";
+import { dateFunc } from "../../utils";
 
 const DetailedCard = ({
   id,
@@ -32,8 +33,9 @@ const DetailedCard = ({
   const textRef = React.useRef();
   const [isLikedView, setIsLikedView] = React.useState(false);
 
-  const [year, month, day] = createdAt.substr(0, 10).split("-");
-  const date = `${day}.${month}.${year}`;
+  const { date, dayMonth, createMonth, daysBetween, declOfNum } = dateFunc({
+    createdAt,
+  });
 
   const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
   const sortedAvatar = user?.avatarUrl?.split("").splice(0, 8)?.join("");
@@ -142,12 +144,12 @@ const DetailedCard = ({
           <img
             src={
               sortedImage === "/uploads"
-                // ? `http://localhost:4444${imageUrl}`
-                ? `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                ? // ? `http://localhost:4444${imageUrl}`
+                  `${process.env.REACT_APP_API_URL}${imageUrl}` !==
                   `undefined${imageUrl}`
                   ? `${process.env.REACT_APP_API_URL}${imageUrl}`
                   : errorPost
-                  : imageUrl || errorPost
+                : imageUrl || errorPost
             }
             width={240}
             alt="card-post"
@@ -263,7 +265,16 @@ const DetailedCard = ({
         <button onClick={onSendComment}>Отправить</button>
       </div>
       <div className={styles.card__createDate}>
-        <p>Создано {date}</p>
+        <p>
+          Создано{" "}
+          {dayMonth === createMonth
+            ? `${daysBetween} ${declOfNum(daysBetween, [
+                "день",
+                "дня",
+                "дней",
+              ])}  назад`
+            : date}
+        </p>
       </div>
       {isLikedView && (
         <LikedView
