@@ -142,9 +142,12 @@
   &__createDate {
     display: flex;
     align-items: center;
+    p {
+      
     color: grey;
-    margin: 0 15px 15px 15px;
+    padding: 0 15px 15px 15px;
     font-size: 10px;
+    }
   }
 
   @media (max-width: 1550px) {
