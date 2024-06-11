@@ -6,6 +6,7 @@ import errorPost from "../../assets/errorPost.png";
 import VideoVektor from "../VideoVektor";
 
 const PostsUser = ({ imageUrl, comments, likes }) => {
+  const imageRef = React.useRef();
   const success = useSelector((state) => state.postsSlice.post.status);
   const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
   const sortedVideo = imageUrl
@@ -14,7 +15,7 @@ const PostsUser = ({ imageUrl, comments, likes }) => {
     ?.join("")
     .toLowerCase();
 
-  console.log(imageUrl);
+  console.log(imageRef);
 
   if (!success) {
     return <Loading />;
@@ -28,6 +29,7 @@ const PostsUser = ({ imageUrl, comments, likes }) => {
         </div>
       ) : (
         <img
+          ref={imageRef}
           src={
             sortedImage === "/uploads"
               ? // ? `http://localhost:4444${imageUrl}`

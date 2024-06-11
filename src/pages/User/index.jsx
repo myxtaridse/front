@@ -31,10 +31,7 @@ const User = ({ setIsIdRequest }) => {
   const myData = useSelector((state) => state?.userSlice.dataMyAcc);
   const userData = useSelector((state) => state?.authSlice?.dataUser);
   const myId = JSON.parse(localStorage.getItem("data"));
-  const postsAll = postsAllMain
-    ?.filter((post) => post.user._id === id)
-    .reverse();
-
+  const postsAll = postsAllMain?.filter((post) => post.user._id === id);
   const idFiltered = Boolean(myData?._id === id);
 
   const [isChangePost, setIsChangePost] = React.useState(false);
@@ -143,21 +140,20 @@ const User = ({ setIsIdRequest }) => {
       />
 
       {postsAll?.length > 0 ? (
-        
-          <div className={styles.user__body}>
-            {postsAll?.map((post, id) => (
-              <div
-                key={id}
-                className={styles.user__body__item}
-                onClick={() => {
-                  putValues(id);
-                  setIsOpen(true);
-                }}
-              >
-                <PostsUser key={id} {...post} />
-              </div>
-            ))}
-          </div>
+        <div className={styles.user__body}>
+          {postsAll?.map((post, id) => (
+            <div
+              key={id}
+              className={styles.user__body__item}
+              onClick={() => {
+                putValues(id);
+                setIsOpen(true);
+              }}
+            >
+              <PostsUser key={id} {...post} />
+            </div>
+          ))}
+        </div>
       ) : (
         <div className={styles.user__notPosts}>
           <img src={notPosts} alt="notPosts" />

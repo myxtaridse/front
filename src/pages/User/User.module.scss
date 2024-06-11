@@ -127,7 +127,7 @@
       grid-template-columns: repeat(3, calc(100% / 3));
       gap: 0;
       &__item {
-        height: calc((100vw / 3) - 40px);
+        height: calc((100vw / 3) - 15px);
       }
     }
     &__notPosts {
@@ -148,7 +148,7 @@
       grid-template-columns: repeat(2, calc(100% / 2));
 
       &__item {
-        height: calc((100vw / 2) - 40px);
+        height: calc((100vw / 2) - 25px);
       }
     }
     &__notPosts {
