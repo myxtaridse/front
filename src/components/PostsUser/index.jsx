@@ -31,14 +31,13 @@ const PostsUser = ({ imageUrl, comments, likes }) => {
         <img
           ref={imageRef}
           src={
-            // sortedImage === "/uploads" && imageRef?.current?.height > 30
-            //   ? // ? `http://localhost:4444${imageUrl}`
-            //     `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-            //     `undefined${imageUrl}`
-            //     ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-            //     : errorPost
-            //   : imageUrl || errorPost
-            errorPost
+            sortedImage === "/uploads"
+              ? // ? `http://localhost:4444${imageUrl}`
+                `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                  `undefined${imageUrl}` && imageRef?.current?.height > 30
+                ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                : errorPost
+              : imageUrl || errorPost
           }
           alt="post"
         />
