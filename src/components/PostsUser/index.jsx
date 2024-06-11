@@ -37,7 +37,9 @@ const PostsUser = ({ imageUrl, comments, likes }) => {
                 `undefined${imageUrl}`
                 ? `${process.env.REACT_APP_API_URL}${imageUrl}`
                 : errorPost
-              : imageUrl || errorPost
+              : imageRef?.current?.height > 30
+              ? errorPost
+              : errorPost
           }
           alt="post"
         />
