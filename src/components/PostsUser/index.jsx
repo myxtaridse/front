@@ -15,7 +15,7 @@ const PostsUser = ({ imageUrl, comments, likes }) => {
     ?.join("")
     .toLowerCase();
 
-  console.log(imageRef);
+  console.log(imageRef?.current?.height);
 
   if (!success) {
     return <Loading />;
