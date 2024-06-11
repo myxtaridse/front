@@ -4,7 +4,7 @@ import Axios from "../../axios";
 export const fetchPosts = createAsyncThunk(
   "posts/fetchPostsStatus",
   async () => {
-    const response = await Axios.get("/posts");
+    const response = await Axios.get("/posts?count=4");
 
     return response.data;
   }
@@ -61,7 +61,7 @@ const postsSlice = createSlice({
     });
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       //console.log("normall", state);
-      state.post.items = action.payload;
+      state.post.items = action.payload.reverse();
       state.post.status = "success";
       //console.log(action.payload);
     });

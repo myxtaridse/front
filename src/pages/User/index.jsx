@@ -14,6 +14,7 @@ import {
   SubPopup,
   Loading,
 } from "../../components/index";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const User = ({ setIsIdRequest }) => {
   const { id } = useParams();
@@ -46,6 +47,26 @@ const User = ({ setIsIdRequest }) => {
   const [isSubPopup, setIsSubPopup] = React.useState(false);
   const [isSubscribed, setIsSubscribed] = React.useState(false);
   const [isSubscribers, setIsSubscribers] = React.useState(false);
+  // const [postsForRender, setPostsForRender] = React.useState([]);
+  // const [page, setPage] = React.useState(0);
+
+  // React.useEffect(() => {
+  //   const newPost = [...postsAll];
+  //   if (newPost.length) {
+  //     setPostsForRender(newPost.splice(0, 12));
+  //   }
+  // }, [postsAll]);
+
+  // const nextHandler = () => {
+  //   const newPosts = [...postsAll];
+  //   const offset = 2 * (page + 1);
+
+  //   setPostsForRender([
+  //     ...postsForRender,
+  //     ...newPosts.splice(offset, offset + 2),
+  //   ]);
+  //   setPage(page + 1);
+  // };
 
   const postOne = postsAll[isPutValue];
 
@@ -122,28 +143,21 @@ const User = ({ setIsIdRequest }) => {
       />
 
       {postsAll?.length > 0 ? (
-        // <InfiniteScroll
-        //   dataLength={postsView.length}
-        //   next={nextHandler}
-        //   hasMore={postsView.length < postsAll.length}
-        //   loader={<Loading />}
-
-        //   // endMessage={<p style={{ textAlign: "center" }}>Пора за работу!</p>}
-        // >
-        <div className={styles.user__body}>
-          {postsAll?.map((post, id) => (
-            <div
-              key={id}
-              className={styles.user__body__item}
-              onClick={() => {
-                putValues(id);
-                setIsOpen(true);
-              }}
-            >
-              <PostsUser key={id} {...post} />
-            </div>
-          ))}
-        </div>
+        
+          <div className={styles.user__body}>
+            {postsAll?.map((post, id) => (
+              <div
+                key={id}
+                className={styles.user__body__item}
+                onClick={() => {
+                  putValues(id);
+                  setIsOpen(true);
+                }}
+              >
+                <PostsUser key={id} {...post} />
+              </div>
+            ))}
+          </div>
       ) : (
         <div className={styles.user__notPosts}>
           <img src={notPosts} alt="notPosts" />

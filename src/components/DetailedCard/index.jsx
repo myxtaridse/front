@@ -10,6 +10,7 @@ import errorPost from "../../assets/errorPost.png";
 import LikedView from "../LikedView";
 import VideoPlayer from "../VideoPlayer";
 import { dateFunc } from "../../utils";
+import VideoVektor from "../VideoVektor";
 
 const DetailedCard = ({
   id,
@@ -36,6 +37,10 @@ const DetailedCard = ({
   const { date, dayMonth, createMonth, daysBetween, declOfNum } = dateFunc({
     createdAt,
   });
+
+  React.useEffect(() => {
+    console.log(id);
+  }, [id]);
 
   const sortedImage = imageUrl?.split("").splice(0, 8)?.join("");
   const sortedAvatar = user?.avatarUrl?.split("").splice(0, 8)?.join("");
@@ -64,6 +69,7 @@ const DetailedCard = ({
         const { data } = await Axios.patch(`/posts/${id}`, {
           comments: [...commentsPushed],
         });
+        sessionStorage.setItem("scrollPos", window.scrollY);
         setTimeout(() => {
           setIsChangePost(!isChangePost);
         }, 100);
@@ -88,6 +94,8 @@ const DetailedCard = ({
       const { data } = await Axios.patch(`/posts/${id}`, {
         likes: [...likesPushed],
       });
+
+      sessionStorage.setItem("scrollPos", window.scrollY);
       setTimeout(() => {
         setIsChangePost(!isChangePost);
       }, 100);
@@ -138,18 +146,23 @@ const DetailedCard = ({
         </div>
       </Link>
       <div className={styles.card__image}>
-        {sortedVideo === "mp4" || sortedVideo === "MOV" ? (
-          <VideoPlayer imageUrl={imageUrl} sortedVideo={sortedVideo} />
+        {sortedVideo === "mp4" || sortedVideo === "mov" ? (
+          `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+          `undefined${imageUrl}` ? (
+            <VideoPlayer imageUrl={imageUrl} sortedVideo={sortedVideo} />
+          ) : (
+            <img src={errorPost} />
+          )
         ) : (
           <img
             src={
               sortedImage === "/uploads"
-                ? `http://localhost:4444${imageUrl}`
-                : // `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-                  // `undefined${imageUrl}`
-                  // ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-                  // : errorPost
-                  imageUrl || errorPost
+                ? // ? `http://localhost:4444${imageUrl}`
+                  `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                  `undefined${imageUrl}`
+                  ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                  : errorPost
+                : imageUrl || errorPost
             }
             width={240}
             alt="card-post"

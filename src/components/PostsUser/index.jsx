@@ -14,13 +14,15 @@ const PostsUser = ({ imageUrl, comments, likes }) => {
     ?.join("")
     .toLowerCase();
 
+  console.log(imageUrl);
+
   if (!success) {
     return <Loading />;
   }
 
   return (
     <div className={styles.card}>
-      {sortedVideo === "mp4" || sortedVideo === "MOV" ? (
+      {sortedVideo === "mp4" || sortedVideo === "mov" ? (
         <div className={styles.card__preview}>
           <VideoVektor />
         </div>
@@ -28,12 +30,12 @@ const PostsUser = ({ imageUrl, comments, likes }) => {
         <img
           src={
             sortedImage === "/uploads"
-              ? `http://localhost:4444${imageUrl}`
-              : // ? `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-                //   `undefined${imageUrl}`
-                //   ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-                //   : errorPost
-                imageUrl || errorPost
+              ? // ? `http://localhost:4444${imageUrl}`
+                `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                `undefined${imageUrl}`
+                ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                : errorPost
+              : imageUrl || errorPost
           }
           alt="post"
         />
