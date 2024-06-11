@@ -10,7 +10,7 @@ const VideoPlayer = ({ imageUrl, sortedVideo }) => {
   const soundClick = () => {
     setIsSound(!isSound);
 
-    // videoNode.muted = !isSound;
+    videoNode.muted = !isSound;
     videoNode.play();
     setTimeout(() => {
       const videoNode = document.querySelector("video");
