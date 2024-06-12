@@ -149,7 +149,7 @@ const OpenPost = ({
         className={styles.popup}
       >
         <div className={styles.popup__image}>
-          {sortedVideo === "mp4" || sortedVideo === "mov" ? (
+          {sortedVideo === "mp4" || sortedVideo === "" ? (
             `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
             `undefined${post?.imageUrl}` ? (
               <div className={styles.popup__video}>
