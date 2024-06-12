@@ -24,6 +24,7 @@
   --bg-theme: #7676b7ce;
   --svg-popup-color-1: black;
   --svg-popup-color-2: rgba(67, 70, 110, 0.582);
+  --contarst: contrast(100%);
 }
 #root.dark {
   --bg-color: #030303;
@@ -43,6 +44,7 @@
   --bg-theme: #414141;
   --svg-popup-color-1: rgba(84, 95, 130, 0.582);
   --svg-popup-color-2: black;
+  --contarst: contrast(0%);
 }
 
 body {

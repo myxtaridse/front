@@ -9,15 +9,19 @@ import Main from "./pages/Main";
 import User from "./pages/User";
 import Register from "./pages/Register";
 import { Loading } from "./components";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   const auth = localStorage.getItem("token");
 
   const Main = React.lazy(() =>
-    import(/* webpackChunkName: "Cart" */ "./pages/Main")
+    import(/* webpackChunkName: "Main" */ "./pages/Main")
   );
   const User = React.lazy(() =>
-    import(/* webpackChunkName: "Cart" */ "./pages/User")
+    import(/* webpackChunkName: "User" */ "./pages/User")
+  );
+  const NotFound = React.lazy(() =>
+    import(/* webpackChunkName: "User" */ "./pages/NotFound")
   );
 
   return (
@@ -37,6 +41,14 @@ const App = () => {
             element={
               <React.Suspense fallback={<Loading />}>
                 <User />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="/404"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <NotFound />
               </React.Suspense>
             }
           />
