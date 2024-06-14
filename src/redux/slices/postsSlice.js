@@ -51,7 +51,7 @@ const postsSlice = createSlice({
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       //console.log("normall", state);
       state.post.status = "success";
-      state.post.items = action.payload;
+      state.post.items = action.payload.reverse();
     });
     builder.addCase(fetchPosts.rejected, (state, action) => {
       //console.log("loading");

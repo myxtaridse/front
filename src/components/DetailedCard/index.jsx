@@ -280,11 +280,13 @@ const DetailedCard = ({
         <p>
           Создано{" "}
           {dayMonth === createMonth
-            ? `${daysBetween} ${declOfNum(daysBetween, [
-                "день",
-                "дня",
-                "дней",
-              ])}  назад`
+            ? daysBetween === 0
+              ? сегодня
+              : `${daysBetween} ${declOfNum(daysBetween, [
+                  "день",
+                  "дня",
+                  "дней",
+                ])}  назад`
             : date}
         </p>
       </div>
