@@ -97,11 +97,11 @@ const AddNewPost = ({
               muted
               loop="loop"
               src={
-                // `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-                // `undefined${imageUrl}`
-                //   ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-                //   : errorPost
-                `http://localhost:4444${imageUrl}` || errorPost
+                `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                `undefined${imageUrl}`
+                  ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                  : errorPost
+                // `http://localhost:4444${imageUrl}` || errorPost
               }
             ></video>
           ) : (

@@ -21,11 +21,11 @@ const VideoPlayer = ({ imageUrl, sortedVideo }) => {
       <video autoPlay loop playsInline ref={soundRef} width="100%">
         <source
           src={
-            `http://localhost:4444${imageUrl}` || errorPost
-            // `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-            // `undefined/${imageUrl}`
-            //   ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-            //   : errorPost
+            // `http://localhost:4444${imageUrl}` || errorPost
+            `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+            `undefined/${imageUrl}`
+              ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+              : errorPost
           }
           type={`video/${sortedVideo}`}
         />

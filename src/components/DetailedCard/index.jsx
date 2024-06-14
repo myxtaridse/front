@@ -147,15 +147,14 @@ const DetailedCard = ({
       </Link>
       <div className={styles.card__image}>
         {sortedVideo === "mp4" || sortedVideo === "mov" ? (
-          //  (
-          //   `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-          //   `undefined${imageUrl}` ? (
-          //     <VideoPlayer imageUrl={imageUrl} sortedVideo={sortedVideo} />
-          //   ) : (
-          //     <img src={errorPost} />
-          //   )
-          <VideoPlayer imageUrl={imageUrl} sortedVideo={sortedVideo} />
+          `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+          `undefined${imageUrl}` ? (
+            <VideoPlayer imageUrl={imageUrl} sortedVideo={sortedVideo} />
+          ) : (
+            <img src={errorPost} />
+          )
         ) : (
+          // <VideoPlayer imageUrl={imageUrl} sortedVideo={sortedVideo} />
           <img
             src={
               sortedImage === "/uploads"

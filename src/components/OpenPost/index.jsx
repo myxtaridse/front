@@ -150,26 +150,24 @@ const OpenPost = ({
       >
         <div className={styles.popup__image}>
           {sortedVideo === "mp4" || sortedVideo === "" ? (
-            // (
-            //   `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
-            //   `undefined${post?.imageUrl}` ? (
-            //     <div className={styles.popup__video}>
-            //       <VideoPlayer
-            //         imageUrl={post?.imageUrl}
-            //         sortedVideo={sortedVideo}
-            //       />
-            //     </div>
-            //   ) : (
-            //     <img src={errorPost} />
-            //   )
-            // )
-            <div className={styles.popup__video}>
-              <VideoPlayer
-                imageUrl={post?.imageUrl}
-                sortedVideo={sortedVideo}
-              />
-            </div>
+            `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
+            `undefined${post?.imageUrl}` ? (
+              <div className={styles.popup__video}>
+                <VideoPlayer
+                  imageUrl={post?.imageUrl}
+                  sortedVideo={sortedVideo}
+                />
+              </div>
+            ) : (
+              <img src={errorPost} />
+            )
           ) : (
+            // <div className={styles.popup__video}>
+            //   <VideoPlayer
+            //     imageUrl={post?.imageUrl}
+            //     sortedVideo={sortedVideo}
+            //   />
+            // </div>
             <img
               src={
                 sortedImage === "/uploads"
