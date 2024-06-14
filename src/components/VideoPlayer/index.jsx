@@ -5,7 +5,7 @@ import errorPost from "../../assets/errorPost.png";
 const VideoPlayer = ({ imageUrl, sortedVideo }) => {
   const soundRef = React.useRef();
   const videoNode = document.querySelector("video");
-  const [isSound, setIsSound] = React.useState(false);
+  const [isSound, setIsSound] = React.useState(true);
 
   const soundClick = () => {
     if (isSound) {
@@ -15,6 +15,10 @@ const VideoPlayer = ({ imageUrl, sortedVideo }) => {
     }
     setIsSound(!isSound);
   };
+
+  React.useEffect(() => {
+    soundRef.current.pause();
+  }, []);
 
   return (
     <div className={styles.player}>
