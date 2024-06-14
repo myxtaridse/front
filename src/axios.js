@@ -17,5 +17,3 @@ instance.interceptors.request.use((config) => {
 export default instance;
 
 // создали начальное значение адресса для вызова на бэк, адрессная строка начинается с - http://localhost:3000/
-
-

@@ -1,11 +1,12 @@
 export const dateFunc = ({ createdAt }) => {
-  const [year, month, day] = createdAt.substr(0, 10).split("-");
+  const dateCreate = createdAt;
+  const [year, month, day] = dateCreate?.substr(0, 10).split("-");
   const date = `${day}.${month}.${year}`;
 
   const dayMonth = new Date().getMonth() + 1;
-  const createMonth = new Date(createdAt).getMonth() + 1;
+  const createMonth = new Date(dateCreate).getMonth() + 1;
 
-  const daysBetween = new Date().getDate() - new Date(createdAt).getDate();
+  const daysBetween = new Date().getDate() - new Date(dateCreate).getDate();
 
   function declOfNum(number, words) {
     return words[

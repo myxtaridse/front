@@ -4,7 +4,7 @@ import Axios from "../../axios";
 export const fetchPosts = createAsyncThunk(
   "posts/fetchPostsStatus",
   async () => {
-    const response = await Axios.get("/posts?count=4");
+    const response = await Axios.get(`/posts`);
 
     return response.data;
   }
@@ -44,30 +44,21 @@ const postsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // builder.addCase(fetchPostsRemove.fulfilled, (state, action) => {
-    //   //console.log("normall", state);
-    //   state.post.items = action.payload;
-    //   state.post.status = "succes";
-    // });
-    // builder.addCase(fetchPostsRemove.rejected, (state, action) => {
-    //   //console.log("loading");
-    //   state.post.items = [];
-    //   state.post.status = "error";
-    // });
-
     builder.addCase(fetchPosts.pending, (state, action) => {
       //console.log("loading");
       state.post.status = "loading";
     });
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       //console.log("normall", state);
-      state.post.items = action.payload.reverse();
       state.post.status = "success";
-      //console.log(action.payload);
+      state.post.items = action.payload;
     });
     builder.addCase(fetchPosts.rejected, (state, action) => {
       //console.log("loading");
       state.post.items = [];
+
+      state.post.currentPage = 0;
+      state.post.totalPages = 0;
       state.post.status = "error";
     });
     builder.addCase(fetchTags.pending, (state, action) => {

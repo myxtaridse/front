@@ -94,7 +94,6 @@ const DetailedCard = ({
       const { data } = await Axios.patch(`/posts/${id}`, {
         likes: [...likesPushed],
       });
-
       sessionStorage.setItem("scrollPos", window.scrollY);
       setTimeout(() => {
         setIsChangePost(!isChangePost);
