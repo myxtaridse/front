@@ -150,27 +150,35 @@ const OpenPost = ({
       >
         <div className={styles.popup__image}>
           {sortedVideo === "mp4" || sortedVideo === "" ? (
-            `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
-            `undefined${post?.imageUrl}` ? (
-              <div className={styles.popup__video}>
-                <VideoPlayer
-                  imageUrl={post?.imageUrl}
-                  sortedVideo={sortedVideo}
-                />
-              </div>
-            ) : (
-              <img src={errorPost} />
-            )
+            // (
+            //   `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
+            //   `undefined${post?.imageUrl}` ? (
+            //     <div className={styles.popup__video}>
+            //       <VideoPlayer
+            //         imageUrl={post?.imageUrl}
+            //         sortedVideo={sortedVideo}
+            //       />
+            //     </div>
+            //   ) : (
+            //     <img src={errorPost} />
+            //   )
+            // )
+            <div className={styles.popup__video}>
+              <VideoPlayer
+                imageUrl={post?.imageUrl}
+                sortedVideo={sortedVideo}
+              />
+            </div>
           ) : (
             <img
               src={
                 sortedImage === "/uploads"
-                  ? // ? // ? `http://localhost:4444${imageUrl}`
-                    `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
-                    `undefined${post?.imageUrl}`
-                    ? `${process.env.REACT_APP_API_URL}${post?.imageUrl}`
-                    : errorPost
-                  : post?.imageUrl || errorPost
+                  ? `http://localhost:4444${post?.imageUrl}`
+                  : // `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
+                    // `undefined${post?.imageUrl}`
+                    // ? `${process.env.REACT_APP_API_URL}${post?.imageUrl}`
+                    // : errorPost
+                    post?.imageUrl || errorPost
               }
               width={240}
               alt="post"

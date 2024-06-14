@@ -97,11 +97,11 @@ const AddNewPost = ({
               muted
               loop="loop"
               src={
-                `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-                `undefined${imageUrl}`
-                  ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-                  : errorPost
-                // `http://localhost:4444${imageUrl}` || errorPost
+                // `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                // `undefined${imageUrl}`
+                //   ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                //   : errorPost
+                `http://localhost:4444${imageUrl}` || errorPost
               }
             ></video>
           ) : (
@@ -155,7 +155,7 @@ const AddNewPost = ({
         <div className={styles.alert}>
           <Toast
             title="Загрузка файла"
-            subTitle="Файл превышает допустимый размер для загрузки!:("
+            subTitle="Файл превышает допустимый размер для загрузки! :("
             copyAlert={copyAlert}
             setCopyAlert={setCopyAlert}
           />

@@ -28,6 +28,7 @@ const DetailedCard = ({
 
   allUsers,
 }) => {
+  const widthRef = React.useRef();
   const [isOpenComments, setIsOpenComments] = useState(true);
   const [isRemoveComment, setIsRemoveComment] = React.useState(false);
   const [text, setText] = useState("");
@@ -123,7 +124,7 @@ const DetailedCard = ({
   }
 
   return (
-    <div className={styles.card}>
+    <div ref={widthRef} className={styles.card}>
       <Link to={`/${user._id}`}>
         <div className={styles.card__header}>
           <img
@@ -146,22 +147,24 @@ const DetailedCard = ({
       </Link>
       <div className={styles.card__image}>
         {sortedVideo === "mp4" || sortedVideo === "mov" ? (
-          `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-          `undefined${imageUrl}` ? (
-            <VideoPlayer imageUrl={imageUrl} sortedVideo={sortedVideo} />
-          ) : (
-            <img src={errorPost} />
-          )
+          //  (
+          //   `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+          //   `undefined${imageUrl}` ? (
+          //     <VideoPlayer imageUrl={imageUrl} sortedVideo={sortedVideo} />
+          //   ) : (
+          //     <img src={errorPost} />
+          //   )
+          <VideoPlayer imageUrl={imageUrl} sortedVideo={sortedVideo} />
         ) : (
           <img
             src={
               sortedImage === "/uploads"
-                ? // ? `http://localhost:4444${imageUrl}`
-                  `${process.env.REACT_APP_API_URL}${imageUrl}` !==
-                  `undefined${imageUrl}`
-                  ? `${process.env.REACT_APP_API_URL}${imageUrl}`
-                  : errorPost
-                : imageUrl || errorPost
+                ? `http://localhost:4444${imageUrl}`
+                : // `${process.env.REACT_APP_API_URL}${imageUrl}` !==
+                  // `undefined${imageUrl}`
+                  // ? `${process.env.REACT_APP_API_URL}${imageUrl}`
+                  // : errorPost
+                  imageUrl || errorPost
             }
             width={240}
             alt="card-post"
