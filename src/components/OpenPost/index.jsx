@@ -171,12 +171,12 @@ const OpenPost = ({
             <img
               src={
                 sortedImage === "/uploads"
-                  ? `http://localhost:4444${post?.imageUrl}`
-                  : // `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
-                    // `undefined${post?.imageUrl}`
-                    // ? `${process.env.REACT_APP_API_URL}${post?.imageUrl}`
-                    // : errorPost
-                    post?.imageUrl || errorPost
+                  ? // ? `http://localhost:4444${post?.imageUrl}`
+                    `${process.env.REACT_APP_API_URL}${post?.imageUrl}` !==
+                    `undefined${post?.imageUrl}`
+                    ? `${process.env.REACT_APP_API_URL}${post?.imageUrl}`
+                    : errorPost
+                  : post?.imageUrl || errorPost
               }
               width={240}
               alt="post"
