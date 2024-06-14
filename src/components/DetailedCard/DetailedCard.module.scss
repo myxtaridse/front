@@ -242,7 +242,7 @@
     }
 
     &__image {
-      height: 100%;
+      height: max-content;
       width: 100%;
 
       video {
