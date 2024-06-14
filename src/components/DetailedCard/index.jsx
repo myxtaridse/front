@@ -281,7 +281,7 @@ const DetailedCard = ({
           Создано{" "}
           {dayMonth === createMonth
             ? daysBetween === 0
-              ? сегодня
+              ? "сегодня"
               : `${daysBetween} ${declOfNum(daysBetween, [
                   "день",
                   "дня",
